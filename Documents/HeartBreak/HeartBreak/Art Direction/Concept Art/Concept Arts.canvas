@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"ad1998e15d9e5363","x":280,"y":-180,"width":400,"height":324,"type":"file","file":"Images/Concepts/IMG_Concept_Umbrellas.png"},
+		{"id":"444bdf43126b7e55","x":925,"y":-392,"width":400,"height":225,"type":"file","file":"Images/Concepts/IMG_Concept_AmaeItami.png"},
+		{"id":"e89c169b906d67e3","x":1370,"y":-392,"width":400,"height":225,"type":"file","file":"Images/Concepts/IMG_Concept_Sisters.png"},
+		{"id":"2af1fd9610c4764a","x":-120,"y":-480,"width":400,"height":225,"type":"file","file":"Images/IMG_Diagram_CombatOld.png"},
+		{"id":"34007b04b1b0d6a9","x":1800,"y":-392,"width":400,"height":225,"type":"file","file":"Images/Concepts/IMG_Concept_Tower.png"}
+	],
+	"edges":[]
+}

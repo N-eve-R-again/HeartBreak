@@ -11,14 +11,17 @@
             "id": "017b31028deebe73",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "HeartBreak/Design/Game Design Document.md",
-                "mode": "preview",
-                "source": false
+                "file": "HeartBreak/Art Direction/Characters/Amae.canvas",
+                "viewState": {
+                  "x": 666,
+                  "y": -232.19717586649546,
+                  "zoom": -0.2565378588082155
+                }
               },
-              "icon": "lucide-file",
-              "title": "Game Design Document"
+              "icon": "lucide-layout-dashboard",
+              "title": "Amae"
             }
           }
         ]
@@ -171,14 +174,37 @@
   },
   "active": "182d0de893b7dee5",
   "lastOpenFiles": [
+    "HeartBreak/Design/ND",
+    "HeartBreak/Design/GD",
+    "Untitled.md",
+    "Images/Screenshots",
+    "Images/Concepts",
+    "Images/Screenshots/IMG_Screenshot_Arena.jpg",
+    "Images/Chara/IMG_Chara_Amae_Detailed_Classic.png",
+    "Images/Chara/IMG_Chara_Amae_3D.png",
+    "Images/Chara/IMG_Chara_Amae_Detailed_Unbound.png",
+    "Images/Chara",
+    "Images/IMG_Diagram_CombatOld.png",
+    "Images/Concepts/IMG_Concept_Sisters.png",
+    "Images/Concepts/IMG_Concept_Umbrellas.png",
+    "Images/IMG_Logo.png",
+    "Images/Chara/IMG_Chara_Amae_OldTurn.png",
+    "Images/Chara/IMG_Chara_Amae_CurrentDesign.png",
+    "HeartBreak/Art Direction/Characters/Amae.canvas",
+    "HeartBreak/Design/ND/Characters Narrative Design.md",
+    "HeartBreak/Art Direction/Characters/Itami.canvas",
+    "HeartBreak/Art Direction/Concept Art/Concept Arts.canvas",
+    "HeartBreak/Design/GD/Game Design Document.md",
+    "HeartBreak/Art Direction/Characters/Ama",
+    "HeartBreak/Art Direction/Concept Art",
+    "HeartBreak/Art Direction/Characters",
+    "HeartBreak/Art Direction",
+    "HeartBreak/Walkthrough/HeartBreak.md",
     "Images",
     "HeartBreak/Walkthrough/- Walkthough v5.canvas",
-    "HeartBreak/Walkthrough/HeartBreak.md",
     "HeartBreak/Walkthrough/La Tour/La Tour - Étage 7F - Libération d'Itami.md",
-    "HeartBreak/Design/Game Design Document.md",
     "HeartBreak/Walkthrough/Introduction/Introduction 0 - Cold Open.md",
     "HeartBreak/Walkthrough/La Tour/La Tour - Étage 4 - Combat contre la Petite Sœur.md",
-    "Images/IMG_Logo.png",
     "HeartBreak/Walkthrough/La Tour/La Tour - Étage 6 - Combat contre Hoseki.md",
     "HeartBreak/Walkthrough/La Tour/La Tour - Étage 3 - Combat contre la Grande Sœur.md",
     "HeartBreak/Walkthrough/La Tour/La Tour - Étage 2 - Combat contre la Sœur Acrobate.md",
@@ -194,21 +220,9 @@
     "HeartBreak/Walkthrough/Introduction/Introduction 3 - Combat Tutoriel contre Itami.md",
     "HeartBreak/Walkthrough/Introduction/Introduction 2 - Course vers la Tour d’Ivoire.md",
     "HeartBreak/Walkthrough/Introduction/Introduction 1 - Début.md",
-    "Images/IMG_Arena.jpg",
     "HeartBreak/Design",
-    "HeartBreak/Walkthrough/Séquence Finale",
-    "HeartBreak/Walkthrough/La Tour",
-    "HeartBreak/Walkthrough/Introduction",
-    "Untitled.base",
-    "Untitled 3.base",
-    "Untitled 2.base",
-    "Untitled 1.base",
     "HeartBreak/Walkthrough/Heartbreak Walkthrough Summary.md",
     "HeartBreak/Walkthrough/Intro.md",
-    "HeartBreak/Walkthrough",
-    "HeartBreak",
-    "18-08-2025.md",
-    "19-08-2025.md",
-    "create a link.md"
+    "18-08-2025.md"
   ]
 }
