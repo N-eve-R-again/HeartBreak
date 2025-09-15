@@ -7,7 +7,7 @@ aliases:
 Version: "1.1"
 Summary: Game Design Document of the game HeartBreak
 ---
-![[logo.png]]
+![[IMG_Logo.png]]
 
 ---
 # I. Présentation du Projet
