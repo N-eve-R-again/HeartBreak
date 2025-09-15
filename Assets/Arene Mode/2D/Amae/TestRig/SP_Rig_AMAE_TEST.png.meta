@@ -1,0 +1,1190 @@
+fileFormatVersion: 2
+guid: 23f6464f09c60104083f4d79c1994edd
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Amae_Bangs_Front
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 931
+        width: 109
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5012802, y: 0.82166094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -29.5, y: -26.5}
+        - {x: -20.5, y: -14.5}
+        - {x: -16.5, y: -8.5}
+        - {x: -7.5, y: -28.5}
+        - {x: -2.5, y: -32.5}
+        - {x: -0.5, y: -32.5}
+        - {x: 5.5, y: -27.5}
+        - {x: 12.5, y: -13.5}
+        - {x: 16.5, y: -12.5}
+        - {x: 22.5, y: -21.5}
+        - {x: 31.5, y: -31.5}
+        - {x: 34.5, y: -32.5}
+        - {x: 40.5, y: -32.5}
+        - {x: 45.5, y: -30.5}
+        - {x: 53.5, y: -23.5}
+        - {x: 54.5, y: -21.5}
+        - {x: 54.5, y: -14.5}
+        - {x: 53.5, y: -13.5}
+        - {x: 42.5, y: -8.5}
+        - {x: 47.5, y: 0.5}
+        - {x: 46.5, y: 6.5}
+        - {x: 44.5, y: 11.5}
+        - {x: 39.5, y: 16.5}
+        - {x: 27.5, y: 30.5}
+        - {x: 25.5, y: 32.5}
+        - {x: -23.5, y: 32.5}
+        - {x: -29.5, y: 26.5}
+        - {x: -36.5, y: 18.5}
+        - {x: -41.5, y: 12.5}
+        - {x: -44.5, y: 8.5}
+        - {x: -45.5, y: 0.5}
+        - {x: -41.5, y: -11.5}
+        - {x: -52.5, y: -14.5}
+        - {x: -54.5, y: -16.5}
+        - {x: -54.5, y: -21.5}
+        - {x: -43.5, y: -32.5}
+        - {x: -35.5, y: -32.5}
+      physicsShape: []
+      tessellationDetail: 0.642
+      bones: []
+      spriteID: 33e6f715d5af84b4c9e38cbfc8710a60
+      internalID: 1089963850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Bangs_Side
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 903
+        width: 94
+        height: 103
+      alignment: 9
+      pivot: {x: 0.50688624, y: 0.8487916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 47, y: -6.5}
+        - {x: 47, y: 37.5}
+        - {x: 27, y: 51.5}
+        - {x: -22, y: 51.5}
+        - {x: -47, y: 28.5}
+        - {x: -47, y: -22.5}
+        - {x: -22, y: -51.5}
+        - {x: -3, y: -51.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c34b841ccd10a649b56cfc460352517
+      internalID: 1618345506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Hair_Front
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 878
+        width: 136
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 68, y: -42}
+        - {x: 68, y: 0}
+        - {x: 36, y: 59}
+        - {x: 23, y: 64}
+        - {x: -41, y: 64}
+        - {x: -49, y: 62}
+        - {x: -68, y: 27}
+        - {x: -68, y: -56}
+        - {x: -62, y: -64}
+        - {x: 56, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 579750e39f318b540bff61017e8a3bce
+      internalID: 940673183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Arm_R_Front
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 811
+        width: 36
+        height: 178
+      alignment: 9
+      pivot: {x: 0.5224559, y: 0.9360084}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 18, y: -80}
+        - {x: 18, y: 80}
+        - {x: 12, y: 89}
+        - {x: -10, y: 89}
+        - {x: -14, y: 87}
+        - {x: -18, y: 13}
+        - {x: -18, y: -75}
+        - {x: -11, y: -89}
+        - {x: 14, y: -89}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c9dac75fe65044ba1626cabc33bfca
+      internalID: 350442687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Arm_L_Front
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 811
+        width: 50
+        height: 178
+      alignment: 9
+      pivot: {x: 0.33831298, y: 0.9178412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 16, y: -67}
+        - {x: 25, y: -22}
+        - {x: 25, y: 89}
+        - {x: -25, y: 89}
+        - {x: -25, y: -89}
+        - {x: 4, y: -89}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7105299b5d9b543468d326b7308a5235
+      internalID: -1647223965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Rig_AMAE_TEST_5
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 834
+        width: 71
+        height: 41
+      alignment: 9
+      pivot: {x: 0.46246144, y: 0.5050019}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -5.5, y: 9.5}
+        - {x: -5.5, y: 14.5}
+        - {x: -12.5, y: 20.5}
+        - {x: -34.5, y: 20.5}
+        - {x: -35.5, y: 18.5}
+        - {x: -35.5, y: 4.5}
+        - {x: -23.5, y: -5.5}
+        - {x: -19.5, y: -5.5}
+      - - {x: 35.5, y: 4.5}
+        - {x: 35.5, y: 20.5}
+        - {x: 7.5, y: 20.5}
+        - {x: 0.5, y: 12.5}
+        - {x: 0.5, y: 4.5}
+        - {x: 7.5, y: -4.5}
+        - {x: 21.5, y: -4.5}
+      - - {x: 2.5, y: -12.5}
+        - {x: -7.5, y: -12.5}
+        - {x: -9.5, y: -16.5}
+        - {x: -9.5, y: -18.5}
+        - {x: -8.5, y: -20.5}
+        - {x: 2.5, y: -20.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d38543378a1160b4f8a936ac3931c1d0
+      internalID: 1961750361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Rig_AMAE_TEST_7
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 835
+        width: 17
+        height: 41
+      alignment: 9
+      pivot: {x: 1.9550278, y: 0.51828223}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 8.5, y: 3.5}
+        - {x: 8.5, y: 20.5}
+        - {x: -5.5, y: 20.5}
+        - {x: -8.5, y: 16.5}
+        - {x: -8.5, y: 4.5}
+        - {x: -6.5, y: 0.5}
+        - {x: -3.5, y: -3.5}
+        - {x: 3.5, y: -3.5}
+      - - {x: 2.5, y: -16.5}
+        - {x: 1.5, y: -13.5}
+        - {x: -3.5, y: -13.5}
+        - {x: -6.5, y: -16.5}
+        - {x: -6.5, y: -19.5}
+        - {x: -5.5, y: -20.5}
+        - {x: 2.5, y: -20.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2d3a16a6cd4fc4dbb47807617a7aec
+      internalID: 1024246105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Rig_AMAE_TEST_8
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 836
+        width: 16
+        height: 39
+      alignment: 9
+      pivot: {x: -1.2333574, y: 0.48078176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 6, y: -5.5}
+        - {x: 8, y: -1.5}
+        - {x: 8, y: 19.5}
+        - {x: -8, y: 19.5}
+        - {x: -8, y: -3.5}
+        - {x: -5, y: -6.5}
+        - {x: 3, y: -6.5}
+      - - {x: 5, y: -17.5}
+        - {x: 3, y: -15.5}
+        - {x: -2, y: -15.5}
+        - {x: -4, y: -17.5}
+        - {x: -4, y: -19.5}
+        - {x: 5, y: -19.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba580ac84d7b9d04282ade0a123e23bc
+      internalID: -1504603592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Hair_Side
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 732
+        width: 111
+        height: 134
+      alignment: 9
+      pivot: {x: 0.59506166, y: 0.49885416}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 52, y: 37}
+        - {x: 48, y: 42}
+        - {x: 17, y: 64}
+        - {x: -43, y: 64}
+        - {x: -52, y: 37}
+        - {x: -52, y: -57}
+        - {x: -46, y: -64}
+        - {x: 52, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f97bafa6ad8aff40837e654835a544e
+      internalID: 1675093182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Head_Front
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 724
+        width: 77
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 29.5, y: -39}
+        - {x: 38.5, y: -26}
+        - {x: 38.5, y: 39}
+        - {x: 37.5, y: 41}
+        - {x: -30.5, y: 41}
+        - {x: -38.5, y: 26}
+        - {x: -38.5, y: -25}
+        - {x: -25.5, y: -41}
+        - {x: 20.5, y: -41}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bd0d0789cd9dc488eee154f4cdd878
+      internalID: -2100091975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Head_Side
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 723
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 40, y: -37}
+        - {x: 40, y: 38}
+        - {x: 34, y: 41}
+        - {x: -38, y: 41}
+        - {x: -40, y: 34}
+        - {x: -40, y: -14}
+        - {x: -27, y: -27}
+        - {x: -9, y: -37}
+        - {x: 0, y: -41}
+        - {x: 39, y: -41}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d62471cd463c7458514429baf4c44c
+      internalID: -662234434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Skirt_Front
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 645
+        width: 194
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50384897, y: 0.9697438}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 97, y: -56}
+        - {x: 97, y: -2}
+        - {x: 94, y: 6}
+        - {x: 36, y: 62}
+        - {x: -30, y: 62}
+        - {x: -88, y: 0}
+        - {x: -97, y: -20}
+        - {x: -97, y: -45}
+        - {x: -88, y: -62}
+        - {x: 66, y: -62}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ac084b707fab04db03b313d3e735e7
+      internalID: -194012889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_UpperBody_Back
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 445
+        width: 87
+        height: 104
+      alignment: 9
+      pivot: {x: 0.47975245, y: -0.00023357685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 43.5, y: 30}
+        - {x: 43.5, y: 48}
+        - {x: 27.5, y: 52}
+        - {x: -43.5, y: 52}
+        - {x: -43.5, y: -10}
+        - {x: -38.5, y: -52}
+        - {x: 30.5, y: -52}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9980f487c8854b4c8e2ad6cd0a077c9
+      internalID: -1079070656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_UpperBody_Front
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 450
+        width: 88
+        height: 104
+      alignment: 9
+      pivot: {x: 0.4854407, y: 0.010171743}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 44, y: 26}
+        - {x: 44, y: 50}
+        - {x: 23, y: 52}
+        - {x: -24, y: 52}
+        - {x: -44, y: 47}
+        - {x: -44, y: 17}
+        - {x: -35, y: -50}
+        - {x: -33, y: -52}
+        - {x: 32, y: -52}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61eab7ef8becc304d8aefff6f88c6d46
+      internalID: 361953672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_UpperBody_Side
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 448
+        width: 67
+        height: 106
+      alignment: 9
+      pivot: {x: 0.4572827, y: 0.0002046981}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 33.5, y: 51}
+        - {x: -23.5, y: 51}
+        - {x: -30.5, y: 42}
+        - {x: -31.5, y: 37}
+        - {x: -31.5, y: 11}
+        - {x: -27.5, y: -53}
+        - {x: 33.5, y: -53}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84213f2a0804c3743a7c699fdf37e45b
+      internalID: 1190301394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Hair_Back
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 593
+        width: 136
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 68, y: -35.5}
+        - {x: 68, y: -22.5}
+        - {x: 63, y: -3.5}
+        - {x: 38, y: 63.5}
+        - {x: -40, y: 63.5}
+        - {x: -68, y: 13.5}
+        - {x: -68, y: -57.5}
+        - {x: -64, y: -63.5}
+        - {x: 57, y: -63.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52acd48d9a038484d8a7f2c63434fd29
+      internalID: 209400226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_B
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 311
+        width: 84
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 42, y: -51}
+        - {x: 42, y: -19}
+        - {x: 23, y: 91}
+        - {x: -10, y: 91}
+        - {x: -11, y: 90}
+        - {x: -15, y: 84}
+        - {x: -42, y: -26}
+        - {x: -42, y: -58}
+        - {x: -5, y: -91}
+        - {x: 11, y: -91}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c8e174e9e133f44864e45a68411864
+      internalID: 2141721272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_A
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 301
+        width: 111
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 55.5, y: -71.5}
+        - {x: 55.5, y: -39.5}
+        - {x: 23.5, y: 121.5}
+        - {x: -23.5, y: 121.5}
+        - {x: -55.5, y: -7.5}
+        - {x: -55.5, y: -85.5}
+        - {x: -8.5, y: -121.5}
+        - {x: 13.5, y: -121.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e65790c133000c4a941b81287307621
+      internalID: -1462182069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_Bow_Side
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 366
+        width: 36
+        height: 49
+      alignment: 9
+      pivot: {x: 0.99604964, y: 0.5063944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -4, y: -23.5}
+        - {x: 18, y: -10.5}
+        - {x: 18, y: 11.5}
+        - {x: -3, y: 24.5}
+        - {x: -18, y: 24.5}
+        - {x: -18, y: -19.5}
+        - {x: -14, y: -24.5}
+        - {x: -7, y: -24.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f2213e126e6f342b23d9cb601f5e17
+      internalID: 1120825840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_Bow_Middle
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 373
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 11.5, y: -14.5}
+        - {x: 11.5, y: 15.5}
+        - {x: 6.5, y: 17.5}
+        - {x: -8.5, y: 17.5}
+        - {x: -11.5, y: 12.5}
+        - {x: -11.5, y: -13.5}
+        - {x: -8.5, y: -17.5}
+        - {x: 5.5, y: -17.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9fe441a086a7d458843afc75c37541
+      internalID: -520831267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_B_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 52
+        width: 85
+        height: 182
+      alignment: 9
+      pivot: {x: 0.5527814, y: 0.9889055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 42.5, y: -47}
+        - {x: 42.5, y: 24}
+        - {x: 24.5, y: 91}
+        - {x: -11.5, y: 91}
+        - {x: -42.5, y: -34}
+        - {x: -42.5, y: -48}
+        - {x: -3.5, y: -91}
+        - {x: 15.5, y: -91}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ee8dbe4ad4ae24495c0613efbec722
+      internalID: 525372881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Cape_A_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 44
+        width: 111
+        height: 244
+      alignment: 9
+      pivot: {x: 0.5, y: 0.99951345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 55.5, y: -73}
+        - {x: 55.5, y: -35}
+        - {x: 23.5, y: 122}
+        - {x: -20.5, y: 122}
+        - {x: -55.5, y: -37}
+        - {x: -55.5, y: -72}
+        - {x: -3.5, y: -122}
+        - {x: 2.5, y: -122}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43813e0a137d67645bee726f563baf76
+      internalID: 422342961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_R_Front
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 51
+        width: 49
+        height: 222
+      alignment: 9
+      pivot: {x: 0.5719337, y: 1.0080743}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 22.5, y: -109}
+        - {x: 24.5, y: -18}
+        - {x: 24.5, y: 111}
+        - {x: -20.5, y: 111}
+        - {x: -24.5, y: 32}
+        - {x: -24.5, y: -111}
+        - {x: 19.5, y: -111}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c550df5f84ca46449f5137174398c09
+      internalID: -1138493084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_R_Side
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 48
+        width: 61
+        height: 225
+      alignment: 9
+      pivot: {x: 0.38443294, y: 1.0052162}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 30.5, y: -99.5}
+        - {x: 20.5, y: 112.5}
+        - {x: -30.5, y: 112.5}
+        - {x: -30.5, y: -112.5}
+        - {x: 30.5, y: -112.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a5c1feabcaabb741abc9d28fdece062
+      internalID: 1724666438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_R_Back
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 45
+        width: 48
+        height: 228
+      alignment: 9
+      pivot: {x: 0.49999872, y: 0.9985688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 18, y: -99}
+        - {x: 24, y: 61}
+        - {x: 24, y: 114}
+        - {x: -24, y: 114}
+        - {x: -24, y: -114}
+        - {x: 13, y: -114}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c8ebf35325af4249b80fcb4915536f3
+      internalID: -25996446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_L_Front
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 41
+        width: 41
+        height: 233
+      alignment: 9
+      pivot: {x: 0.4668073, y: 1.0052207}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 20.5, y: 116.5}
+        - {x: -20.5, y: 116.5}
+        - {x: -20.5, y: -115.5}
+        - {x: -17.5, y: -116.5}
+        - {x: 20.5, y: -116.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0108365a00319384ea092145127e295f
+      internalID: 1420413447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_L_Side
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 42
+        width: 60
+        height: 230
+      alignment: 9
+      pivot: {x: 0.3525706, y: 0.99997663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 30, y: 13}
+        - {x: 18, y: 115}
+        - {x: -30, y: 115}
+        - {x: -30, y: -115}
+        - {x: 30, y: -115}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f60e9f6f547acf45abd4b99924460a9
+      internalID: 1500322363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_Leg_L_Back
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 41
+        width: 45
+        height: 232
+      alignment: 9
+      pivot: {x: 0.53024226, y: 0.9956665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 19.5, y: -115}
+        - {x: 22.5, y: 23}
+        - {x: 22.5, y: 116}
+        - {x: -22.5, y: 116}
+        - {x: -22.5, y: -116}
+        - {x: 18.5, y: -116}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9c5f7903ede274eb58b5d6d7a09b73
+      internalID: -294199549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_UpperBody_FrontSide
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 449
+        width: 74
+        height: 102
+      alignment: 9
+      pivot: {x: 0.44083962, y: 0.008445513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 37, y: -15}
+        - {x: 37, y: 51}
+        - {x: -28, y: 51}
+        - {x: -36, y: 50}
+        - {x: -36, y: -14}
+        - {x: -32, y: -51}
+        - {x: 31, y: -51}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef52701e0def5ac48ab729c502f54bbf
+      internalID: 856228158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_UpperBody_BackSide
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 447
+        width: 78
+        height: 103
+      alignment: 9
+      pivot: {x: 0.48422945, y: 0.002804358}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 39, y: -1.5}
+        - {x: 39, y: 47.5}
+        - {x: 34, y: 51.5}
+        - {x: -35, y: 51.5}
+        - {x: -39, y: 47.5}
+        - {x: -39, y: 32.5}
+        - {x: -30, y: -51.5}
+        - {x: 29, y: -51.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4e2a107e76ae347bdf061eb3e34ed3
+      internalID: -161274261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_FullHead_Front
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 302
+        width: 133
+        height: 132
+      alignment: 9
+      pivot: {x: 0.49999976, y: 0.39988247}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264e0d1c2d12e9c4fa3c6b7f63a51eab
+      internalID: -2004880435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_FullHead_Right
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 303
+        width: 119
+        height: 131
+      alignment: 9
+      pivot: {x: 0.52562654, y: 0.38877088}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac3ba28d24ecc745aee9b0944821760
+      internalID: -1199281677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_FullHead_Back
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 304
+        width: 135
+        height: 131
+      alignment: 9
+      pivot: {x: 0.5073034, y: 0.407313}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5beae009a362d041a7919e4aae2cd23
+      internalID: -1543977415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Amae_FullHead_Left
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 305
+        width: 112
+        height: 131
+      alignment: 9
+      pivot: {x: 0.48021206, y: 0.41427588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6c83893c6620ec44b329f5dee688b6c
+      internalID: 1504012965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2f485e41a90a3944488461e1c125fbd2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Amae_Arm_L_Front: -1647223965
+      Amae_Arm_R_Front: 350442687
+      Amae_Bangs_Front: 1089963850
+      Amae_Bangs_Side: 1618345506
+      Amae_Cape_A: -1462182069
+      Amae_Cape_A_1: 422342961
+      Amae_Cape_B: 2141721272
+      Amae_Cape_B_1: 525372881
+      Amae_Cape_Bow_Middle: -520831267
+      Amae_Cape_Bow_Side: 1120825840
+      Amae_FullHead_Back: -1543977415
+      Amae_FullHead_Front: -2004880435
+      Amae_FullHead_Left: 1504012965
+      Amae_FullHead_Right: -1199281677
+      Amae_Hair_Back: 209400226
+      Amae_Hair_Front: 940673183
+      Amae_Hair_Side: 1675093182
+      Amae_Head_Front: -2100091975
+      Amae_Head_Side: -662234434
+      Amae_Leg_L_Back: -294199549
+      Amae_Leg_L_Front: 1420413447
+      Amae_Leg_L_Side: 1500322363
+      Amae_Leg_R_Back: -25996446
+      Amae_Leg_R_Front: -1138493084
+      Amae_Leg_R_FrontAmae_Leg_R_Front: -25996446
+      Amae_Leg_R_Side: 1724666438
+      Amae_Skirt_Front: -194012889
+      Amae_UpperBody_Back: -1079070656
+      Amae_UpperBody_BackSide: -161274261
+      Amae_UpperBody_Front: 361953672
+      Amae_UpperBody_FrontSide: 856228158
+      Amae_UpperBody_Side: 1190301394
+      SP_Rig_AMAE_TEST_10: -896658264
+      SP_Rig_AMAE_TEST_11: 1191175525
+      SP_Rig_AMAE_TEST_5: 1961750361
+      SP_Rig_AMAE_TEST_6: 1894407969
+      SP_Rig_AMAE_TEST_7: 1024246105
+      SP_Rig_AMAE_TEST_8: -1504603592
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

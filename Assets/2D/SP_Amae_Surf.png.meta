@@ -1,0 +1,324 @@
+fileFormatVersion: 2
+guid: c4ad457aff448a04dadde00aec0cf7ee
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 350
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SP_Amae_Surf_HAIR
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 820
+        width: 168
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c46fe0d7549a54eb9552f687f20bf9
+      internalID: 819175936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_HEAD
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 830
+        width: 90
+        height: 102
+      alignment: 9
+      pivot: {x: 0.36816135, y: 0.30611762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b340db0d6a18dc42adecbad248d54bc
+      internalID: 1417845906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_ARM_L
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 583
+        width: 141
+        height: 161
+      alignment: 9
+      pivot: {x: 0.83661234, y: 0.8603076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ddfcfabcfa2dba46a6fbf07e49c4585
+      internalID: 1655846236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_ARM_R
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 598
+        width: 205
+        height: 141
+      alignment: 9
+      pivot: {x: 0.07554009, y: 0.8740135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57426058b005b754f823f91f6c2b3dcc
+      internalID: 655124447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_CAPE
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 389
+        width: 254
+        height: 285
+      alignment: 9
+      pivot: {x: 0.66090715, y: 0.87932855}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d206152033ad9934cbd95e4ecc758823
+      internalID: -907783302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_BODY
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 370
+        width: 152
+        height: 155
+      alignment: 9
+      pivot: {x: 0.6821474, y: 0.17677967}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2ee6d0bfdf0404b9bdd6c82c34df72
+      internalID: 1316649349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_SKIRT
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 139
+        width: 280
+        height: 164
+      alignment: 9
+      pivot: {x: 0.41053727, y: 0.8135214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3421f86a5e7268428243c2b0736c1ad
+      internalID: -1441293285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_LEG_L
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 64
+        width: 79
+        height: 233
+      alignment: 9
+      pivot: {x: 0.7503299, y: 0.941352}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a6de013e54381b478e66f106a3cddbc
+      internalID: -1882842442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SP_Amae_Surf_LEG_R
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 67
+        width: 136
+        height: 264
+      alignment: 9
+      pivot: {x: 0.52908325, y: 0.90450865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ef8569dca4b9649ae444197d72eaef
+      internalID: -708868871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ac39f37e9d546ed4dab462a3358073a0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SP_Amae_Surf_ARM_L: 1655846236
+      SP_Amae_Surf_ARM_R: 655124447
+      SP_Amae_Surf_BODY: 1316649349
+      SP_Amae_Surf_CAPE: -907783302
+      SP_Amae_Surf_HAIR: 819175936
+      SP_Amae_Surf_HEAD: 1417845906
+      SP_Amae_Surf_LEG_L: -1882842442
+      SP_Amae_Surf_LEG_R: -708868871
+      SP_Amae_Surf_SKIRT: -1441293285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
