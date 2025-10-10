@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"58c6b81e3b51bdb8","type":"file","file":"- Images/Chara/IMG_Chara_Amae_OldDesign_Back.png","x":-180,"y":-800,"width":400,"height":320},
+		{"id":"44252ed67e59a740","type":"file","file":"- Images/Chara/IMG_Chara_Amae_OldTurn.png","x":277,"y":-800,"width":384,"height":320},
+		{"id":"df1a051a5692aad6","type":"file","file":"- Images/Chara/IMG_Chara_Amae_Detailed_Unbound.png","x":200,"y":-440,"width":257,"height":400},
+		{"id":"c87a496f712293fe","type":"file","file":"- Images/Chara/IMG_Chara_Amae_Detailed_Classic.png","x":480,"y":-440,"width":257,"height":400},
+		{"id":"ff8097e01ea72c67","type":"file","file":"- Images/Chara/IMG_Chara_Amae_3D.png","x":-180,"y":-440,"width":329,"height":400},
+		{"id":"cfc776265d6082e3","type":"file","file":"- Images/Chara/IMG_Chara_Amae_CurrentDesign.png","x":-180,"y":0,"width":835,"height":380,"color":"6"}
+	],
+	"edges":[]
+}

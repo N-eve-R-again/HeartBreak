@@ -1,0 +1,41 @@
+{
+	"nodes":[
+		{"id":"8b34498f12d071ec","type":"text","text":"# Acte II La Tour","x":-3880,"y":2400,"width":5040,"height":101,"color":"6"},
+		{"id":"ddcfe0e5db5cded9","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 1 - Combat contre la Sœur aux Lames.md","x":-4640,"y":2800,"width":1240,"height":1780,"color":"1"},
+		{"id":"1cca8e864599fa07","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 2 - Combat contre la Sœur Acrobate.md","x":-3200,"y":2800,"width":1240,"height":1780,"color":"1"},
+		{"id":"d2dad89b2833435a","type":"file","file":"Walkthrough/Introduction/Introduction 2 - Course vers la Tour d’Ivoire.md","x":-1965,"y":838,"width":1210,"height":940,"color":"5"},
+		{"id":"c6d71dc5dc43043a","type":"file","file":"Walkthrough/Introduction/Introduction 3 - Combat Tutoriel contre Itami.md","x":-645,"y":598,"width":1210,"height":1420,"color":"1"},
+		{"id":"6bdd17eb377be437","type":"file","file":"Walkthrough/Introduction/Introduction 0 - Cold Open.md","x":-4645,"y":639,"width":1240,"height":1339,"color":"6"},
+		{"id":"8cf876c0dca34d3d","type":"file","file":"Walkthrough/Introduction/Introduction 1 - Début.md","x":-3285,"y":609,"width":1210,"height":1399,"color":"6"},
+		{"id":"1b8454e5e7fb0c09","type":"file","file":"Walkthrough/Introduction/Introduction 4F - Fin de l’intro.md","x":680,"y":480,"width":1210,"height":1740,"color":"6"},
+		{"id":"3b04a9a46c4b6812","type":"file","file":"Walkthrough/Séquence Finale/Séquence Finale 1 - L'Echec.md","x":-4509,"y":5280,"width":1079,"height":1459,"color":"6"},
+		{"id":"a31cb2bcf7302fb4","type":"file","file":"Walkthrough/Séquence Finale/Séquence Finale 2 - Flashback - Le Sacrifice d'Hikari.md","x":-3155,"y":5280,"width":1025,"height":1459,"color":"6"},
+		{"id":"4315f6f5ec63efd8","type":"file","file":"Walkthrough/Séquence Finale/Séquence Finale 3 - Brisure du Cycle.md","x":-1915,"y":5280,"width":1225,"height":1459,"color":"6"},
+		{"id":"d00487440ab58034","type":"file","file":"Walkthrough/Séquence Finale/Séquence Finale 4 - Course vers Itami.md","x":-470,"y":5280,"width":1080,"height":1459,"color":"5"},
+		{"id":"7daff598eba704c6","type":"file","file":"Walkthrough/Séquence Finale/Séquence Finale 5F - QTE Final et Résolution.md","x":815,"y":5280,"width":1075,"height":1459,"color":"6"},
+		{"id":"719eff756d1906ad","type":"text","text":"# Acte III Séquence Finale","x":-3840,"y":4880,"width":8460,"height":80,"color":"6"},
+		{"id":"73a91c9d3367fef6","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 3 - Combat contre la Grande Sœur.md","x":-1760,"y":2840,"width":1240,"height":1700,"color":"1"},
+		{"id":"c8c236d4bf36d3f3","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 4 - Combat contre la Petite Sœur.md","x":-320,"y":2840,"width":1200,"height":1700,"color":"1"},
+		{"id":"49dccd5826008157","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 5 - La Chambre d'Hikari.md","x":1040,"y":2840,"width":1275,"height":1700,"color":"6"},
+		{"id":"847dc7cef9ad41ea","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 6 - Combat contre Hoseki.md","x":2520,"y":2840,"width":1363,"height":1700,"color":"1"},
+		{"id":"f92e626b696651f7","type":"file","file":"Walkthrough/La Tour/La Tour - Étage 7F - Libération d'Itami.md","x":4080,"y":2930,"width":1360,"height":1520,"color":"1"},
+		{"id":"cb75f0bdb04dba7a","type":"file","file":"Walkthrough/La Tour/Séquence Finale de la démo.md","x":-6000,"y":3430,"width":1210,"height":520,"color":"6"}
+	],
+	"edges":[
+		{"id":"10841f0b8a72d8d2","fromNode":"6bdd17eb377be437","fromSide":"right","toNode":"8cf876c0dca34d3d","toSide":"left"},
+		{"id":"226bafbb2753c0d4","fromNode":"d2dad89b2833435a","fromSide":"right","toNode":"c6d71dc5dc43043a","toSide":"left"},
+		{"id":"87087b66aa7367be","fromNode":"c6d71dc5dc43043a","fromSide":"right","toNode":"1b8454e5e7fb0c09","toSide":"left"},
+		{"id":"def90cea2a6957bf","fromNode":"8cf876c0dca34d3d","fromSide":"right","toNode":"d2dad89b2833435a","toSide":"left"},
+		{"id":"6b3c1eee228848a5","fromNode":"ddcfe0e5db5cded9","fromSide":"left","toNode":"cb75f0bdb04dba7a","toSide":"right"},
+		{"id":"fdb353331a146649","fromNode":"ddcfe0e5db5cded9","fromSide":"right","toNode":"1cca8e864599fa07","toSide":"left"},
+		{"id":"f20d8c98d765d0fa","fromNode":"1b8454e5e7fb0c09","fromSide":"bottom","toNode":"8b34498f12d071ec","toSide":"right"},
+		{"id":"42df937bd6ff09a8","fromNode":"8b34498f12d071ec","fromSide":"left","toNode":"ddcfe0e5db5cded9","toSide":"top"},
+		{"id":"80b7ddeebd4bc67d","fromNode":"f92e626b696651f7","fromSide":"bottom","toNode":"719eff756d1906ad","toSide":"right"},
+		{"id":"a50c3feb5e1d32bb","fromNode":"719eff756d1906ad","fromSide":"left","toNode":"3b04a9a46c4b6812","toSide":"top"},
+		{"id":"998d29cd5e067648","fromNode":"1cca8e864599fa07","fromSide":"right","toNode":"73a91c9d3367fef6","toSide":"left"},
+		{"id":"3edbce320f18f969","fromNode":"73a91c9d3367fef6","fromSide":"right","toNode":"c8c236d4bf36d3f3","toSide":"left"},
+		{"id":"8d246e2a9b2feb2b","fromNode":"c8c236d4bf36d3f3","fromSide":"right","toNode":"49dccd5826008157","toSide":"left"},
+		{"id":"428d1f3a046dd3b1","fromNode":"49dccd5826008157","fromSide":"right","toNode":"847dc7cef9ad41ea","toSide":"left"},
+		{"id":"c01f7aafd2b61377","fromNode":"847dc7cef9ad41ea","fromSide":"right","toNode":"f92e626b696651f7","toSide":"left"}
+	]
+}
