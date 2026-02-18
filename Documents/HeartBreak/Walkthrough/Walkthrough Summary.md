@@ -1,12 +1,12 @@
-[[Introduction 0 - Cold Open]]
+[[Introduction 2 - Cold Open]]
 
-[[Introduction 1 - Début]]
+[[Introduction 3 - Début]]
 
-[[Introduction 2 - Course vers la Tour d’Ivoire]]
+[[Introduction 4 - Course vers la Tour d’Ivoire]]
 
-[[Introduction 3 - Combat Tutoriel contre Itami]]
+[[Introduction 5 - Combat Tutoriel contre Itami]]
 
-[[Introduction 4F - Fin de l’intro]]
+[[Introduction 6F - Fin de l’intro]]
 
 [[La Tour - Étage 1 - Combat contre la Sœur aux Lames]]
 

@@ -1,4 +1,4 @@
->Précédent - [[Introduction 4F - Fin de l’intro]]
+>Précédent - [[Introduction 6F - Fin de l’intro]]
 
 >Objectif du Segment :
 >Tutoriel Avancé du combat

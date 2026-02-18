@@ -25,4 +25,9 @@ Combat respectueux. La Grande Sœur point la sortie à Amae, avec un sourire tri
 Elle s'assois sur son bouclier, et pose son pistolet.
 Reverrouillage plus laborieux, signes de fatigue d'Amae
 
+La grande soeur invite Amae à s'assoir avec elle, Amae s'execture, moment de silence.
+La grande soeur pointe calmement vers la porte,
+
+Amae se lève, se dirige vers la porte, se retourne une denière fois, la grande soeur qui lui dis à plus tard d'un signe de la main.
+
 >Suivant - [[La Tour - Étage 4 - Combat contre la Petite Sœur]]

@@ -3,7 +3,7 @@
 > Objectif du Segment :
 > Plan d'Amae : Utiliser le parapluie d'Hikari pour verrouiller définitivement les pouvoirs d'Itami
 > Symbolique du déroulé : Itami essaye de calmer sa crise d'angoisse, mais Amae intervient pour la "sauver"
-> Subversion : Amae n'utilise que des "verbes" dans un affrontement qui n'en est pas un.
+> Subversion : Amae n'utilise que des "verbes de violence" dans un affrontement qui n'en est pas un.
 
 Découverte : Itami dans le coeur prison, forme humaine mais entouré de tentacules
 ## Introduction du Combat :  

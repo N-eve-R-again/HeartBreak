@@ -1,6 +1,6 @@
-Plan exacte au premier plan de [[Introduction 0 - Cold Open]]
+Plan exacte au premier plan de [[Introduction 2 - Cold Open]]
 
-Village détruit : Amae en pleurs, ses pouvoirs ayant tout détruit Automutilation : Elle s'éborgne, rejet violent de ses pouvoirs Tentative de suicide : Prépare une attaque fatale avec ses cristaux
+Serre détruite : Amae en pleurs, ses pouvoirs ayant tout détruit Automutilation : Elle s'éborgne, rejet violent de ses pouvoirs Tentative de suicide : Prépare une attaque fatale avec ses cristaux
 
 Intervention d'Hikari :
 
@@ -22,7 +22,6 @@ Intervention d'Hikari :
 > "Mais un jour, ce pouvoir qui selon toi n'est qu'une malédiction…
 > permettra à quelqu'un de se sentir aimée."
 
-Révélation : Le cache-œil était un guide vers l'harmonie, pas une prison.
 
 [Fondu au Noir]
 
