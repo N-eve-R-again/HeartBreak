@@ -6,13 +6,15 @@ public class ButtonState
 {
     [SerializeField] private bool wasPressed = false;
     [SerializeField] private bool isPressed = false;
+
     [SerializeField] private float heldTime = 0f;
 
-    public ButtonState(bool wasPressed, bool isPressed, float heldTime)
+    public ButtonState(bool wasPressed, bool isPressed,  float heldTime)
     {
         this.wasPressed = wasPressed;
         this.isPressed = isPressed;
         this.heldTime = heldTime;
+
     }
 
     public ButtonState Update(bool pressed, float deltaTime)
@@ -33,12 +35,15 @@ public class ButtonState
 [Serializable]
 public class PlayerInputData
 {
-    public Vector2 Move;
+    public float Move;
+    public float MoveMagnitude => Math.Abs(Move);
+    public ButtonState Back;
     public ButtonState Jump;
     public ButtonState Dodge;
     public ButtonState Block;
     public ButtonState Attack;
     public ButtonState Dash;
+    public ButtonState Forward;
 
     public PlayerInputData Clone()
     {
@@ -49,26 +54,9 @@ public class PlayerInputData
             Dodge = this.Dodge,
             Block = this.Block,
             Attack = this.Attack,
-            Dash = this.Dash
+            Dash = this.Dash,
+            Back = this.Back
         };
     }
 
-    public static Vector2 Get8DirectionInput(Vector2 rawInput)
-    {
-        // Deadzone au repos
-        if (rawInput.magnitude < 0.3f) return Vector2.zero;
-
-        float angle = Mathf.Atan2(rawInput.y, rawInput.x) * Mathf.Rad2Deg;
-        if (angle < 0) angle += 360f;
-
-        // 8 secteurs de 45° chacun
-        if (angle >= 337.5f || angle < 22.5f) return Vector2.right;
-        if (angle >= 22.5f && angle < 67.5f) return new Vector2(1, 1).normalized;
-        if (angle >= 67.5f && angle < 112.5f) return Vector2.up;
-        if (angle >= 112.5f && angle < 157.5f) return new Vector2(-1, 1).normalized;
-        if (angle >= 157.5f && angle < 202.5f) return Vector2.left;
-        if (angle >= 202.5f && angle < 247.5f) return new Vector2(-1, -1).normalized;
-        if (angle >= 247.5f && angle < 292.5f) return Vector2.down;
-        return new Vector2(1, -1).normalized;
-    }
 }

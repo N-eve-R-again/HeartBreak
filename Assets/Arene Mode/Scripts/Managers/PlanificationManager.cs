@@ -24,7 +24,7 @@ public class PlanificationManager : MonoBehaviour
     [SerializeField] private float bossTelegraphDelay = 0.8f;
 
     [Header("Debug")]
-    [SerializeField] private PlanificationState currentState;
+    [SerializeField] private PlanificationState currentState = PlanificationState.WaitingForPlayer;
     [SerializeField] private int currentActionIndex = 0;
 
     private Coroutine currentPhaseCoroutine;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements.Experimental;
 using static PlayerController;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private InputAction blockAction;
     private InputAction attackAction;
     private InputAction dashAction;
+    private InputAction backAction;
+    private InputAction forwardAction;
 
 
 
@@ -21,7 +24,10 @@ public class PlayerController : MonoBehaviour
         Idle,
         Move,
         Jump,
-        Dash
+        Dash,
+        BackHop,
+        ForwardDash,
+        Attack
 
     }
 
@@ -31,7 +37,8 @@ public class PlayerController : MonoBehaviour
     // Entity data
     [SerializeField] private PlayerEntityData entityData;
     [SerializeField] private PlayerControllerSettings settings;
-    public Transform CameraPivot;
+    public Transform cameraPivot;
+    public Transform visualPivot;
     public float angle = 0;
     // State machine
     [SerializeField] private PlayerState currentState;
@@ -45,7 +52,6 @@ public class PlayerController : MonoBehaviour
         InitializeStateMachine();
 
         // Initialiser entity data
-        entityData = new PlayerEntityData();
         currentState = PlayerState.Idle;
     }
 
@@ -68,9 +74,9 @@ public class PlayerController : MonoBehaviour
             TransitionToState(entityData.nextState);
         }
 
+        float realDist = settings.ringToDistance.Evaluate(entityData.position.distance);
 
-
-        transform.position = Vector3.back * entityData.position.distance;
+        transform.position = Vector3.back * realDist;
         transform.position = Quaternion.Euler(new Vector3(0f, entityData.position.angle, 0f)) * transform.position;
         transform.position = transform.position + Vector3.up * entityData.position.y;
 
@@ -81,28 +87,36 @@ public class PlayerController : MonoBehaviour
         float dist = Mathf.Abs(angle - newangle);
         if(dist < 2f) dist = 0f;
         float speed = (dist > 15f) ? 2f : 0.1f;
-        if (Mathf.Abs(angle - newangle) > 10f)
-        {
-            
-            
-        }
-        angle = Mathf.LerpAngle(angle, newangle, Time.deltaTime * speed * dist);
+
+        angle = newangle;
+        //angle = Mathf.LerpAngle(angle, newangle, Time.deltaTime * speed * dist);
         Quaternion newRotation = Quaternion.Euler(0, angle, 0);
-        CameraPivot.transform.rotation = Quaternion.Lerp(CameraPivot.rotation, newRotation, Time.deltaTime * 10f);
+        //CameraPivot.transform.rotation = Quaternion.Lerp(CameraPivot.rotation, newRotation, Time.deltaTime * 10f);
+        cameraPivot.transform.rotation = newRotation;
+
+        Vector3 radial = -transform.position;
+        radial.y = 0; radial.Normalize();
+        Vector3 tangent = Vector3.Cross(Vector3.up, radial);
+
+        Vector3 worldDir = tangent * entityData.facing.x + radial * entityData.facing.y;
+
+        visualPivot.transform.rotation = Quaternion.Lerp(visualPivot.transform.rotation, Quaternion.LookRotation(worldDir, Vector3.up), Time.deltaTime *8f);
     }
     private void TransitionToState(PlayerState newState)
     {
         // Cleanup du state précédent si nécessaire
         actions[currentState].Exit(ref entityData);
-        actions[currentState].Enter(ref entityData,currentState);
+        actions[newState].Enter(ref entityData,currentState);
         // Changer de state
         currentState = newState;
     }
 
     private void UpdateInputs()
     {
-        inputs.Move = moveAction.ReadValue<Vector2>();// PlayerInputData.Get8DirectionInput(moveAction.ReadValue<Vector2>());
+        inputs.Move = moveAction.ReadValue<float>();// PlayerInputData.Get8DirectionInput(moveAction.ReadValue<Vector2>());
         inputs.Jump = inputs.Jump.Update(jumpAction.IsPressed(), Time.deltaTime);
+        inputs.Back = inputs.Back.Update(backAction.IsPressed(), Time.deltaTime);
+        inputs.Forward = inputs.Forward.Update(forwardAction.IsPressed(), Time.deltaTime);
         /*inputs.Dodge = inputs.Dodge.Update(dodgeAction.IsPressed(), Time.deltaTime);
         inputs.Block = inputs.Block.Update(blockAction.IsPressed(), Time.deltaTime);
         inputs.Attack = inputs.Attack.Update(attackAction.IsPressed(), Time.deltaTime);
@@ -117,6 +131,8 @@ public class PlayerController : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         
         jumpAction = playerInput.actions["Jump"];
+        backAction = playerInput.actions["Backward"];
+        forwardAction = playerInput.actions["Forward"];
         /*dodgeAction = playerInput.actions["Dodge"];
         blockAction = playerInput.actions["Block"];
         attackAction = playerInput.actions["Attack"];
@@ -131,6 +147,8 @@ public class PlayerController : MonoBehaviour
             { PlayerState.Move, new PlayerActionMove(settings) },
             { PlayerState.Jump, new PlayerActionNone(settings) },
             { PlayerState.Dash, new PlayerActionNone(settings) },
+            { PlayerState.BackHop, new PlayerActionBackHop(settings) },
+            { PlayerState.ForwardDash, new PlayerActionForwardDash(settings) }
         };
 
     }

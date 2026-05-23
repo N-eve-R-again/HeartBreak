@@ -12,11 +12,151 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0776b977bb1ad48bc20e97c527ec22, type: 3}
   m_Name: Amae
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerSettings
-  minDist: 5
-  maxDist: 14.35
+  ringRadii:
+  - 5.75
+  - 9.7
+  - 13.75
+  - 17.8
+  - 22
+  ringToDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5.75
+      inSlope: 0
+      outSlope: 3.9499998
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 9.7
+      inSlope: 3.9499998
+      outSlope: 4.05
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 2
+      value: 13.75
+      inSlope: 4.05
+      outSlope: 4.049999
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 3
+      value: 17.8
+      inSlope: 4.049999
+      outSlope: 4.200001
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 4
+      value: 22
+      inSlope: 4.200001
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   idleDecel: 8
   idleResetFacingDelay: 0
-  moveangleMaxSpeed: 500
+  moveangleMaxSpeed: 650
   movedistMaxSpeed: 7
   moveAccel: 15
   moveDecel: 8
+  BackwardHopSpeed: 0.3
+  BackwardHopSmallJumpAmplitude: 0.35
+  backwardHopEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.7436433
+      outSlope: 7.7436433
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.056868315
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.04761904
+      outSlope: 0.04761904
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.6
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  backwardHopJumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 28.502512
+      outSlope: 28.502512
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.12711714
+    - serializedVersion: 3
+      time: 0.19666898
+      value: 0.8603314
+      inSlope: 0.04635276
+      outSlope: 0.04635276
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28676596
+    - serializedVersion: 3
+      time: 0.75
+      value: 0
+      inSlope: -2.9683657
+      outSlope: -2.9683657
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.47125307
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  forwardDashChargeTime: 1
+  forwardDashSpeedByCharge: 0.2
+  forwardDashEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.757764
+      outSlope: 2.757764
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09583333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

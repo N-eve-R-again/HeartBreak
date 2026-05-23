@@ -90,7 +90,7 @@ public class ArenaCoordinateSystem : MonoBehaviour
     {
         int2 origin = _data.origin; //acces facile à l'origine
         int2 direction = _data.direction; // acces facile à la direction
-        int2 orientation;
+
         //Setup des valeurs finales
         bool isValid = true;
 

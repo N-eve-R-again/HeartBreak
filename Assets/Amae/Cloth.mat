@@ -116,7 +116,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShadowAttenuation: 0.161
+    - _ShadowAttenuation: 0.405
     - _SheenPower: 5.07
     - _Smoothness: 0.2
     - _SmoothnessTextureChannel: 0

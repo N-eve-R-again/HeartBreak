@@ -1,0 +1,431 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b12b58fd27b9a4bae4f50db55b4459, type: 3}
+  m_Name: MagicaPreBuild_89ed80b1
+  m_EditorClassIdentifier: MagicaClothV2::MagicaCloth2.PreBuildScriptableObject
+  sharePreBuildDataList:
+  - version: 2
+    buildId: 89ed80b1
+    buildResult:
+      result: 20205
+      warning: 0
+    buildScale: {x: 0, y: 0, z: 0}
+    renderSetupDataList: []
+    proxyMesh:
+      name: 
+      meshType: 0
+      isBoneCloth: 0
+      referenceIndices:
+        count: 0
+        length: 0
+        arrayBytes: 
+      attributes:
+        count: 0
+        length: 0
+        arrayBytes: 
+      localPositions:
+        count: 0
+        length: 0
+        arrayBytes: 
+      localNormals:
+        count: 0
+        length: 0
+        arrayBytes: 
+      localTangents:
+        count: 0
+        length: 0
+        arrayBytes: 
+      uv:
+        count: 0
+        length: 0
+        arrayBytes: 
+      boneWeights:
+        count: 0
+        length: 0
+        arrayBytes: 
+      triangles:
+        count: 0
+        length: 0
+        arrayBytes: 
+      lines:
+        count: 0
+        length: 0
+        arrayBytes: 
+      centerTransformIndex: 0
+      initLocalToWorld:
+        c0:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c1:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c2:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c3:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      initWorldToLocal:
+        c0:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c1:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c2:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c3:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      initRotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      initInverseRotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      initScale:
+        x: 0
+        y: 0
+        z: 0
+      skinRootIndex: 0
+      skinBoneTransformIndices:
+        count: 0
+        length: 0
+        arrayBytes: 
+      skinBoneBindPoses:
+        count: 0
+        length: 0
+        arrayBytes: 
+      transformData:
+        flagArray:
+          count: 0
+          length: 0
+          arrayBytes: 
+        initLocalPositionArray:
+          count: 0
+          length: 0
+          arrayBytes: 
+        initLocalRotationArray:
+          count: 0
+          length: 0
+          arrayBytes: 
+      boundingBox:
+        Min:
+          x: 0
+          y: 0
+          z: 0
+        Max:
+          x: 0
+          y: 0
+          z: 0
+      averageVertexDistance: 0
+      maxVertexDistance: 0
+      vertexToTriangles: 
+      vertexToVertexIndexArray: 
+      vertexToVertexDataArray: 
+      edges: 
+      edgeFlags: 
+      edgeToTrianglesKeys: []
+      edgeToTrianglesValues: 
+      vertexBindPosePositions: 
+      vertexBindPoseRotations: 
+      vertexToTransformRotations: 
+      vertexDepths: 
+      vertexRootIndices: 
+      vertexParentIndices: 
+      vertexChildIndexArray: 
+      vertexChildDataArray: 
+      vertexLocalPositions: 
+      vertexLocalRotations: 
+      normalAdjustmentRotations: 
+      baseLineFlags: 
+      baseLineStartDataIndices: 
+      baseLineDataCounts: 
+      baseLineData: 
+      customSkinningBoneIndices: 
+      centerFixedList: 
+      localCenterPosition:
+        x: 0
+        y: 0
+        z: 0
+      centerWorldPosition:
+        x: 0
+        y: 0
+        z: 0
+      centerWorldRotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      centerWorldScale:
+        x: 0
+        y: 0
+        z: 0
+      toProxyMatrix:
+        c0:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c1:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c2:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+        c3:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+      toProxyRotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 0
+    renderMeshList: []
+    distanceConstraintData:
+      result:
+        result: 0
+        warning: 0
+      indexArray: 
+      dataArray: 
+      distanceArray: []
+    bendingConstraintData:
+      result:
+        result: 0
+        warning: 0
+      trianglePairArray: 
+      restAngleOrVolumeArray: []
+      signOrVolumeArray: 
+      writeBufferCount: 0
+      writeDataArray: 
+      writeIndexArray: 
+    inertiaConstraintData:
+      result:
+        result: 0
+        warning: 0
+      centerData:
+        anchorPosition:
+          x: 0
+          y: 0
+          z: 0
+        anchorRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        oldAnchorPosition:
+          x: 0
+          y: 0
+          z: 0
+        oldAnchorRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        anchorComponentLocalPosition:
+          x: 0
+          y: 0
+          z: 0
+        centerTransformIndex: 0
+        componentWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        componentWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        componentWorldScale:
+          x: 0
+          y: 0
+          z: 0
+        oldComponentWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        oldComponentWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        oldComponentWorldScale:
+          x: 0
+          y: 0
+          z: 0
+        frameComponentShiftVector:
+          x: 0
+          y: 0
+          z: 0
+        frameComponentShiftRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        frameMovingSpeed: 0
+        frameMovingDirection:
+          x: 0
+          y: 0
+          z: 0
+        frameWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        frameWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        frameWorldScale:
+          x: 0
+          y: 0
+          z: 0
+        frameLocalPosition:
+          x: 0
+          y: 0
+          z: 0
+        oldFrameWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        oldFrameWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        oldFrameWorldScale:
+          x: 0
+          y: 0
+          z: 0
+        nowWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        nowWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        oldWorldPosition:
+          x: 0
+          y: 0
+          z: 0
+        oldWorldRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        stepMoveInertiaRatio: 0
+        stepRotationInertiaRatio: 0
+        stepVector:
+          x: 0
+          y: 0
+          z: 0
+        stepRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        inertiaVector:
+          x: 0
+          y: 0
+          z: 0
+        inertiaRotation:
+          value:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+        stepMovingSpeed: 0
+        stepMovingDirection:
+          x: 0
+          y: 0
+          z: 0
+        angularVelocity: 0
+        rotationAxis:
+          x: 0
+          y: 0
+          z: 0
+        initLocalGravityDirection:
+          x: 0
+          y: 0
+          z: 0
+        smoothingVelocity:
+          x: 0
+          y: 0
+          z: 0
+        negativeScaleMatrix:
+          c0:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+          c1:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+          c2:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+          c3:
+            x: 0
+            y: 0
+            z: 0
+            w: 0
+      initLocalGravityDirection:
+        x: 0
+        y: 0
+        z: 0

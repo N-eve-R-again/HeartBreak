@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerActionMove : IPlayerAction
 {
@@ -19,34 +20,44 @@ public class PlayerActionMove : IPlayerAction
     {
         PolarCoordinate targetVelocity = PolarCoordinate.zero;
 
-
-        if (_inputs.Move.magnitude > 0)
+        if (_inputs.Back.Down)
         {
-            // Velocity directe basée sur inputd
-            targetVelocity.angle = -_inputs.Move.x * (settings.moveangleMaxSpeed / _currentData.position.distance);
-            targetVelocity.distance = -_inputs.Move.y * settings.movedistMaxSpeed;
-
-            //_currentData.facing = new Vector2(MoveInputCameraSpace.x, MoveInputCameraSpace.z);
-        }
-
-        // Un seul lerp : velocity vers target
-        float lerpSpeed = _inputs.Move.magnitude > 0 ? settings.moveAccel : settings.moveDecel;
-        _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
-
-        // Appliquer
-        _currentData.position += _currentData.velocity * Time.deltaTime;
-
-        _currentData.position = PlayerEntityData.Solve(_currentData.position, settings.minDist, settings.maxDist);
-        // Transition vers Idle
-        if (_inputs.Move.magnitude <= 0.1f && _currentData.velocity.magnitude < 0.1f)
-        {
-            _currentData.velocity = PolarCoordinate.zero;
-            _currentData.nextState = PlayerController.PlayerState.Idle;
+            _currentData.nextState = PlayerController.PlayerState.BackHop;
             return;
         }
+        if (_inputs.Forward.Down)
+        {
+            _currentData.nextState = PlayerController.PlayerState.ForwardDash;
+            return;
+        }
+            if (Mathf.Abs(_inputs.Move) > 0)
+            {
+                // Velocity directe basée sur inputd
+                targetVelocity.angle = -_inputs.Move * (settings.moveangleMaxSpeed / settings.ringToDistance.Evaluate(_currentData.position.distance));
+                targetVelocity.distance = 0; // -_inputs.Move.y * settings.movedistMaxSpeed;
 
-        _currentData.nextState = PlayerController.PlayerState.Move;
-        return;
+                //_currentData.facing = new Vector2(MoveInputCameraSpace.x, MoveInputCameraSpace.z);
+            }
+
+            // Un seul lerp : velocity vers target
+            float lerpSpeed = _inputs.Move > 0 ? settings.moveAccel : settings.moveDecel;
+            _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
+
+            // Appliquer
+            _currentData.position += _currentData.velocity * Time.deltaTime;
+
+            // Transition vers Idle
+            if (_inputs.MoveMagnitude <= 0.1f && _currentData.velocity.magnitude < 0.1f)
+            {
+                _currentData.velocity = PolarCoordinate.zero;
+                _currentData.facing = Vector2.up;
+                _currentData.nextState = PlayerController.PlayerState.Idle;
+                return;
+            }
+            _currentData.facing = Mathf.Abs(_inputs.Move) >= 0.1f ? new Vector2(_inputs.Move, 0f) : Vector2.up;
+            _currentData.nextState = PlayerController.PlayerState.Move;
+            return;
+        
     }
 
     private float DT(float value)

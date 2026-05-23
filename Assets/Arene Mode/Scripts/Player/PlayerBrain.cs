@@ -10,7 +10,7 @@ public class PlayerBrain : MonoBehaviour
     [SerializeField] private bool isThinking = false;
 
     public GameObject previs;
-    [SerializeField] private float lerpSpeed = 3f;
+    //[SerializeField] private float lerpSpeed = 3f;
     [SerializeField] private int2 imaginedPos;
 
     [Space]
