@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class PlayerActionForwardDash : IPlayerAction
+public class PlayerStateForwardDash : IPlayerState
 {
-    private readonly PlayerControllerSettings settings;
+    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
     private float ringfrom, ringto;
     private int charge;
     private float timeToExecute;
-    public PlayerActionForwardDash(PlayerControllerSettings settings)
-    {
-        this.settings = settings;
-    }
 
-    public void Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+
+    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
         _currentData.time += Time.deltaTime;
 
@@ -32,8 +29,7 @@ public class PlayerActionForwardDash : IPlayerAction
                 //feedback
 
             }
-            _currentData.nextState = PlayerController.PlayerState.ForwardDash;
-            return;
+            return this.Stay();
         }
 
         if (_inputs.Forward.Up)
@@ -43,8 +39,7 @@ public class PlayerActionForwardDash : IPlayerAction
             ringto = ringfrom - charge;
             timeToExecute = settings.forwardDashSpeedByCharge * charge;
 
-            _currentData.nextState = PlayerController.PlayerState.ForwardDash;
-            return;
+            return this.Stay();
         }
 
         Debug.Log("dashing");
@@ -52,15 +47,15 @@ public class PlayerActionForwardDash : IPlayerAction
         _currentData.time += Time.deltaTime;
 
         _currentData.position.distance = Mathf.LerpUnclamped(ringfrom,ringto, settings.forwardDashEase.Evaluate(_currentData.time / timeToExecute));
-        _currentData.nextState = PlayerController.PlayerState.ForwardDash;
 
         if (_currentData.time > timeToExecute) {
         
-            _currentData.nextState = PlayerController.PlayerState.Idle;
             _currentData.time = 0;
             _currentData.position.distance = ringto;
-            return;
+            return this.GoTo<PlayerStateIdle>();
         }
+
+        return this.Stay();
 
     }
 
@@ -69,7 +64,7 @@ public class PlayerActionForwardDash : IPlayerAction
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, PlayerController.PlayerState _fromState)
+    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
         charge = 0;
         ringfrom = _data.position.distance;

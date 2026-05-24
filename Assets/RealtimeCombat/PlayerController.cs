@@ -2,77 +2,69 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements.Experimental;
+using System.Reflection;
+using System.Linq;
 using static PlayerController;
+using UnityEngine.Timeline;
 
 public class PlayerController : MonoBehaviour
 {
-    private InputAction moveAction;
-    private InputAction jumpAction;
-    private InputAction dodgeAction;
-    private InputAction blockAction;
-    private InputAction attackAction;
-    private InputAction dashAction;
-    private InputAction backAction;
-    private InputAction forwardAction;
-
-
-
-    public enum PlayerState
-    {
-        None,
-        Idle,
-        Move,
-        Jump,
-        Dash,
-        BackHop,
-        ForwardDash,
-        Attack
-
-    }
-
-    // Input data (instance unique, mise à jour chaque frame)
-    [SerializeField] private PlayerInputData inputs = new PlayerInputData();
-
+    private PlayerInputManager inputsManager;
     // Entity data
     [SerializeField] private PlayerEntityData entityData;
     [SerializeField] private PlayerControllerSettings settings;
     public Transform cameraPivot;
     public Transform visualPivot;
     public float angle = 0;
-    // State machine
-    [SerializeField] private PlayerState currentState;
-    private Dictionary<PlayerState, IPlayerAction> actions;
+
+    public IPlayerState currentState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        // Initialiser les actions
-        InitializeInputActions();
+        InitializeSettings();
+        InitializeInputs();
         InitializeStateMachine();
+    }
+    private void InitializeSettings()
+    {
+        PlayerStateRegistry.SetSettings(settings);
+    }
+    private void InitializeInputs()
+    {
+        inputsManager = GetComponent<PlayerInputManager>();
+        inputsManager.InitializeInputActions();
+    }
+    private void InitializeStateMachine()
+    {
+        var types = Assembly.GetAssembly(typeof(IPlayerState))
+        .GetTypes()
+        .Where(t => typeof(IPlayerState).IsAssignableFrom(t) && !t.IsAbstract);
 
-        // Initialiser entity data
-        currentState = PlayerState.Idle;
+        foreach (var type in types)
+        {
+            var instance = (IPlayerState)Activator.CreateInstance(type);
+            PlayerStateRegistry.Register(instance);
+        }
+
+        currentState = PlayerStateRegistry.Get(typeof(PlayerStateIdle));
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateInputs();
+        inputsManager.UpdateInputs();
 
         //PlayerInputData inputSnapshot = inputs.Clone();
 
         // 3. Exécuter l'action du state actuel
-        actions[currentState].Execute(ref entityData, inputs);
-
-        // 4. Appliquer les changements d'entity data
+        var previous = currentState;
+        currentState = currentState.Execute(ref entityData, inputsManager.inputs);
 
 
         // 5. Gérer les transitions de state
-        if (entityData.nextState != currentState)
-        {
-            TransitionToState(entityData.nextState);
-        }
+        if (previous != currentState) TransitionToState(previous);
+
 
         float realDist = settings.ringToDistance.Evaluate(entityData.position.distance);
 
@@ -102,67 +94,15 @@ public class PlayerController : MonoBehaviour
 
         visualPivot.transform.rotation = Quaternion.Lerp(visualPivot.transform.rotation, Quaternion.LookRotation(worldDir, Vector3.up), Time.deltaTime *8f);
     }
-    private void TransitionToState(PlayerState newState)
+    private void TransitionToState(IPlayerState previous)
     {
-        // Cleanup du state précédent si nécessaire
-        actions[currentState].Exit(ref entityData);
-        actions[newState].Enter(ref entityData,currentState);
-        // Changer de state
-        currentState = newState;
+        previous.Exit(ref entityData);
+        currentState.Enter(ref entityData, previous);
     }
 
-    private void UpdateInputs()
-    {
-        inputs.Move = moveAction.ReadValue<float>();// PlayerInputData.Get8DirectionInput(moveAction.ReadValue<Vector2>());
-        inputs.Jump = inputs.Jump.Update(jumpAction.IsPressed(), Time.deltaTime);
-        inputs.Back = inputs.Back.Update(backAction.IsPressed(), Time.deltaTime);
-        inputs.Forward = inputs.Forward.Update(forwardAction.IsPressed(), Time.deltaTime);
-        /*inputs.Dodge = inputs.Dodge.Update(dodgeAction.IsPressed(), Time.deltaTime);
-        inputs.Block = inputs.Block.Update(blockAction.IsPressed(), Time.deltaTime);
-        inputs.Attack = inputs.Attack.Update(attackAction.IsPressed(), Time.deltaTime);
-        inputs.Dash = inputs.Dash.Update(dashAction.IsPressed(), Time.deltaTime);*/
-    }
+    
 
-    private void InitializeInputActions()
-    {
-        // Récupérer les InputActions depuis ton Input Action Asset
-        // Exemple avec PlayerInput component:
-        var playerInput = GetComponent<PlayerInput>();
-        moveAction = playerInput.actions["Move"];
-        
-        jumpAction = playerInput.actions["Jump"];
-        backAction = playerInput.actions["Backward"];
-        forwardAction = playerInput.actions["Forward"];
-        /*dodgeAction = playerInput.actions["Dodge"];
-        blockAction = playerInput.actions["Block"];
-        attackAction = playerInput.actions["Attack"];
-        dashAction = playerInput.actions["Dash"];*/
-    }
-
-    private void InitializeStateMachine()
-    {
-        actions = new Dictionary<PlayerState, IPlayerAction>
-        {
-            { PlayerState.Idle, new PlayerActionIdle(settings) },
-            { PlayerState.Move, new PlayerActionMove(settings) },
-            { PlayerState.Jump, new PlayerActionNone(settings) },
-            { PlayerState.Dash, new PlayerActionNone(settings) },
-            { PlayerState.BackHop, new PlayerActionBackHop(settings) },
-            { PlayerState.ForwardDash, new PlayerActionForwardDash(settings) }
-        };
-
-    }
 
 }
 
 
-public interface IPlayerAction
-{
-
-    void Enter(ref PlayerEntityData _data, PlayerState _fromState);
-
-    void Execute(ref PlayerEntityData _currentData,PlayerInputData _inputs);
-
-    void Exit(ref PlayerEntityData _data);
-
-}

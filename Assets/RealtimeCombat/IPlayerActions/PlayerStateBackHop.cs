@@ -1,23 +1,19 @@
 using System.IO;
 using UnityEngine;
 
-public class PlayerActionBackHop : IPlayerAction
+public class PlayerStateBackHop : IPlayerState
 {
-    private readonly PlayerControllerSettings settings;
+    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
     private float ringfrom, ringto;
 
-    public PlayerActionBackHop(PlayerControllerSettings settings)
-    {
-        this.settings = settings;
-    }
 
-    public void Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
         if(ringfrom == ringto)
         {
-            _currentData.nextState = PlayerController.PlayerState.Idle;
-            return;
+
+            return this.GoTo<PlayerStateIdle>();
         }
 
         _currentData.time += Time.deltaTime;
@@ -30,17 +26,16 @@ public class PlayerActionBackHop : IPlayerAction
 
 
         if (_currentData.time > settings.BackwardHopSpeed) {
-        
-            _currentData.nextState = PlayerController.PlayerState.Idle;
+
             _currentData.time = 0;
             _currentData.position.distance = ringto;
-            return;
+            return this.GoTo<PlayerStateIdle>();
+
+
         }
 
-        
 
-        _currentData.nextState = PlayerController.PlayerState.BackHop;
-        return;
+        return this.Stay();
     }
 
     public void Exit(ref PlayerEntityData _data)
@@ -48,7 +43,7 @@ public class PlayerActionBackHop : IPlayerAction
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, PlayerController.PlayerState _fromState)
+    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
         _data.time = 0f;
         ringfrom = _data.position.distance;

@@ -5,17 +5,11 @@ using UnityEngine;
 [Serializable]
 public class PlayerEntityData
 {
-    public PlayerController.PlayerState nextState;
-
     public PolarCoordinate position;
     public PolarCoordinate velocity;
     public Vector2 facing;
 
     public float time;
-
-
-
-
 }
 
 [System.Serializable]
