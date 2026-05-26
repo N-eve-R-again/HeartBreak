@@ -6,11 +6,14 @@ public class PlayerStateMove : IPlayerState
 {
     private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
+
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
 
         return;
     }
+ 
+
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
@@ -22,7 +25,7 @@ public class PlayerStateMove : IPlayerState
         }
         if (_inputs.Forward.Down)
         {
-            return this.GoTo<PlayerStateForwardDash>();
+            return this.GoTo<PlayerStateForwardDashCharge>();
         }
 
         if (Mathf.Abs(_inputs.Move) > 0)
@@ -60,3 +63,4 @@ public class PlayerStateMove : IPlayerState
     }
 
 }
+

@@ -10,6 +10,7 @@ using UnityEngine.Timeline;
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputManager inputsManager;
+    private PlayerVFXLibrary vfxLibrary;
     // Entity data
     [SerializeField] private PlayerEntityData entityData;
     [SerializeField] private PlayerControllerSettings settings;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         InitializeSettings();
         InitializeInputs();
         InitializeStateMachine();
+        InitVFX();
     }
     private void InitializeSettings()
     {
@@ -35,6 +37,13 @@ public class PlayerController : MonoBehaviour
         inputsManager = GetComponent<PlayerInputManager>();
         inputsManager.InitializeInputActions();
     }
+
+    private void InitVFX()
+    {
+        vfxLibrary = GetComponent<PlayerVFXLibrary>();
+        PlayerStateRegistry.SetLibrary(vfxLibrary);
+    }
+
     private void InitializeStateMachine()
     {
         var types = Assembly.GetAssembly(typeof(IPlayerState))

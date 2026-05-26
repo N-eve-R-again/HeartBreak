@@ -45,7 +45,10 @@ public class PlayerControllerSettings : ScriptableObject
 
     [Header("Forward Dash")]
     public float forwardDashChargeTime;
-    public float forwardDashSpeedByCharge;
+    public float forwardDashSpeedByChargeIncr;
+    public float forwardDashSpeedByChargeBase;
     public AnimationCurve forwardDashEase;
-
+    public AnimationCurve forwardDashAngularRampUp;
+    public AnimationCurve smalljump;
+    public float smalljumptime;
 }

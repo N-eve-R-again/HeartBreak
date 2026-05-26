@@ -3,9 +3,9 @@ using static PlayerController;
 
 public interface IPlayerState
 {
-    void Enter(ref PlayerEntityData data, IPlayerState fromState);
-    IPlayerState Execute(ref PlayerEntityData data, PlayerInputData inputs);
-    void Exit(ref PlayerEntityData data);
+    void Enter(ref PlayerEntityData _data, IPlayerState fromState);
+    IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs);
+    void Exit(ref PlayerEntityData _data);
 }
 
 public static class PlayerStateExtensions
