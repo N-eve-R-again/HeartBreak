@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerVFXLibrary : MonoBehaviour
 {
     [Header("Dashing Charge")]
+    public AttackGizmo attackGizmo;
     public Volume chargeVolume;
     public ParticleSystem chargePS;
     public ParticleSystem chargeCompletePS;

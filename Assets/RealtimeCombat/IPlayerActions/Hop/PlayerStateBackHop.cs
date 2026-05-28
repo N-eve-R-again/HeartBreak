@@ -29,7 +29,12 @@ public class PlayerStateBackHop : IPlayerState
             _currentData.time = 0;
             _currentData.position.distance = ringto;
 
-            if (wantstofwdash) return this.GoTo<PlayerStateForwardDashCharge>();
+            if (wantstofwdash) return this.GoTo<PlayerStateForwardHop>();
+            if (_inputs.Attack.Held) return this.GoTo<PlayerStateForwardDashCharge>();
+            if (_inputs.Back.Held) { 
+
+                return this.ResetState(ref _currentData); 
+            }
             return this.GoTo<PlayerStateIdle>();
 
 

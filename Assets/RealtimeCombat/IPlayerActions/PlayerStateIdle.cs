@@ -15,8 +15,9 @@ public class PlayerStateIdle : IPlayerState
 
         if (_inputs.Back.Down) return this.GoTo<PlayerStateBackHop>();
 
-        if (_inputs.Forward.Down) return this.GoTo<PlayerStateForwardDashCharge>();
+        if (_inputs.Forward.Down) return this.GoTo<PlayerStateForwardHop>();
 
+        if (_inputs.Attack.Down) return this.GoTo<PlayerStateForwardDashCharge>();
 
         _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, settings.idleDecel * Time.deltaTime);
         if (_currentData.velocity.magnitude < 0.1f) _currentData.velocity = PolarCoordinate.zero;

@@ -14,5 +14,10 @@ public static class PlayerStateExtensions
     public static IPlayerState GoTo<T>(this IPlayerState s) where T : IPlayerState
         => PlayerStateRegistry.Get<T>();
 
-
+    public static IPlayerState ResetState(this IPlayerState s, ref PlayerEntityData data)
+    {
+        s.Exit(ref data);
+        s.Enter(ref data, s);
+        return s;
+    }
 }

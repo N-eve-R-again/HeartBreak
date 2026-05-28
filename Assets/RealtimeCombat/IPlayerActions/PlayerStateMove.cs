@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 public class PlayerStateMove : IPlayerState
 {
     private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
-
+    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
 
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
@@ -19,26 +19,23 @@ public class PlayerStateMove : IPlayerState
     {
         PolarCoordinate targetVelocity = PolarCoordinate.zero;
 
-        if (_inputs.Back.Down)
-        {
-            return this.GoTo<PlayerStateBackHop>();
-        }
-        if (_inputs.Forward.Down)
-        {
-            return this.GoTo<PlayerStateForwardDashCharge>();
-        }
+        if (_inputs.Back.Down) return this.GoTo<PlayerStateBackHop>();
+
+        if (_inputs.Forward.Down) return this.GoTo<PlayerStateForwardHop>();
+
+        if (_inputs.Attack.Down) return this.GoTo<PlayerStateForwardDashCharge>();
 
         if (Mathf.Abs(_inputs.Move) > 0)
         {
             // Velocity directe basée sur inputd
-            targetVelocity.angle = -_inputs.Move * (settings.moveangleMaxSpeed / settings.ringToDistance.Evaluate(_currentData.position.distance));
+            targetVelocity.angle = -_inputs.Move * (settings.moveangleMaxSpeed);// / settings.ringToDistance.Evaluate(_currentData.position.distance));
             targetVelocity.distance = 0; // -_inputs.Move.y * settings.movedistMaxSpeed;
 
             //_currentData.facing = new Vector2(MoveInputCameraSpace.x, MoveInputCameraSpace.z);
         }
 
         // Un seul lerp : velocity vers target
-        float lerpSpeed = _inputs.Move > 0 ? settings.moveAccel : settings.moveDecel;
+        float lerpSpeed = _currentData.velocity.magnitude < targetVelocity.magnitude ? settings.moveAccel : settings.moveDecel;
         _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
 
         // Appliquer

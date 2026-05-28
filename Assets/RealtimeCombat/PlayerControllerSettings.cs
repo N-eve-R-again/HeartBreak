@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControllerSettings : ScriptableObject
 {
     [Header("Arena")]
+    public int maxRing => ringRadii.Length - 1;
     public float[] ringRadii;
     public AnimationCurve ringToDistance;
 
@@ -37,18 +38,32 @@ public class PlayerControllerSettings : ScriptableObject
     public float moveAccel;
     public float moveDecel;
 
-    [Header("Backward Hop")]
+    [Header("Hops")]
     public float BackwardHopSpeed;
     public float BackwardHopSmallJumpAmplitude = 0.5f;
     public AnimationCurve backwardHopEase;
     public AnimationCurve backwardHopJumpCurve;
+    public float hopInputBufferRatio = 0.5f;
+
+    [Header("Charge Dash")]
+    public AnimationCurve chargeDashJump;
+    public float chargeDashJumpDuration;
+    public float chargeDashChargeTime;
+    public float chargeDashFriction;
+    public float chargeDashInputInfluence;
+
+    [Header("Attack Dash")]
+    public AnimationCurve attackDashCurve;
+    public float attackDashDuration;
+    public float afterAttackPauseTime;
+
 
     [Header("Forward Dash")]
-    public float forwardDashChargeTime;
     public float forwardDashSpeedByChargeIncr;
     public float forwardDashSpeedByChargeBase;
     public AnimationCurve forwardDashEase;
     public AnimationCurve forwardDashAngularRampUp;
-    public AnimationCurve smalljump;
-    public float smalljumptime;
+
+
+
 }

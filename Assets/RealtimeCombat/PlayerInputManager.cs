@@ -20,9 +20,10 @@ public class PlayerInputManager : MonoBehaviour
         inputs.Jump = inputs.Jump.Update(jumpAction.IsPressed(), Time.deltaTime);
         inputs.Back = inputs.Back.Update(backAction.IsPressed(), Time.deltaTime);
         inputs.Forward = inputs.Forward.Update(forwardAction.IsPressed(), Time.deltaTime);
+        inputs.Attack = inputs.Attack.Update(attackAction.IsPressed(), Time.deltaTime);
         /*inputs.Dodge = inputs.Dodge.Update(dodgeAction.IsPressed(), Time.deltaTime);
         inputs.Block = inputs.Block.Update(blockAction.IsPressed(), Time.deltaTime);
-        inputs.Attack = inputs.Attack.Update(attackAction.IsPressed(), Time.deltaTime);
+;
         inputs.Dash = inputs.Dash.Update(dashAction.IsPressed(), Time.deltaTime);*/
     }
 
@@ -36,9 +37,10 @@ public class PlayerInputManager : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
         backAction = playerInput.actions["Backward"];
         forwardAction = playerInput.actions["Forward"];
+        attackAction = playerInput.actions["Attack"];
         /*dodgeAction = playerInput.actions["Dodge"];
         blockAction = playerInput.actions["Block"];
-        attackAction = playerInput.actions["Attack"];
+
         dashAction = playerInput.actions["Dash"];*/
     }
 }
