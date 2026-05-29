@@ -30213,8 +30213,15 @@ MonoBehaviour:
     angle: 0
     distance: 2
     y: 0
+  forcedAngle: 0
   easespeed: 15
-  targetPosition: {x: 0, y: 0, z: 0}
+  targetPosition:
+    angle: 0
+    distance: 0
+    y: 0
+  worldpos: {x: 0, y: 0, z: 0}
+  attackpreshot: 0.25
+  gotopreshot: 0.1
   animator: {fileID: 1633618110}
 --- !u!1 &1640098472
 GameObject:

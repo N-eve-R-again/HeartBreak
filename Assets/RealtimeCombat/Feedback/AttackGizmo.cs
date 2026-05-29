@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AttackGizmo : MonoBehaviour
 {
@@ -17,48 +18,58 @@ public class AttackGizmo : MonoBehaviour
     public State state;
 
     public PolarCoordinate position;
+
+    public float forcedAngle;
     public float easespeed;
-    public Vector3 targetPosition;
+    public PolarCoordinate targetPosition;
+    public Vector3 worldpos;
+
+    public float attackpreshot;
+    public float gotopreshot;
+
 
     public Animator animator;
 
     public void UpdatePosition()
     {
-        CalculateWorldPos();
-
 
         //lerp x
 
+        position.angle = targetPosition.angle;
+        position  = PolarCoordinate.Lerp(position, targetPosition, Time.deltaTime * easespeed);
+        ApplyWorldPos();
+        transform.position = worldpos;    }
 
-        transform.position = Vector3.Slerp(transform.position, targetPosition, Time.deltaTime * easespeed);
-    }
-
-    private void CalculateWorldPos()
+    private void ApplyWorldPos()
     {
         float realDist = settings.ringToDistance.Evaluate(position.distance);
-        targetPosition = Vector3.back * realDist;
-        targetPosition = Quaternion.Euler(new Vector3(0f, position.angle, 0f)) * targetPosition;
-        targetPosition = targetPosition + Vector3.up * position.y;
-
+        worldpos = Vector3.back * realDist;
+        worldpos = Quaternion.Euler(new Vector3(0f, position.angle, 0f)) * worldpos;
+        worldpos = worldpos + Vector3.up * position.y;
+        transform.position = worldpos;
     }
 
     public void Snap()
     {
-        CalculateWorldPos();
-        transform.position = targetPosition;
 
+        position = targetPosition;
+        ApplyWorldPos();
     }
 
     public void Center()
     {
-        targetPosition = Vector3.up * 1.5f;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * easespeed* 2f);
+        worldpos = Vector3.up * 1.5f;
+        transform.position = Vector3.Lerp(transform.position, worldpos, Time.deltaTime * easespeed* 2f);
+
     }
 
     public void Hide()
     {
-        targetPosition = Vector3.one * 100;
+        targetPosition = PolarCoordinate.zero;
+
+
         Snap();
+        ApplyWorldPos();
     }
 
     void Start()
@@ -66,24 +77,19 @@ public class AttackGizmo : MonoBehaviour
         Hide();
     }
 
-    public void Goto(PolarCoordinate newpos)
-    {
-        position = newpos;
-        animator.SetTrigger("Move");
-        //animation
-    }
-
     public void Charge(PolarCoordinate snappos)
     {
         state = State.DashCharge;
-        position = snappos;
+        targetPosition = snappos;
         Snap();
+        ApplyWorldPos();
         animator.SetTrigger("Activate");
         //animation
     }
 
     public void Attack()
     {
+        if (state == State.Attack) return;
         state = State.Attack;
         animator.SetTrigger("Attack");
         //animation
@@ -91,7 +97,7 @@ public class AttackGizmo : MonoBehaviour
     }
     public void UpdatePlayerPose(PolarCoordinate snappos)
     {
-        position = snappos;
+        targetPosition = snappos;
     }
 
     public void MoveOneRing()

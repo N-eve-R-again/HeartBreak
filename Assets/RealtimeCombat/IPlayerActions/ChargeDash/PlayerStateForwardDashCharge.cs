@@ -8,38 +8,49 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     private float ringfrom;
     private int charge;
-    float screeneffectforce;
     private bool willattack;
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
-
-        vfx.chargeVolume.weight = screeneffectforce;
-        vfx.SetScreenPowerUpAlpha(screeneffectforce);
-
-
         if (_inputs.Attack.Held)
         {
             _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * 0.5f);
             _currentData.time += Time.deltaTime;
-            screeneffectforce = Mathf.Lerp(screeneffectforce, 0.5f, Time.deltaTime * 2f);
 
-            if(charge == 0)
+            if (charge == 0)
             {
                 _currentData.position.y = settings.chargeDashJump.Evaluate(_currentData.time / settings.chargeDashJumpDuration);
+            }
+
+            bool test = (ringfrom - charge == 1);
+            float preshot = test ? vfx.attackGizmo.attackpreshot : vfx.attackGizmo.gotopreshot;
+
+            if (_currentData.time > settings.chargeDashChargeTime - preshot)
+            {
+                if (test)
+                {
+                    vfx.attackGizmo.Attack();
+                }
+                else
+                {
+                    vfx.attackGizmo.MoveOneRing();
+                }
+
             }
 
             if (_currentData.time > settings.chargeDashChargeTime)
             {
                 _currentData.time = 0;
 
+
+
                 if (ringfrom - charge > 1f)
                 {
                     charge += 1;
                     Debug.Log("charge " + charge);
-                    vfx.attackGizmo.MoveOneRing();
+
                     vfx.chargeCompletePS.Play();
-                    screeneffectforce = 1f;
+                    vfx.ChargeEffectPulse(0.8f); // snap à 1, le sustain ramène à 0.5
                 }
                 else
                 {
@@ -47,13 +58,11 @@ public class PlayerStateForwardDashCharge : IPlayerState
                     {
                         charge += 1;
                         willattack = true;
-                        vfx.attackGizmo.Attack();
-                        screeneffectforce = 1f;
 
-                    }
+                        vfx.ChargeEffectPulse(1f);
+                        vfx.ChargeEffectSustain(1f, 1f);
+                     }
                 }
-
-
             }
             vfx.attackGizmo.UpdatePlayerPose(_currentData.position + new PolarCoordinate(0f, -charge, 0f));
 
@@ -63,12 +72,9 @@ public class PlayerStateForwardDashCharge : IPlayerState
         }
         else
         {
-            if(charge < 1)
+            if (charge < 1)
             {
-                screeneffectforce = 0f;
-                vfx.chargeVolume.weight = screeneffectforce;
-                vfx.SetScreenPowerUpAlpha(screeneffectforce);
-
+                //vfx.ChargeEffectKill();
                 return this.GoTo<PlayerStateIdle>();
             }
             else
@@ -76,10 +82,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
                 if (willattack) return this.GoTo<PlayerStateAttackDash>();
                 return this.GoTo<PlayerStateForwardDashExecute>();
             }
-
         }
-
-
     }
 
     public void Exit(ref PlayerEntityData _data)
@@ -88,10 +91,11 @@ public class PlayerStateForwardDashCharge : IPlayerState
         vfx.chargePS.Stop();
         vfx.DeactivateChargeCam();
 
+        // On dit juste "fade out" — la library le fait à son rythme
+        vfx.ChargeEffectFadeOut(10f);
+
         _data.time = 0f;
         _data.velocity.distance = -charge;
-
-        return;
     }
 
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
@@ -99,15 +103,11 @@ public class PlayerStateForwardDashCharge : IPlayerState
         vfx.attackGizmo.Charge(_data.position);
         vfx.ActivateChargeCam();
         vfx.chargePS.Play();
-        vfx.chargeVolume.weight = 0f;
+        vfx.ChargeEffectKill();
+        vfx.ChargeEffectSustain(0.5f, 2f);
         charge = 0;
         ringfrom = _data.position.distance;
-        screeneffectforce = 0f;
         willattack = false;
-        //_data.velocity = PolarCoordinate.zero;
         _data.time = 0f;
-        return;
     }
 }
-
-

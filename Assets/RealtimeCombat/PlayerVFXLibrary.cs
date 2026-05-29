@@ -15,6 +15,61 @@ public class PlayerVFXLibrary : MonoBehaviour
     public CinemachineBrain cameraBrain;
     public CanvasGroup screenPowerUp;
 
+
+    // --- Charge effect (self-driven) ---
+    [Header("Charge Effect Settings")]
+    private float chargeEffectCurrent;
+    private float chargeEffectTarget;
+    private float chargeEffectSpeed;
+
+    public float ChargeEffect => chargeEffectCurrent;
+
+    /// <summary> Sustain continu — appelé par la charge state chaque frame. </summary>
+    public void ChargeEffectSustain(float target, float speed)
+    {
+        chargeEffectTarget = target;
+        chargeEffectSpeed = speed;
+    }
+
+    /// <summary> Pulse instantané (snap à une valeur haute, le sustain reprend après). </summary>
+    public void ChargeEffectPulse(float value)
+    {
+        chargeEffectCurrent = value;
+    }
+
+    /// <summary> Fade out autonome — les states n'ont plus besoin de s'en occuper. </summary>
+    public void ChargeEffectFadeOut(float fadeOutSpeed = 2f)
+    {
+        chargeEffectTarget = 0f;
+        chargeEffectSpeed = fadeOutSpeed;
+    }
+
+    /// <summary> Kill immédiat sans fade (reset, respawn, etc). </summary>
+    public void ChargeEffectKill()
+    {
+        chargeEffectCurrent = 0f;
+        chargeEffectTarget = 0f;
+        ApplyChargeEffect();
+    }
+
+    private void ApplyChargeEffect()
+    {
+        chargeVolume.weight = chargeEffectCurrent;
+        screenPowerUp.alpha = chargeEffectCurrent;
+    }
+
+    void Update()
+    {
+        UpdateChargeEffect();
+    }
+
+    private void UpdateChargeEffect()
+    {
+        chargeEffectCurrent = Mathf.Lerp(chargeEffectCurrent, chargeEffectTarget, chargeEffectSpeed * Time.deltaTime);
+        if (chargeEffectCurrent < 0.01f && chargeEffectTarget == 0f) chargeEffectCurrent = 0f;
+        ApplyChargeEffect();
+    }
+
     public void ActivateChargeCam() => cameraCharge.Priority = 20;
     public void DeactivateChargeCam()
     {

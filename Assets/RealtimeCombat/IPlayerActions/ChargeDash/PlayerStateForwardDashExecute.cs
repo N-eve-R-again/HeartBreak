@@ -30,24 +30,29 @@ public class PlayerStateForwardDashExecute : IPlayerState
         _currentData.time += Time.deltaTime;
 
         float ratio = _currentData.time / timeToExecute;
-        vfx.chargeVolume.weight = Mathf.Lerp(vfx.chargeVolume.weight, 0f, ratio);
-        vfx.SetScreenPowerUpAlpha(Mathf.Lerp(vfx.screenPowerUp.alpha, 0f, ratio));
         _currentData.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, settings.forwardDashEase.Evaluate(ratio));
         //_currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, settings.moveangleMaxSpeed * -inputs.Move, settings.forwardDashAngularRampUp.Evaluate(ratio) * Time.deltaTime);
         _currentData.position.angle += _currentData.velocity.angle * Time.deltaTime;
         //_currentData.facing = Vector2.Lerp(originalfacing, new Vector2(-_currentData.velocity.angle, 1f).normalized, settings.forwardDashAngularRampUp.Evaluate(ratio));
 
         if(Mathf.Sign(inputs.Move) != Mathf.Sign(_currentData.velocity.angle)){
-            _currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, originalangularVel * 0.5f, ratio);
+            _currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, originalangularVel * 0.45f, ratio);
             Debug.Log("what ?");
         }
 
         if (_currentData.time > timeToExecute)
         {
-            vfx.DeactivateChargeCam();
-            vfx.chargeVolume.weight = 0f;
 
-            _currentData.velocity.angle = settings.moveangleMaxSpeed * -inputs.Move;
+
+            if (Mathf.Sign(inputs.Move) != Mathf.Sign(_currentData.velocity.angle))
+            {
+                _currentData.velocity.angle = settings.moveangleMaxSpeed * -inputs.Move * 1.25f;
+            }
+            else
+            {
+                _currentData.velocity.angle = settings.moveangleMaxSpeed * -inputs.Move;
+            }
+
             return this.GoTo<PlayerStateMove>();
 
         }
