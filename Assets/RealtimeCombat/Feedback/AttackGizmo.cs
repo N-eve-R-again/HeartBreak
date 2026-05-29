@@ -92,6 +92,8 @@ public class AttackGizmo : MonoBehaviour
         if (state == State.Attack) return;
         state = State.Attack;
         animator.SetTrigger("Attack");
+        Center();
+        Snap();
         //animation
 
     }

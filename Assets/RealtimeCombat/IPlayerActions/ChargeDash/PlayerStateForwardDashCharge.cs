@@ -104,7 +104,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
         vfx.ActivateChargeCam();
         vfx.chargePS.Play();
         vfx.ChargeEffectKill();
-        vfx.ChargeEffectSustain(0.5f, 2f);
+        vfx.ChargeEffectSustain(0.25f, 2f);
         charge = 0;
         ringfrom = _data.position.distance;
         willattack = false;
