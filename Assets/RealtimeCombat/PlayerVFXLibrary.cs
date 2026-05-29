@@ -16,6 +16,9 @@ public class PlayerVFXLibrary : MonoBehaviour
     public CanvasGroup screenPowerUp;
 
 
+    [Header("Attack")]
+    public MeleeEffect meleeEffect;
+
     // --- Charge effect (self-driven) ---
     [Header("Charge Effect Settings")]
     private float chargeEffectCurrent;

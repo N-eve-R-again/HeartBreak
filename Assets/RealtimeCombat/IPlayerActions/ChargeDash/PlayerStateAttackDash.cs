@@ -3,8 +3,11 @@ using UnityEngine;
 public class PlayerStateAttackDash : IPlayerState
 {
     public float ringfrom;
+    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
 
     private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
+
+    public bool temp = false;
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
@@ -12,7 +15,14 @@ public class PlayerStateAttackDash : IPlayerState
         float ratio = _currentData.time / settings.attackDashDuration;
         _currentData.position.distance = Mathf.Lerp(ringfrom, 0, settings.attackDashCurve.Evaluate(ratio));
 
-        if (ratio > 1f) {
+        if(ratio > 1 && !temp)
+        {
+            temp = true;
+            BossManager.instance.Damage(settings.meleeDamage, true, _currentData.position.angle);
+        }
+
+        if (ratio > 1.1f) {
+
             return this.GoTo<PlayerStateBackHop>();
         
         
@@ -29,8 +39,11 @@ public class PlayerStateAttackDash : IPlayerState
 
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
+        //vfx.ChargeEffectKill();
+        temp = false;
         _data.time = 0f;
         ringfrom = _data.position.distance;
+        vfx.meleeEffect.Play(_data.position);
         _data.velocity = PolarCoordinate.zero;
         return;
     }

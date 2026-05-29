@@ -56,6 +56,7 @@ public class PlayerControllerSettings : ScriptableObject
     public AnimationCurve attackDashCurve;
     public float attackDashDuration;
     public float afterAttackPauseTime;
+    public float meleeDamage;
 
 
     [Header("Forward Dash")]

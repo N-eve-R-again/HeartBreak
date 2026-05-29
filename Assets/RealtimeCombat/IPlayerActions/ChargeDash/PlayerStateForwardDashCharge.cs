@@ -92,7 +92,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
         vfx.DeactivateChargeCam();
 
         // On dit juste "fade out" — la library le fait à son rythme
-        vfx.ChargeEffectFadeOut(10f);
+        vfx.ChargeEffectFadeOut(20f);
 
         _data.time = 0f;
         _data.velocity.distance = -charge;

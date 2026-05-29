@@ -207,6 +207,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   attackDashDuration: 0.05
   afterAttackPauseTime: 1
+  meleeDamage: 3.7
   forwardDashSpeedByChargeIncr: 0.01
   forwardDashSpeedByChargeBase: 0.25
   forwardDashEase:

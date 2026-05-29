@@ -34,6 +34,7 @@ public class BossHpBar : MonoBehaviour
         restHp = dynamicHp;
         inCombo = false;
         currentComboTimer = 0;
+        Time.timeScale = 1f;
     }
 
     private void CheckForComboEnd()
@@ -52,6 +53,7 @@ public class BossHpBar : MonoBehaviour
     private void BlinkHp()
     {
         hpBar.color = BlinkHpBarColor;
+        Time.timeScale = 0.1f;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,7 +69,7 @@ public class BossHpBar : MonoBehaviour
         CheckForComboEnd();
 
         hpBar.color = Color.Lerp(hpBar.color, restHpBarColor, Time.deltaTime * 5f);
-        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, dynamicHp, Time.deltaTime * 4f);
+        hpBar.fillAmount = dynamicHp;
         comboHpBar.fillAmount = Mathf.Lerp(comboHpBar.fillAmount, restHp, Time.deltaTime * 10f);
     }
 }
