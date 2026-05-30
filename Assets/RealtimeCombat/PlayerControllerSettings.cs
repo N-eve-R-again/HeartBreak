@@ -51,6 +51,9 @@ public class PlayerControllerSettings : ScriptableObject
     public float chargeDashChargeTime;
     public float chargeDashFriction;
     public float chargeDashInputInfluence;
+    public float chargeDashVelocityBoost;
+    public float chargeDashVelocityBoostThreshold;
+
 
     [Header("Attack Dash")]
     public AnimationCurve attackDashCurve;

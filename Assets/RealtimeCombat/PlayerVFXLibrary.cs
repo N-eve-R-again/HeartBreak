@@ -18,6 +18,7 @@ public class PlayerVFXLibrary : MonoBehaviour
 
     [Header("Attack")]
     public MeleeEffect meleeEffect;
+    public PlayerShooter shooter;
 
     // --- Charge effect (self-driven) ---
     [Header("Charge Effect Settings")]

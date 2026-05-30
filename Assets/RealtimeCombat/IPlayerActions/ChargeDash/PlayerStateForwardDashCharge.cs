@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStateForwardDashCharge : IPlayerState
@@ -14,7 +15,15 @@ public class PlayerStateForwardDashCharge : IPlayerState
     {
         if (_inputs.Attack.Held)
         {
-            _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * 0.5f);
+            _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * settings.chargeDashFriction);
+
+            bool drifing = Mathf.Sign(_inputs.Move) == Mathf.Sign(_currentData.velocity.angle);
+            if(_inputs.MoveMagnitude == 0) drifing = false;
+            if (drifing)
+            {
+                _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * settings.chargeDashInputInfluence);
+            }
+            
             _currentData.time += Time.deltaTime;
 
             if (charge == 0)
@@ -67,7 +76,9 @@ public class PlayerStateForwardDashCharge : IPlayerState
             vfx.attackGizmo.UpdatePlayerPose(_currentData.position + new PolarCoordinate(0f, -charge, 0f));
 
             _currentData.position += _currentData.velocity * Time.deltaTime;
-            _currentData.facing = Vector2.up + Vector2.right * (_inputs.Move * 0.35f);
+            Vector2 tempFacing = Mathf.Sign(_currentData.velocity.angle) < 0 ? Vector2.left : Vector2.right;
+            float tempForce = drifing ?  0.50f : 0f;
+            _currentData.facing = Vector2.up + tempFacing * tempForce;
             return this.Stay();
         }
         else
@@ -93,13 +104,19 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
         // On dit juste "fade out" — la library le fait à son rythme
         vfx.ChargeEffectFadeOut(20f);
-
+        _data.position.y = 0f;
         _data.time = 0f;
         _data.velocity.distance = -charge;
     }
 
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
+
+        if(_data.velocity.angleMagnitude > settings.chargeDashVelocityBoostThreshold)
+        {
+            _data.velocity.angle += Mathf.Sign(_data.velocity.angle) * settings.chargeDashVelocityBoost;
+        }
+
         vfx.attackGizmo.Charge(_data.position);
         vfx.ActivateChargeCam();
         vfx.chargePS.Play();

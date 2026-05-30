@@ -42,6 +42,7 @@ public struct PolarCoordinate
 
 
     public float magnitude => Mathf.Abs(angle + distance + y);
+    public float angleMagnitude => Mathf.Abs(angle);
 
     public static PolarCoordinate zero => new PolarCoordinate(0, 0, 0);
     public static PolarCoordinate right => new PolarCoordinate(1f, 0f, 0f);

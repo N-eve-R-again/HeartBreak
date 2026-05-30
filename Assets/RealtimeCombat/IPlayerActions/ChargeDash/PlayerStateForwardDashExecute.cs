@@ -20,6 +20,8 @@ public class PlayerStateForwardDashExecute : IPlayerState
         ringto = data.position.distance + data.velocity.distance;
         data.velocity.distance = 0f;
         originalangularVel = data.velocity.angle;
+
+        vfx.shooter.ShootPeel(data.position);
     }
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData inputs)
