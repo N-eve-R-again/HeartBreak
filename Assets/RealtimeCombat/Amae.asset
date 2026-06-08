@@ -75,28 +75,37 @@ MonoBehaviour:
   movedistMaxSpeed: 7
   moveAccel: 10
   moveDecel: 4
-  BackwardHopSpeed: 0.35
-  BackwardHopSmallJumpAmplitude: 1
+  BackwardHopSpeed: 0.45
+  BackwardHopSmallJumpAmplitude: 0.95
   backwardHopEase:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.7744361
+      outSlope: 0.7744361
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.6162246
+    - serializedVersion: 3
+      time: 0.21387887
+      value: 0.47960418
+      inSlope: 1.7617967
+      outSlope: 1.7617967
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33763131
+      outWeight: 0.35024178
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.04965167
+      outSlope: 0.04965167
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
+      weightedMode: 1
+      inWeight: 0.3677728
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -114,27 +123,53 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.19736719
     - serializedVersion: 3
-      time: 0.31229246
-      value: 0.8603314
-      inSlope: -0.012405379
-      outSlope: -0.012405379
+      time: 0.17895913
+      value: 0.8541862
+      inSlope: 0.08727066
+      outSlope: 0.08727066
       tangentMode: 0
       weightedMode: 3
       inWeight: 0.7139864
-      outWeight: 0.52560043
+      outWeight: 0.45489803
     - serializedVersion: 3
-      time: 1
+      time: 0.5
       value: 0
-      inSlope: -2.9683657
-      outSlope: -2.9683657
+      inSlope: -17.824844
+      outSlope: -17.824844
       tangentMode: 0
       weightedMode: 1
-      inWeight: 0.47125307
+      inWeight: 0.14155735
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hopInputBufferRatio: 0.9
+  hopInputBufferRatio: 0.5
+  ForwardHopSpeed: 0.35
+  forwardHopInteruptRatio: 0.5
+  forwardHopEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0041656494
+      value: 0
+      inSlope: 10.60958
+      outSlope: 10.60958
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.09632941
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.1264573
+      outSlope: -0.1264573
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.71250004
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   chargeDashJump:
     serializedVersion: 2
     m_Curve:
@@ -157,8 +192,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.30198017
     - serializedVersion: 3
-      time: 0.64563876
-      value: 0.0024999997
+      time: 0.61647207
+      value: 0.05931724
       inSlope: -1.8764032
       outSlope: 3.2249403
       tangentMode: 1
@@ -167,7 +202,7 @@ MonoBehaviour:
       outWeight: 0.11813153
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 0.290141
       inSlope: -0.91304314
       outSlope: -0.91304314
       tangentMode: 0
@@ -177,12 +212,57 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chargeDashJumpDuration: 0.35
-  chargeDashChargeTime: 0.65
-  chargeDashFriction: 1
+  chargeDashJumpDuration: 0.45
+  chargeDashChargeTime: 0.45
+  chargeDashFriction: 0.8
   chargeDashInputInfluence: 1.5
-  chargeDashVelocityBoost: 75
+  chargeDashVelocityBoost: 125
   chargeDashVelocityBoostThreshold: 1
+  orbitalDashDuration: 0.25
+  orbitalDashImmunityRatio: 0.95
+  orbitalDashForceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.03986736
+      outSlope: 0.03986736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.15318924
+      value: 0.9966309
+      inSlope: -0.020262709
+      outSlope: -0.020262709
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.91591364
+      outWeight: 0.36869386
+    - serializedVersion: 3
+      time: 0.73328495
+      value: 0.6574132
+      inSlope: -1.4218194
+      outSlope: -1.4218194
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.27926427
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: -0.013686912
+      outSlope: -0.013686912
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6958333
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  orbitalDashForce: 165
   attackDashCurve:
     serializedVersion: 2
     m_Curve:
@@ -198,17 +278,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.030075122
+      outSlope: 0.030075122
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.23750001
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  attackDashDuration: 0.05
-  afterAttackPauseTime: 1
+  attackDashDuration: 0.06
+  afterAttackPauseTime: 20
   meleeDamage: 3.7
   forwardDashSpeedByChargeIncr: 0.01
   forwardDashSpeedByChargeBase: 0.25

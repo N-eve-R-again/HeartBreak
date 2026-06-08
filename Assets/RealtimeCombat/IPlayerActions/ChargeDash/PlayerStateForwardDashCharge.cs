@@ -23,8 +23,6 @@ public class PlayerStateForwardDashCharge : IPlayerState
             {
                 _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * settings.chargeDashInputInfluence);
             }
-            
-            _currentData.time += Time.deltaTime;
 
             if (charge == 0)
             {
@@ -50,8 +48,6 @@ public class PlayerStateForwardDashCharge : IPlayerState
             if (_currentData.time > settings.chargeDashChargeTime)
             {
                 _currentData.time = 0;
-
-
 
                 if (ringfrom - charge > 1f)
                 {
@@ -105,19 +101,22 @@ public class PlayerStateForwardDashCharge : IPlayerState
         // On dit juste "fade out" — la library le fait à son rythme
         vfx.ChargeEffectFadeOut(20f);
         _data.position.y = 0f;
-        _data.time = 0f;
         _data.velocity.distance = -charge;
     }
 
     public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
     {
-
-        if(_data.velocity.angleMagnitude > settings.chargeDashVelocityBoostThreshold)
+        if(_data.velocity.angleMagnitude < settings.moveangleMaxSpeed)
         {
-            _data.velocity.angle += Mathf.Sign(_data.velocity.angle) * settings.chargeDashVelocityBoost;
+            _data.velocity.angle = Mathf.Sign(_data.velocity.angle) * settings.chargeDashVelocityBoost;
+        }
+        else
+        {
+            _data.velocity.angle = Mathf.Sign(_data.velocity.angle) * (settings.moveangleMaxSpeed + (settings.chargeDashVelocityBoost- settings.moveangleMaxSpeed));
         }
 
-        vfx.attackGizmo.Charge(_data.position);
+
+            vfx.attackGizmo.Charge(_data.position);
         vfx.ActivateChargeCam();
         vfx.chargePS.Play();
         vfx.ChargeEffectKill();
@@ -125,6 +124,5 @@ public class PlayerStateForwardDashCharge : IPlayerState
         charge = 0;
         ringfrom = _data.position.distance;
         willattack = false;
-        _data.time = 0f;
     }
 }

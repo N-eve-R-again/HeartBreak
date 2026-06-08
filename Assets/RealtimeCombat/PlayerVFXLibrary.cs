@@ -15,6 +15,10 @@ public class PlayerVFXLibrary : MonoBehaviour
     public CinemachineBrain cameraBrain;
     public CanvasGroup screenPowerUp;
 
+    [Header("OrbitalDash")]
+    public ParticleSystem psOrbitalDash;
+    
+
 
     [Header("Attack")]
     public MeleeEffect meleeEffect;
@@ -34,6 +38,15 @@ public class PlayerVFXLibrary : MonoBehaviour
         chargeEffectTarget = target;
         chargeEffectSpeed = speed;
     }
+
+
+    public void PlayOrbitalDashPS(Vector3 direction)
+    {
+        //psOrbitalDash.transform.LookAt(direction, Vector3.up);
+        psOrbitalDash.Play();
+
+    }
+
 
     /// <summary> Pulse instantané (snap à une valeur haute, le sustain reprend après). </summary>
     public void ChargeEffectPulse(float value)

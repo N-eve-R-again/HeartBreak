@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Reflection;
 using System.Linq;
-using static PlayerController;
-using UnityEngine.Timeline;
 
 public class PlayerController : MonoBehaviour
 {
@@ -70,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // 3. Exécuter l'action du state actuel
         var previous = currentState;
         currentState = currentState.Execute(ref entityData, inputsManager.inputs);
-
+        entityData.time += Time.deltaTime;
 
         // 5. Gérer les transitions de state
         if (previous != currentState) TransitionToState(previous);
@@ -107,6 +104,7 @@ public class PlayerController : MonoBehaviour
     private void TransitionToState(IPlayerState previous)
     {
         previous.Exit(ref entityData);
+        entityData.time = 0f;
         currentState.Enter(ref entityData, previous);
     }
 

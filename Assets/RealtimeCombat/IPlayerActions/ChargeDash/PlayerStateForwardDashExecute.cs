@@ -29,8 +29,6 @@ public class PlayerStateForwardDashExecute : IPlayerState
 
         Debug.Log("dashing");
 
-        _currentData.time += Time.deltaTime;
-
         float ratio = _currentData.time / timeToExecute;
         _currentData.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, settings.forwardDashEase.Evaluate(ratio));
         //_currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, settings.moveangleMaxSpeed * -inputs.Move, settings.forwardDashAngularRampUp.Evaluate(ratio) * Time.deltaTime);
@@ -64,7 +62,6 @@ public class PlayerStateForwardDashExecute : IPlayerState
 
     public void Exit(ref PlayerEntityData data)
     {
-        data.time = 0;
         data.position.distance = ringto;
 
     }

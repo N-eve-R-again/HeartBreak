@@ -11,7 +11,6 @@ public class PlayerStateAttackDash : IPlayerState
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
-        _currentData.time += Time.deltaTime;
         float ratio = _currentData.time / settings.attackDashDuration;
         _currentData.position.distance = Mathf.Lerp(ringfrom, 0, settings.attackDashCurve.Evaluate(ratio));
 
@@ -41,7 +40,6 @@ public class PlayerStateAttackDash : IPlayerState
     {
         //vfx.ChargeEffectKill();
         temp = false;
-        _data.time = 0f;
         ringfrom = _data.position.distance;
         vfx.meleeEffect.Play(_data.position);
         _data.velocity = PolarCoordinate.zero;

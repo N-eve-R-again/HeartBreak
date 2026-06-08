@@ -38,12 +38,21 @@ public class PlayerControllerSettings : ScriptableObject
     public float moveAccel;
     public float moveDecel;
 
-    [Header("Hops")]
+    [Header("BackwardHop")]
     public float BackwardHopSpeed;
     public float BackwardHopSmallJumpAmplitude = 0.5f;
+
     public AnimationCurve backwardHopEase;
     public AnimationCurve backwardHopJumpCurve;
+
+    [Header("Hops")]
     public float hopInputBufferRatio = 0.5f;
+
+    [Header("Forward Hop")]
+    public float ForwardHopSpeed;
+    public float forwardHopInteruptRatio;
+    public AnimationCurve forwardHopEase;
+
 
     [Header("Charge Dash")]
     public AnimationCurve chargeDashJump;
@@ -53,6 +62,12 @@ public class PlayerControllerSettings : ScriptableObject
     public float chargeDashInputInfluence;
     public float chargeDashVelocityBoost;
     public float chargeDashVelocityBoostThreshold;
+
+    [Header("Orbital Dash")]
+    public float orbitalDashDuration;
+    public float orbitalDashImmunityRatio;
+    public AnimationCurve orbitalDashForceCurve;
+    public float orbitalDashForce;
 
 
     [Header("Attack Dash")]

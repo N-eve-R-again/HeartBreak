@@ -13,8 +13,7 @@ public class PlayerStateForwardHop : IPlayerState
 
     public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
     {
-        _currentData.time += Time.deltaTime;
-        float ratio = _currentData.time / settings.BackwardHopSpeed;
+        float ratio = _currentData.time / settings.ForwardHopSpeed;
 
         if (ratio > settings.hopInputBufferRatio)
         {
@@ -23,7 +22,7 @@ public class PlayerStateForwardHop : IPlayerState
                 wantstofwdash = true;
                 wantstobwdash = false;
             }
-            if (_inputs.Back.Down)
+            if (_inputs.Back.Held)
             {
                 wantstobwdash = true;
                 wantstofwdash = false;
@@ -33,20 +32,26 @@ public class PlayerStateForwardHop : IPlayerState
 
       
 
-        _currentData.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, settings.backwardHopEase.Evaluate(ratio));
+        _currentData.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, settings.forwardHopEase.Evaluate(ratio));
 
-        _currentData.position.y = settings.backwardHopJumpCurve.Evaluate(ratio) * settings.BackwardHopSmallJumpAmplitude;
+        //_currentData.position.y = settings.backwardHopJumpCurve.Evaluate(ratio) * settings.BackwardHopSmallJumpAmplitude;
 
         _currentData.position += _currentData.velocity * Time.deltaTime;
 
 
-        if (_currentData.time > settings.BackwardHopSpeed)
-        {
+        if (ratio > settings.forwardHopInteruptRatio) {
 
-            _currentData.time = 0;
+            if (wantstobwdash)
+            {
+                Debug.Log("Interupted forward hop for backward hop");
+                return this.GoTo<PlayerStateBackHop>();
+            }
+        }
+
+        if (ratio > 1f)
+        {
             _currentData.position.distance = ringto;
 
-            if (wantstobwdash) return this.GoTo<PlayerStateBackHop>();
             if (wantstofwdash) return this.ResetState(ref _currentData);
             if (_inputs.Attack.Held) return this.GoTo<PlayerStateForwardDashCharge>();
             return this.GoTo<PlayerStateIdle>();

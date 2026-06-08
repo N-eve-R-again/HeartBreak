@@ -39,8 +39,7 @@ public class PlayerInputData
     public float MoveMagnitude => Math.Abs(Move);
     public ButtonState Back;
     public ButtonState Jump;
-    public ButtonState Dodge;
-    public ButtonState Block;
+
     public ButtonState Attack;
     public ButtonState Dash;
     public ButtonState Forward;
@@ -51,8 +50,6 @@ public class PlayerInputData
         {
             Move = this.Move,
             Jump = this.Jump,
-            Dodge = this.Dodge,
-            Block = this.Block,
             Attack = this.Attack,
             Dash = this.Dash,
             Back = this.Back

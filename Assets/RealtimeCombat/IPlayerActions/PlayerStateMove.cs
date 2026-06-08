@@ -25,6 +25,8 @@ public class PlayerStateMove : IPlayerState
 
         if (_inputs.Attack.Down) return this.GoTo<PlayerStateForwardDashCharge>();
 
+        if (_inputs.Dash.Down) return this.GoTo<PlayerStateOrbitalDash>();
+
         if (Mathf.Abs(_inputs.Move) > 0)
         {
             // Velocity directe basée sur inputd
