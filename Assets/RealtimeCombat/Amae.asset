@@ -213,8 +213,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   chargeDashJumpDuration: 0.45
-  chargeDashChargeTime: 0.45
-  chargeDashFriction: 0.8
+  chargeDashChargeTime: 0.48
+  chargeDashFriction: 1.25
   chargeDashInputInfluence: 1.5
   chargeDashVelocityBoost: 125
   chargeDashVelocityBoostThreshold: 1

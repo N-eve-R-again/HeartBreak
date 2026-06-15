@@ -40,19 +40,53 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.16185722, g: 0, b: 0.23584908, a: 1}
+    m_Value: {r: 0.2653519, g: 0.20835601, b: 0.291, a: 1}
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.205
+    m_Value: 0.239
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.88
+    m_Value: 0.523
   rounded:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &-2764272501138207096
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.95822704, y: 0.9686702, z: 1, w: -0.14423077}
+  midtones:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0.8912543, z: 0.950894, w: 0.09615375}
+  highlights:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0.82352316, z: 0.68536353, w: 0.07211538}
+  shadowsStart:
+    m_OverrideState: 1
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 1
+    m_Value: 0.21
+  highlightsStart:
+    m_OverrideState: 1
+    m_Value: 0.36
+  highlightsEnd:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &-135018417112175061
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -123,6 +157,7 @@ MonoBehaviour:
   - {fileID: 4882228582709553170}
   - {fileID: 2251975792452692509}
   - {fileID: 8690131525665510387}
+  - {fileID: -2764272501138207096}
 --- !u!114 &1214835789494767464
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -135,10 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
-    m_OverrideState: 1
-    m_Value: 2
+    m_OverrideState: 0
+    m_Value: 1
   neutralHDRRangeReductionMode:
     m_OverrideState: 0
     m_Value: 2
@@ -178,10 +213,10 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: -0
+    m_Value: 0
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -203,16 +238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
   m_Name: SplitToning
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.49731106, g: 0.22133332, b: 0.6509804, a: 1}
+    m_Value: {r: 0.6509434, g: 0, b: 0.54883474, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.801, g: 1, b: 0.9914157, a: 1}
+    m_Value: {r: 0, g: 0.86528945, b: 1, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: -30.4
+    m_Value: -3
 --- !u!114 &8690131525665510387
 MonoBehaviour:
   m_ObjectHideFlags: 3

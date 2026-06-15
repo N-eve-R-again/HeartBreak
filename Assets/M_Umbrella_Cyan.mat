@@ -133,11 +133,12 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.078431375, g: 0.9333334, b: 0.94117653, a: 1}
     - _Color: {r: 0.078431346, g: 0.9333334, b: 0.94117653, a: 1}
-    - _EmissionColor: {r: 0, g: 3.1576004, b: 3.211118, a: 1}
+    - _EmissionColor: {r: 0, g: 6.315201, b: 6.422236, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
