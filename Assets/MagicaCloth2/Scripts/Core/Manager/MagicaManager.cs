@@ -106,12 +106,13 @@ namespace MagicaCloth2
         {
             Dispose();
 
-            // Reload Domainを設定しているとstatic変数が実行時に初期化されない
+            // Reload Domainを無効にしているとstatic変数が実行時に初期化されない
             // そのためここでstatic変数の再初期化を行う必要がある
             Develop.DebugLog("SubsystemRegistration");
 
 #if UNITY_EDITOR
             // スクリプトコンパイル開始コールバック
+            CompilationPipeline.compilationStarted -= OnStarted;
             CompilationPipeline.compilationStarted += OnStarted;
 #endif
 
@@ -132,6 +133,9 @@ namespace MagicaCloth2
 
             // カスタム更新ループ登録
             InitCustomGameLoop();
+
+            // アプリ終了イベント
+            Application.quitting += OnAppQuitting;
 
             isPlaying = true;
             //isValid = true;
@@ -254,6 +258,14 @@ namespace MagicaCloth2
         }
 #endif
 
+        /// <summary>
+        /// アプリ終了イベント
+        /// </summary>
+        static void OnAppQuitting()
+        {
+            Develop.DebugLog($"OnAppQuitting!");
+            Dispose();
+        }
 
         /// <summary>
         /// マネージャの破棄
@@ -269,9 +281,27 @@ namespace MagicaCloth2
                 managers = null;
             }
 
-            // clear static member.
+            // clear static members.
+            afterEarlyUpdateDelegate = null;
+            afterFixedUpdateDelegate = null;
+            firstPreUpdateDelegate = null;
+            afterUpdateDelegate = null;
+            beforeLateUpdateDelegate = null;
+            afterLateUpdateDelegate = null;
+            afterDelayedDelegate = null;
+            afterRenderingDelegate = null;
+            defaultUpdateDelegate = null;
             OnPreSimulation = null;
             OnPostSimulation = null;
+            initializationLocation = InitializationLocation.Start;
+
+#if UNITY_EDITOR
+            CompilationPipeline.compilationStarted -= OnStarted;
+#endif
+
+            Application.quitting -= OnAppQuitting;
+
+            isPlaying = false;
         }
 
         public static bool IsPlaying()

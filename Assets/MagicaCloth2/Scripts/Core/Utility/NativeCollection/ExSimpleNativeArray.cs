@@ -7,6 +7,9 @@ using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
+#if UNITY_6000_5_OR_NEWER
+using System.Runtime.InteropServices;
+#endif
 
 namespace MagicaCloth2
 {
@@ -259,11 +262,25 @@ namespace MagicaCloth2
 
             // copy
             int dstSize = UnsafeUtility.SizeOf<T>();
+#if UNITY_6000_5_OR_NEWER
+            GCHandle srcGCHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            try
+            {
+                void* src_p = (void*)srcGCHandle.AddrOfPinnedObject();
+                byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
+                UnsafeUtility.MemCpy(dst_p + count * dstSize, src_p, (long)dataLength * dstSize);
+            }
+            finally
+            {
+                srcGCHandle.Free();
+            }
+#else
             ulong src_gcHandle;
             void* src_p = UnsafeUtility.PinGCArrayAndGetDataAddress(array, out src_gcHandle);
             byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
             UnsafeUtility.MemCpy(dst_p + count * dstSize, src_p, dataLength * dstSize);
             UnsafeUtility.ReleaseGCObject(src_gcHandle);
+#endif
             count += dataLength;
         }
 
@@ -285,12 +302,27 @@ namespace MagicaCloth2
 
             Expand(dataLength);
 
+#if UNITY_6000_5_OR_NEWER
+            GCHandle srcGCHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            try
+            {
+                void* src_p = (void*)srcGCHandle.AddrOfPinnedObject();
+                byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
+
+                UnsafeUtility.MemCpy(dst_p + count * dstSize, src_p, (long)dataLength * dstSize);
+            }
+            finally
+            {
+                srcGCHandle.Free();
+            }
+#else
             ulong src_gcHandle;
             void* src_p = UnsafeUtility.PinGCArrayAndGetDataAddress(array, out src_gcHandle);
             byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
 
             UnsafeUtility.MemCpy(dst_p + count * dstSize, src_p, dataLength * dstSize);
             UnsafeUtility.ReleaseGCObject(src_gcHandle);
+#endif
             count += dataLength;
         }
 
@@ -326,6 +358,21 @@ namespace MagicaCloth2
             int srcSize = UnsafeUtility.SizeOf<U>();
             int dstSize = UnsafeUtility.SizeOf<T>();
 
+#if UNITY_6000_5_OR_NEWER
+            GCHandle srcGCHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            try
+            {
+                void* src_p = (void*)srcGCHandle.AddrOfPinnedObject();
+                byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
+                int elementSize = math.min(srcSize, dstSize);
+
+                UnsafeUtility.MemCpyStride(dst_p + count * dstSize, dstSize, src_p, srcSize, elementSize, dataLength);
+            }
+            finally
+            {
+                srcGCHandle.Free();
+            }
+#else
             ulong src_gcHandle;
             void* src_p = UnsafeUtility.PinGCArrayAndGetDataAddress(array, out src_gcHandle);
             byte* dst_p = (byte*)nativeArray.GetUnsafePtr();
@@ -333,6 +380,7 @@ namespace MagicaCloth2
 
             UnsafeUtility.MemCpyStride(dst_p + count * dstSize, dstSize, src_p, srcSize, elementSize, dataLength);
             UnsafeUtility.ReleaseGCObject(src_gcHandle);
+#endif
             count += dataLength;
         }
 
@@ -381,11 +429,25 @@ namespace MagicaCloth2
             int dataLength = (Length * srcSize) / dstSize;
 
             byte* src_p = (byte*)nativeArray.GetUnsafePtr();
+#if UNITY_6000_5_OR_NEWER
+            GCHandle dstGCHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            try
+            {
+                void* dst_p = (void*)dstGCHandle.AddrOfPinnedObject();
+
+                UnsafeUtility.MemCpy(dst_p, src_p, (long)dataLength * dstSize);
+            }
+            finally
+            {
+                dstGCHandle.Free();
+            }
+#else
             ulong dst_gcHandle;
             void* dst_p = UnsafeUtility.PinGCArrayAndGetDataAddress(array, out dst_gcHandle);
 
             UnsafeUtility.MemCpy(dst_p, src_p, dataLength * dstSize);
             UnsafeUtility.ReleaseGCObject(dst_gcHandle);
+#endif
         }
 
         /// <summary>
@@ -401,6 +463,21 @@ namespace MagicaCloth2
             int dataLength = Length;
 
             byte* src_p = (byte*)nativeArray.GetUnsafePtr();
+#if UNITY_6000_5_OR_NEWER
+            GCHandle dstGCHandle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            try
+            {
+                void* dst_p = (void*)dstGCHandle.AddrOfPinnedObject();
+
+                int elementSize = srcSize;
+
+                UnsafeUtility.MemCpyStride(dst_p, dstSize, src_p, srcSize, elementSize, dataLength);
+            }
+            finally
+            {
+                dstGCHandle.Free();
+            }
+#else
             ulong dst_gcHandle;
             void* dst_p = UnsafeUtility.PinGCArrayAndGetDataAddress(array, out dst_gcHandle);
 
@@ -408,6 +485,7 @@ namespace MagicaCloth2
 
             UnsafeUtility.MemCpyStride(dst_p, dstSize, src_p, srcSize, elementSize, dataLength);
             UnsafeUtility.ReleaseGCObject(dst_gcHandle);
+#endif
         }
 
         public void CopyFrom(NativeArray<T> array)

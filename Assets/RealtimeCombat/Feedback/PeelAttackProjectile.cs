@@ -14,17 +14,16 @@ public class PeelAttackProjectile : MonoBehaviour
     [HideInInspector] public float damage = 0.25f;
 
     private PolarCoordinate position;
-    private PlayerControllerSettings settings;
+
     private bool alive;
     private bool lingering;
     private float lingerTimer;
-
+     
     public void Launch(PolarCoordinate from, float speed, float damage)
     {
         this.position = from;
         this.speed = speed;
         this.damage = damage;
-        this.settings = PlayerStateRegistry.GetSettings();
         this.alive = true;
         this.lingering = false;
         gameObject.SetActive(true);
@@ -57,7 +56,7 @@ public class PeelAttackProjectile : MonoBehaviour
 
     private void ApplyWorldPos()
     {
-        float realDist = settings.ringToDistance.Evaluate(position.distance);
+        float realDist = PlayerController.GetRing(position.distance);
         Vector3 worldPos = Vector3.back * realDist;
         worldPos = Quaternion.Euler(0f, position.angle, 0f) * worldPos;
         worldPos.y = position.y;

@@ -1,61 +1,92 @@
-using System.IO;
 using UnityEngine;
 
 public class PlayerStateBackHop : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
     private float ringfrom, ringto;
 
     private bool wantstofwdash = false;
+    private bool wantstobwdash = false;
+    private bool wantstoorbitdash = false;
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    private OrbitalMoveComposer moveComposer;
+
+    public void Init(PlayerContext ctx)
     {
+        moveComposer = new OrbitalMoveComposer(ctx.Settings.moveangleMaxSpeed, ctx.Settings.moveAccel, ctx.Settings.moveDecel, ctx.Settings.moveDecel, 1f);
+    }
+    public Transition Execute(PlayerContext ctx)
+    {
+        if(ringfrom == ringto) return this.GoTo<PlayerStateMove>();
 
 
-        wantstofwdash = _inputs.Forward.Held;
-        
 
-        _currentData.position.distance = Mathf.LerpUnclamped(ringfrom,ringto, settings.backwardHopEase.Evaluate(_currentData.time / settings.BackwardHopSpeed));
+        float ratio = ctx.Data.time / ctx.Settings.BackwardHopSpeed;
 
-        _currentData.position.y = settings.backwardHopJumpCurve.Evaluate(_currentData.time / settings.BackwardHopSpeed) * settings.BackwardHopSmallJumpAmplitude;
+        if (ratio > ctx.Settings.hopInputBufferRatio)
+        {
 
-        _currentData.position += _currentData.velocity * Time.deltaTime;
-
-
-        if (_currentData.time > settings.BackwardHopSpeed) {
-
-            _currentData.time = 0;
-            _currentData.position.distance = ringto;
-
-            if (wantstofwdash) return this.GoTo<PlayerStateForwardHop>();
-            if (_inputs.Attack.Held) return this.GoTo<PlayerStateForwardDashCharge>();
-            if (_inputs.Back.Held) { 
-
-                return this.ResetState(ref _currentData); 
+            if (ctx.Inputs.Forward.Down)
+            {
+                wantstofwdash = true;
+                wantstobwdash = false;
             }
-            return this.GoTo<PlayerStateIdle>();
+            if (ctx.Inputs.Back.Down)
+            {
+                wantstobwdash = true;
+                wantstofwdash = false;
+            }
 
+            if (ctx.Inputs.Dash.Down)
+            {
+                wantstoorbitdash = true;
+            }
 
         }
+
+
+        ctx.Data.position.distance = Mathf.LerpUnclamped(ringfrom,ringto, ctx.Settings.backwardHopEase.Evaluate(ratio));
+
+        ctx.Data.position.y = ctx.Settings.backwardHopJumpCurve.Evaluate(ratio) * ctx.Settings.BackwardHopSmallJumpAmplitude;
+        moveComposer.UpdateBlend(ctx.Settings.hopToMoveEasingCurve.Evaluate(ratio));
+        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime);
+        ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
+        ctx.Data.facing = moveComposer.GetFacing(ctx.Inputs.Move, ctx.Settings.facingEasingCurve.Evaluate(ratio));
+
+        if (ratio > ctx.Settings.backwardInterruptRatio)
+        {
+            if (wantstobwdash) return this.Restart();
+            if (wantstofwdash) return this.GoTo<PlayerStateForwardHop>();
+            if (wantstoorbitdash) return this.GoTo<PlayerStateOrbitalDash>();
+            if (ctx.Inputs.Attack.Held) return this.GoTo<PlayerStateForwardDashCharge>();
+        }
+
+
+        if (ratio > 1f) return this.GoTo<PlayerStateMove>();
 
 
         return this.Stay();
     }
 
-    public void Exit(ref PlayerEntityData _data)
+    public void Exit(PlayerContext ctx)
     {
+        ctx.Data.position.distance = ringto;
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
-
-        wantstofwdash = false;
-        _data.time = 0f;
-        ringfrom = _data.position.distance;
-        ringto = Mathf.RoundToInt(_data.position.distance + 1f);
-        if(ringto >= settings.ringRadii.Length) ringto = ringfrom;
+        ctx.Data.time = 0f;
+        ringfrom = ctx.Data.position.distance;
+        ringto = Mathf.RoundToInt(ctx.Data.position.distance + 1f);
+        if(ringto >= ArenaManager.arena.ringRadii.Length) ringto = ringfrom;
         return;
+    }
+
+    public void ResetInternal()
+    {
+        wantstofwdash = false;
+        wantstobwdash = false;
+        wantstoorbitdash = false;
     }
 }

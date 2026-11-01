@@ -24,7 +24,7 @@ public class PlanificationManager : MonoBehaviour
     [SerializeField] private float bossTelegraphDelay = 0.8f;
 
     [Header("Debug")]
-    [SerializeField] private PlanificationState currentState = PlanificationState.WaitingForPlayer;
+    //[SerializeField] private PlanificationState currentState = PlanificationState.WaitingForPlayer;
     [SerializeField] private int currentActionIndex = 0;
 
     private Coroutine currentPhaseCoroutine;
@@ -45,7 +45,7 @@ public class PlanificationManager : MonoBehaviour
     public void StartPlanningPhase()
     {
         Debug.Log("=== PLANNING PHASE START ===");
-        currentState = PlanificationState.WaitingForPlayer;
+        //currentState = PlanificationState.WaitingForPlayer;
         currentActionIndex = 0;
 
         //Boss thinks
@@ -68,7 +68,7 @@ public class PlanificationManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
             Debug.Log($"- START TURN {currentActionIndex}-");
             yield return new WaitForSeconds(bossPreviewDelay);
-            currentState = PlanificationState.WaitingForPlayer;
+            //currentState = PlanificationState.WaitingForPlayer;
             bossBrain.actions[currentActionIndex].Preview();
             Debug.Log("- BOSS IS PREVIEWING HIS ATTACK -");
             yield return new WaitForSeconds(bossPreviewDelay);
@@ -80,7 +80,7 @@ public class PlanificationManager : MonoBehaviour
 
             playerBrain.StopThinking();
 
-            currentState = PlanificationState.ActionValidated;
+            //currentState = PlanificationState.ActionValidated;
             Debug.Log($"Action {currentActionIndex} validated by player");
 
 
@@ -91,7 +91,7 @@ public class PlanificationManager : MonoBehaviour
             Debug.Log("- BOSS IS IN TELEGRAPH -");
             bossBrain.actions[currentActionIndex].Telegraph();
             bossBrain.actions[currentActionIndex].EndPreview();
-            currentState = PlanificationState.BossTelegraph;
+            //currentState = PlanificationState.BossTelegraph;
             //call BossActionTelegraph
 
             yield return new WaitForSeconds(bossTelegraphDelay);

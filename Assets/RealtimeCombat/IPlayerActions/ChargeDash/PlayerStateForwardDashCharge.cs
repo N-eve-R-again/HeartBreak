@@ -1,61 +1,59 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStateForwardDashCharge : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
-    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
-
 
     private float ringfrom;
     private int charge;
     private bool willattack;
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public Transition Execute(PlayerContext ctx)
     {
-        if (_inputs.Attack.Held)
+        if (ctx.Inputs.Attack.Held)
         {
-            _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * settings.chargeDashFriction);
+            ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashFriction);
 
-            bool drifing = Mathf.Sign(_inputs.Move) == Mathf.Sign(_currentData.velocity.angle);
-            if(_inputs.MoveMagnitude == 0) drifing = false;
+            bool drifing = Mathf.Sign(ctx.Inputs.Move) == Mathf.Sign(ctx.Data.velocity.angle);
+            if(ctx.Inputs.MoveMagnitude == 0) drifing = false;
             if (drifing)
             {
-                _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, Time.deltaTime * settings.chargeDashInputInfluence);
+                ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashInputInfluence);
             }
 
             if (charge == 0)
             {
-                _currentData.position.y = settings.chargeDashJump.Evaluate(_currentData.time / settings.chargeDashJumpDuration);
+                ctx.Data.position.y = ctx.Settings.chargeDashJump.Evaluate(ctx.Data.time / ctx.Settings.chargeDashJumpDuration);
             }
 
-            bool test = (ringfrom - charge == 1);
-            float preshot = test ? vfx.attackGizmo.attackpreshot : vfx.attackGizmo.gotopreshot;
+            bool test = (ringfrom - charge <= 2);
+            float preshot = test ? ctx.VFX.attackGizmo.attackpreshot : ctx.VFX.attackGizmo.gotopreshot;
 
-            if (_currentData.time > settings.chargeDashChargeTime - preshot)
+            if (ctx.Data.time > ctx.Settings.chargeDashChargeTime - preshot)
             {
                 if (test)
                 {
-                    vfx.attackGizmo.Attack();
+                    ctx.VFX.attackGizmo.Attack();
                 }
                 else
                 {
-                    vfx.attackGizmo.MoveOneRing();
+                    ctx.VFX.attackGizmo.MoveOneRing();
                 }
 
             }
 
-            if (_currentData.time > settings.chargeDashChargeTime)
+            if (ctx.Data.time > ctx.Settings.chargeDashChargeTime)
             {
-                _currentData.time = 0;
+                ctx.Data.time = 0;
 
-                if (ringfrom - charge > 1f)
+                if (ringfrom - charge > 2f)
                 {
                     charge += 1;
                     Debug.Log("charge " + charge);
 
-                    vfx.chargeCompletePS.Play();
-                    vfx.ChargeEffectPulse(0.8f); // snap à 1, le sustain ramène à 0.5
+                    ctx.VFX.chargeCompletePS.Play();
+                    ctx.VFX.ChargeEffectPulse(0.8f); // snap à 1, le sustain ramène à 0.5
                 }
                 else
                 {
@@ -64,17 +62,17 @@ public class PlayerStateForwardDashCharge : IPlayerState
                         charge += 1;
                         willattack = true;
 
-                        vfx.ChargeEffectPulse(1f);
-                        vfx.ChargeEffectSustain(1f, 1f);
+                        ctx.VFX.ChargeEffectPulse(1f);
+                        ctx.VFX.ChargeEffectSustain(1f, 1f);
                      }
                 }
             }
-            vfx.attackGizmo.UpdatePlayerPose(_currentData.position + new PolarCoordinate(0f, -charge, 0f));
+            ctx.VFX.attackGizmo.UpdatePlayerPose(ctx.Data.position + new PolarCoordinate(0f, -charge, 0f));
 
-            _currentData.position += _currentData.velocity * Time.deltaTime;
-            Vector2 tempFacing = Mathf.Sign(_currentData.velocity.angle) < 0 ? Vector2.left : Vector2.right;
+            ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
+            Vector2 tempFacing = Mathf.Sign(ctx.Data.velocity.angle) < 0 ? Vector2.left : Vector2.right;
             float tempForce = drifing ?  0.50f : 0f;
-            _currentData.facing = Vector2.up + tempFacing * tempForce;
+            ctx.Data.facing = Vector2.up + tempFacing * tempForce;
             return this.Stay();
         }
         else
@@ -92,37 +90,42 @@ public class PlayerStateForwardDashCharge : IPlayerState
         }
     }
 
-    public void Exit(ref PlayerEntityData _data)
+    public void Exit(PlayerContext ctx)
     {
-        vfx.attackGizmo.Validate();
-        vfx.chargePS.Stop();
-        vfx.DeactivateChargeCam();
+        ctx.VFX.attackGizmo.Validate();
+        ctx.VFX.chargePS.Stop();
+        ctx.VFX.DeactivateChargeCam();
 
         // On dit juste "fade out" — la library le fait à son rythme
-        vfx.ChargeEffectFadeOut(20f);
-        _data.position.y = 0f;
-        _data.velocity.distance = -charge;
+        ctx.VFX.ChargeEffectFadeOut(20f);
+        ctx.Data.position.y = 0f;
+        ctx.Data.velocity.distance = -charge;
     }
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
-        if(_data.velocity.angleMagnitude < settings.moveangleMaxSpeed)
+        if(ctx.Data.velocity.angleMagnitude < ctx.Settings.moveangleMaxSpeed)
         {
-            _data.velocity.angle = Mathf.Sign(_data.velocity.angle) * settings.chargeDashVelocityBoost;
+            ctx.Data.velocity.angle = Mathf.Sign(ctx.Data.velocity.angle) * ctx.Settings.chargeDashVelocityBoost;
         }
         else
         {
-            _data.velocity.angle = Mathf.Sign(_data.velocity.angle) * (settings.moveangleMaxSpeed + (settings.chargeDashVelocityBoost- settings.moveangleMaxSpeed));
+            ctx.Data.velocity.angle = Mathf.Sign(ctx.Data.velocity.angle) * (ctx.Settings.moveangleMaxSpeed + (ctx.Settings.chargeDashVelocityBoost- ctx.Settings.moveangleMaxSpeed));
         }
 
 
-            vfx.attackGizmo.Charge(_data.position);
-        vfx.ActivateChargeCam();
-        vfx.chargePS.Play();
-        vfx.ChargeEffectKill();
-        vfx.ChargeEffectSustain(0.25f, 2f);
+        ctx.VFX.attackGizmo.Charge(ctx.Data.position);
+        ctx.VFX.ActivateChargeCam();
+        ctx.VFX.chargePS.Play();
+        ctx.VFX.ChargeEffectKill();
+        ctx.VFX.ChargeEffectSustain(0.25f, 2f);
         charge = 0;
-        ringfrom = _data.position.distance;
+        ringfrom = ctx.Data.position.distance;
         willattack = false;
+    }
+
+    public void ResetInternal()
+    {
+        return;
     }
 }

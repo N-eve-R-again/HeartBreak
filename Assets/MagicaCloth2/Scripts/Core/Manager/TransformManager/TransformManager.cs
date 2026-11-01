@@ -98,9 +98,10 @@ namespace MagicaCloth2
 
         //=========================================================================================
         /// <summary>
-        /// コンポーネント用ワールド座標
+        /// コンポーネント用ワールド姿勢
         /// </summary>
         internal ExNativeArray<float3> componentPositionArray;
+        internal ExNativeArray<float> componentMinScaleArray; // このスケール値はXYZの最小の絶対値（用途は０スケール判定）
 
         /// <summary>
         /// コンポーネント用トランスフォーム
@@ -154,6 +155,7 @@ namespace MagicaCloth2
             //    writeTransformAccessArray.Dispose();
 
             componentPositionArray?.Dispose();
+            componentMinScaleArray?.Dispose();
             if (componentTransformAccessArray.isCreated)
                 componentTransformAccessArray.Dispose();
 
@@ -189,6 +191,7 @@ namespace MagicaCloth2
             transformAccessArray = new TransformAccessArray(capacity);
 
             componentPositionArray = new ExNativeArray<float3>(capacity);
+            componentMinScaleArray = new ExNativeArray<float>(capacity);
             componentTransformAccessArray = new TransformAccessArray(capacity);
 
             existFixedTeam = new NativeReference<bool>(Allocator.Persistent);
@@ -630,8 +633,7 @@ namespace MagicaCloth2
                 if ((tdata.IsCameraCullingInvisible && tdata.IsCameraCullingKeep) || tdata.IsDistanceCullingInvisible)
                     return;
 
-                transform.localPosition = localPositionArray[index];
-                transform.localRotation = localRotationArray[index];
+                transform.SetLocalPositionAndRotation(localPositionArray[index], localRotationArray[index]);
 
                 // 物理更新チームの存在
                 if (tdata.IsFixedUpdate)
@@ -708,8 +710,7 @@ namespace MagicaCloth2
                 if ((tdata.IsCameraCullingInvisible && tdata.IsCameraCullingKeep) || tdata.IsDistanceCullingInvisible)
                     return;
 
-                transform.localPosition = baseLocalPositionArray[index];
-                transform.localRotation = baseLocalRotationArray[index];
+                transform.SetLocalPositionAndRotation(baseLocalPositionArray[index], baseLocalRotationArray[index]);
 
                 //Debug.Log($"RestoreTransform [{index}] lpos:{baseLocalPositionArray[index]}, lrot:{baseLocalRotationArray[index].value}");
             }
@@ -803,8 +804,7 @@ namespace MagicaCloth2
                 if (tdata.IsCullingInvisible)
                     return;
 
-                var pos = transform.position;
-                var rot = transform.rotation;
+                transform.GetPositionAndRotation(out var pos, out var rot);
                 float4x4 LtoW = transform.localToWorldMatrix;
 
                 positionArray[index] = pos;
@@ -896,11 +896,15 @@ namespace MagicaCloth2
                 if (flag.IsSet(Flag_Enable) == false)
                     return;
 
-                // カリング時は書き込まない
                 int teamId = teamIdArray[index];
                 var tdata = teamDataArray[teamId];
-                //if (tdata.IsCameraCullingInvisible)
+
+                // カリング時は書き込まない
                 if (tdata.IsCullingInvisible)
+                    return;
+
+                // 極小スケール時は書き込まない
+                if (tdata.IsScaleSuspend)
                     return;
 
                 // 書き込み停止中ならスキップ
@@ -922,8 +926,7 @@ namespace MagicaCloth2
                 else if (flag.IsSet(Flag_LocalPosRotWrite))
                 {
                     // ローカル座標・回転を書き込む
-                    transform.localPosition = localPositions[index];
-                    transform.localRotation = localRotations[index];
+                    transform.SetLocalPositionAndRotation(localPositions[index], localRotations[index]);
 
                     //Debug.Log($"WriteTransform [{index}] (local!) lpos:{localPositions[index]}, lrot:{localRotations[index]}");
                 }
@@ -943,6 +946,7 @@ namespace MagicaCloth2
             Debug.Assert(t);
 
             int index = componentPositionArray.Add(float3.zero).startIndex;
+            componentMinScaleArray.Add(1);
 
             // トランスフォーム
             int nowcnt = componentTransformAccessArray.length;
@@ -966,6 +970,7 @@ namespace MagicaCloth2
                 return;
 
             componentPositionArray.Remove(index);
+            componentMinScaleArray.Remove(index);
 
             // トランスフォーム削除
             componentTransformAccessArray[index] = null;
@@ -983,6 +988,7 @@ namespace MagicaCloth2
                 var job = new ReadComponentTransformJob()
                 {
                     positionArray = componentPositionArray.GetNativeArray(),
+                    minScaleArray = componentMinScaleArray.GetNativeArray(),
                 };
                 jobHandle = job.ScheduleReadOnly(componentTransformAccessArray, 16, jobHandle);
             }
@@ -995,6 +1001,8 @@ namespace MagicaCloth2
         {
             [Unity.Collections.WriteOnly]
             public NativeArray<float3> positionArray;
+            [Unity.Collections.WriteOnly]
+            public NativeArray<float> minScaleArray;
 
             public void Execute(int index, TransformAccess transform)
             {
@@ -1002,6 +1010,15 @@ namespace MagicaCloth2
                     return;
 
                 positionArray[index] = transform.position;
+
+                // スケールXYZの最小の絶対値
+                // コンポーネントの０スケール判定に使用
+                float3 scl = transform.localToWorldMatrix.lossyScale;
+                float minScale = math.cmin(math.abs(scl));
+                minScaleArray[index] = minScale;
+
+                //Debug.Log(scl);
+                //Debug.Log(minScale);
             }
         }
 
@@ -1017,6 +1034,7 @@ namespace MagicaCloth2
             }
             else
             {
+                // transform
                 int tcnt = transformAccessArray.isCreated ? transformAccessArray.length : 0;
                 sb.AppendLine($"Transform Manager. Length:{tcnt}");
                 sb.AppendLine($"  -flagArray:{flagArray.ToSummary()}");
@@ -1047,7 +1065,35 @@ namespace MagicaCloth2
                         sb.Append(flag.IsSet(Flag_Read) ? "r" : "");
                         sb.Append(flag.IsSet(Flag_WorldRotWrite) ? "W" : "");
                         sb.Append(flag.IsSet(Flag_LocalPosRotWrite) ? "w" : "");
-                        sb.AppendLine($") {t?.name ?? "(null)"}");
+                        if (t)
+                            sb.AppendLine($") {t.name}");
+                        else
+                            sb.AppendLine($") (null)");
+                    }
+                }
+
+                // component
+                tcnt = componentTransformAccessArray.isCreated ? componentTransformAccessArray.length : 0;
+                sb.AppendLine($"Component Transform Manager. Length:{tcnt}");
+                sb.AppendLine($"  -componentPositionArray:{componentPositionArray.ToSummary()}");
+                sb.AppendLine($"  -componentMinScaleArray:{componentMinScaleArray.ToSummary()}");
+                if (componentTransformAccessArray.isCreated)
+                {
+                    for (int i = 0; i < tcnt; i++)
+                    {
+                        var t = componentTransformAccessArray[i];
+                        var flag = flagArray[i];
+                        var teamId = teamIdArray[i];
+                        sb.Append($"  [{i}] team:{teamId} (");
+                        sb.Append(flag.IsSet(Flag_Enable) ? "E" : "");
+                        sb.Append(flag.IsSet(Flag_Restore) ? "R" : "");
+                        sb.Append(flag.IsSet(Flag_Read) ? "r" : "");
+                        sb.Append(flag.IsSet(Flag_WorldRotWrite) ? "W" : "");
+                        sb.Append(flag.IsSet(Flag_LocalPosRotWrite) ? "w" : "");
+                        if (t)
+                            sb.AppendLine($") {t.name}");
+                        else
+                            sb.AppendLine($") (null)");
                     }
                 }
             }

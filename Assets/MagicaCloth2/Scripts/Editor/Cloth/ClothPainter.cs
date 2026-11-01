@@ -91,7 +91,27 @@ namespace MagicaCloth2
         static ClothPainter()
         {
             // シーンビューにGUIを描画するためのコールバック
+            SceneView.duringSceneGui -= OnGUI;
             SceneView.duringSceneGui += OnGUI;
+
+            // Play Mode移行時のコールバック
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+
+            // Assembly ReloadおよびEditor終了時のコールバック
+            AssemblyReloadEvents.beforeAssemblyReload -= ExitPaint;
+            AssemblyReloadEvents.beforeAssemblyReload += ExitPaint;
+            EditorApplication.quitting -= ExitPaint;
+            EditorApplication.quitting += ExitPaint;
+        }
+
+        /// <summary>
+        /// Play Mode移行時
+        /// </summary>
+        static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingEditMode)
+                ExitPaint();
         }
 
         /// <summary>
@@ -101,6 +121,9 @@ namespace MagicaCloth2
         public static void EnterPaint(PaintMode mode, MagicaClothEditor editor, MagicaCloth clothComponent, VirtualMeshContainer cmesh, SelectionData sdata)
         {
             Develop.DebugLog($"EnterPaint");
+
+            // 前回の編集状態が残っている場合に備えて、既存リソースを破棄する
+            ExitPaint();
 
             paintMode = mode;
             cloth = clothComponent;
@@ -126,17 +149,22 @@ namespace MagicaCloth2
         {
             Develop.DebugLog($"ExitPaint");
 
+            paintMode = PaintMode.None;
             cloth = null;
             clothEditor = null;
             editMeshContainer = null;
             selectionData = null;
             initSelectionData = null;
             rayhit = default;
+            oldShowAll = false;
+            forceUpdate = false;
 
             if (dispPointList.IsCreated)
                 dispPointList.Dispose();
             if (pointWorldPositions.IsCreated)
                 pointWorldPositions.Dispose();
+            dispPointList = default;
+            pointWorldPositions = default;
 
             // UndoRedoコールバック
             Undo.undoRedoPerformed -= UndoRedoCallback;
@@ -687,7 +715,8 @@ namespace MagicaCloth2
         {
             // セレクションデータデータをシリアライズ化する
             selectionData.userEdit = true; // ユーザー編集フラグを立てる
-            clothEditor?.ApplyClothPainter(selectionData);
+            if (clothEditor != null)
+                clothEditor.ApplyClothPainter(selectionData);
 
             // Undo/Redoの状態を切り替えるためセレクションデータのクローンを作成して切り替える
             selectionData = selectionData.Clone();
@@ -873,7 +902,8 @@ namespace MagicaCloth2
                     if (initSelectionData.Compare(selectionData) == false)
                     {
                         Develop.DebugLog($"Change selection data!");
-                        clothEditor?.UpdateEditMesh();
+                        if (clothEditor != null)
+                            clothEditor.UpdateEditMesh();
                     }
 
                     ExitPaint();

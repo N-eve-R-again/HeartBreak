@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerStateForwardDashExecute : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
-    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
 
     private float ringfrom, ringto;
 
@@ -12,45 +10,43 @@ public class PlayerStateForwardDashExecute : IPlayerState
 
     private Vector2 originalfacing;
 
-    public void Enter(ref PlayerEntityData data, IPlayerState fromState)
+    public void Enter(PlayerContext ctx, IPlayerState fromState)
     {
-        originalfacing = data.facing;
-        timeToExecute = Mathf.Abs(settings.forwardDashSpeedByChargeIncr * data.velocity.distance) + settings.forwardDashSpeedByChargeBase;
-        ringfrom = data.position.distance;
-        ringto = data.position.distance + data.velocity.distance;
-        data.velocity.distance = 0f;
-        originalangularVel = data.velocity.angle;
+        originalfacing = ctx.Data.facing;
+        timeToExecute = Mathf.Abs(ctx.Settings.forwardDashSpeedByChargeIncr * ctx.Data.velocity.distance) + ctx.Settings.forwardDashSpeedByChargeBase;
+        ringfrom = ctx.Data.position.distance;
+        ringto = ctx.Data.position.distance + ctx.Data.velocity.distance;
+        ctx.Data.velocity.distance = 0f;
+        originalangularVel = ctx.Data.velocity.angle;
 
-        vfx.shooter.ShootPeel(data.position);
+        ctx.VFX.shooter.ShootPeel(ctx.Data.position);
     }
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData inputs)
+    public Transition Execute(PlayerContext ctx)
     {
 
-        Debug.Log("dashing");
-
-        float ratio = _currentData.time / timeToExecute;
-        _currentData.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, settings.forwardDashEase.Evaluate(ratio));
+        float ratio = ctx.Data.time / timeToExecute;
+        ctx.Data.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, ctx.Settings.forwardDashEase.Evaluate(ratio));
         //_currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, settings.moveangleMaxSpeed * -inputs.Move, settings.forwardDashAngularRampUp.Evaluate(ratio) * Time.deltaTime);
-        _currentData.position.angle += _currentData.velocity.angle * Time.deltaTime;
+        ctx.Data.position.angle += ctx.Data.velocity.angle * Time.deltaTime;
         //_currentData.facing = Vector2.Lerp(originalfacing, new Vector2(-_currentData.velocity.angle, 1f).normalized, settings.forwardDashAngularRampUp.Evaluate(ratio));
 
-        if(Mathf.Sign(inputs.Move) != Mathf.Sign(_currentData.velocity.angle)){
-            _currentData.velocity.angle = Mathf.Lerp(_currentData.velocity.angle, originalangularVel * 0.45f, ratio);
+        if(Mathf.Sign(ctx.Inputs.Move) != Mathf.Sign(ctx.Data.velocity.angle)){
+            ctx.Data.velocity.angle = Mathf.Lerp(ctx.Data.velocity.angle, originalangularVel * 0.45f, ratio);
             Debug.Log("what ?");
         }
 
-        if (_currentData.time > timeToExecute)
+        if (ctx.Data.time > timeToExecute)
         {
 
 
-            if (Mathf.Sign(inputs.Move) != Mathf.Sign(_currentData.velocity.angle))
+            if (Mathf.Sign(ctx.Inputs.Move) != Mathf.Sign(ctx.Data.velocity.angle))
             {
-                _currentData.velocity.angle = settings.moveangleMaxSpeed * -inputs.Move * 1.25f;
+                ctx.Data.velocity.angle = ctx.Settings.moveangleMaxSpeed * -ctx.Inputs.Move * 1.25f;
             }
             else
             {
-                _currentData.velocity.angle = settings.moveangleMaxSpeed * -inputs.Move;
+                ctx.Data.velocity.angle = ctx.Settings.moveangleMaxSpeed * -ctx.Inputs.Move;
             }
 
             return this.GoTo<PlayerStateMove>();
@@ -60,9 +56,14 @@ public class PlayerStateForwardDashExecute : IPlayerState
         return this.Stay();
     }
 
-    public void Exit(ref PlayerEntityData data)
+    public void Exit(PlayerContext ctx)
     {
-        data.position.distance = ringto;
+        ctx.Data.position.distance = ringto;
 
+    }
+
+    public void ResetInternal()
+    {
+        return;
     }
 }

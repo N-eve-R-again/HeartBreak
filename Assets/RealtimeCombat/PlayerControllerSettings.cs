@@ -4,29 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerControllerSettings", menuName = "HeartBreak/PlayerControllerSettings")]
 public class PlayerControllerSettings : ScriptableObject
 {
-    [Header("Arena")]
-    public int maxRing => ringRadii.Length - 1;
-    public float[] ringRadii;
-    public AnimationCurve ringToDistance;
-
-    void OnValidate()
-    {
-        if (ringRadii == null || ringRadii.Length == 0) return;
-
-        Keyframe[] keys = new Keyframe[ringRadii.Length];
-        for (int i = 0; i < ringRadii.Length; i++)
-        {
-            keys[i] = new Keyframe(i, ringRadii[i]);
-        }
-        ringToDistance = new AnimationCurve(keys);
-
-        // Force des tangentes linéaires pour passer pile par chaque point
-        for (int i = 0; i < keys.Length; i++)
-        {
-            AnimationUtility.SetKeyLeftTangentMode(ringToDistance, i, AnimationUtility.TangentMode.Linear);
-            AnimationUtility.SetKeyRightTangentMode(ringToDistance, i, AnimationUtility.TangentMode.Linear);
-        }
-    }
+    
 
     [Header("Idle")]
     public float idleDecel;
@@ -42,11 +20,15 @@ public class PlayerControllerSettings : ScriptableObject
     public float BackwardHopSpeed;
     public float BackwardHopSmallJumpAmplitude = 0.5f;
 
+    public float backwardInterruptRatio;
+
     public AnimationCurve backwardHopEase;
     public AnimationCurve backwardHopJumpCurve;
 
     [Header("Hops")]
     public float hopInputBufferRatio = 0.5f;
+    public AnimationCurve hopToMoveEasingCurve;
+    public AnimationCurve facingEasingCurve;
 
     [Header("Forward Hop")]
     public float ForwardHopSpeed;

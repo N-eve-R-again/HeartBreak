@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class PlayerStateIdle : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
-
+        ctx.Data.facing = Vector2.up;
         return;
     }
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public Transition Execute(PlayerContext ctx)
     {
 
-        if (_inputs.Back.Down) return this.GoTo<PlayerStateBackHop>();
+        if (ctx.Inputs.Back.Down) return this.GoTo<PlayerStateBackHop>();
 
-        if (_inputs.Forward.Down) return this.GoTo<PlayerStateForwardHop>();
+        if (ctx.Inputs.Forward.Down) return this.GoTo<PlayerStateForwardHop>();
 
-        if (_inputs.Attack.Down) return this.GoTo<PlayerStateForwardDashCharge>();
+        if (ctx.Inputs.Attack.Down) return this.GoTo<PlayerStateForwardDashCharge>();
 
-        _currentData.velocity = PolarCoordinate.Lerp(_currentData.velocity, PolarCoordinate.zero, settings.idleDecel * Time.deltaTime);
-        if (_currentData.velocity.magnitude < 0.1f) _currentData.velocity = PolarCoordinate.zero;
-        _currentData.position += _currentData.velocity * Time.deltaTime;
+        if (ctx.Inputs.Dash.Down) return this.GoTo<PlayerStateOrbitalDash>();
+
+        ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, ctx.Settings.idleDecel * Time.deltaTime);
+        if (ctx.Data.velocity.magnitude < 0.1f) ctx.Data.velocity = PolarCoordinate.zero;
+        ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
 
 
-        if (_inputs.MoveMagnitude < 0.1f)
+        if (ctx.Inputs.MoveMagnitude < 0.1f)
         {
             return this.Stay();
         }
@@ -34,7 +35,12 @@ public class PlayerStateIdle : IPlayerState
         }
     }
 
-    public void Exit(ref PlayerEntityData _data)
+    public void Exit(PlayerContext ctx)
+    {
+        return;
+    }
+
+    public void ResetInternal()
     {
         return;
     }

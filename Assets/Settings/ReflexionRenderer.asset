@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &-7518823263183605133
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -42,9 +42,10 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: -2.35, z: 0, w: 0}
       cameraFieldOfView: 73.6
+    depthInputAttachment: 0
 --- !u!114 &-6635038394939649945
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -62,7 +63,7 @@ MonoBehaviour:
     mat: {fileID: 2100000, guid: 897625b214200dd429aee0d5473738dc, type: 2}
 --- !u!114 &-2636085389079897444
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -111,8 +112,7 @@ MonoBehaviour:
   - {fileID: 7742942494499155523}
   - {fileID: -6635038394939649945}
   - {fileID: -7518823263183605133}
-  m_RendererFeatureMap: ad6b866f10d7b46c9c9a4b224ebe6adb432ee6c42c75746b67508bd6bb9beba37372ff1c14c6a797
-  m_UseNativeRenderPass: 1
+  m_RendererFeatureMap: ad6b866f10d7b46c9c9a4b224ebe6adb432ee6c42c75746b67508bd6bb9beba37372ff1c14c6a797l
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 0}
   m_AssetVersion: 3
@@ -140,9 +140,10 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+  m_TileOnlyMode: 0
 --- !u!114 &7742942494499155523
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -182,9 +183,10 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 55
+    depthInputAttachment: 0
 --- !u!114 &7833122117494664109
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

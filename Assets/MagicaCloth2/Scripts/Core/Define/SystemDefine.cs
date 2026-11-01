@@ -144,9 +144,15 @@ namespace MagicaCloth2
 
             /// <summary>
             /// [ProxyMesh]
-            /// BoneClothのMesh接続時にトライアングルとして判断される内角
+            /// BoneClothのMesh接続時にトライアングルとして判断される有効な内角
             /// </summary>
-            public const float ProxyMeshBoneClothTriangleAngle = 120.0f;
+            public const float ProxyMeshBoneClothTriangleValidAngle = 120.0f;
+
+            /// <summary>
+            /// [ProxyMesh]
+            /// BoneClothのMesh接続時にトライアングルとして判断される無効な内角
+            /// </summary>
+            public const float ProxyMeshBoneClothTriangleInvalidAngle = 10.0f;
 
             /// <summary>
             /// [Simulation]

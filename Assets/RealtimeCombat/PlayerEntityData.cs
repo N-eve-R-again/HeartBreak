@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerEntityData
 {
-    public PolarCoordinate position;
+    public PolarCoordinate position = PolarCoordinate.back;
     public PolarCoordinate velocity;
     public Vector2 facing;
 

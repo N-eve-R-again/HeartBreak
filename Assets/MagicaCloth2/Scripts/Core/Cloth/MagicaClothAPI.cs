@@ -159,12 +159,12 @@ namespace MagicaCloth2
             // 置換処理用の辞書を作成
             // key:置換対象トランスフォームのインスタンスID
             // value:入れ替えるトランスフォーム
-            var replaceDict = new Dictionary<int, Transform>();
+            var replaceDict = new Dictionary<MagicaObjectId, Transform>();
             foreach (var t in useTransformSet)
             {
                 if (t && targetTransformDict.ContainsKey(t.name))
                 {
-                    replaceDict.Add(t.GetInstanceID(), targetTransformDict[t.name]);
+                    replaceDict.Add(t.GetMagicaId(), targetTransformDict[t.name]);
                 }
             }
 
@@ -307,7 +307,7 @@ namespace MagicaCloth2
         {
             if (IsValid() == false || ren == null)
                 return null;
-            int handle = ren.GetInstanceID();
+            MagicaObjectId handle = ren.GetMagicaId();
             return MagicaManager.Render.GetRendererData(handle);
         }
 
@@ -319,7 +319,8 @@ namespace MagicaCloth2
         /// <returns>null if not found</returns>
         public Mesh GetOriginalMesh(Renderer ren)
         {
-            return GetRenderData(ren)?.originalMesh ?? null;
+            var rdata = GetRenderData(ren);
+            return rdata != null ? rdata.originalMesh : null;
         }
 
         /// <summary>
@@ -330,7 +331,8 @@ namespace MagicaCloth2
         /// <returns>null if not found</returns>
         public Mesh GetCustomMesh(Renderer ren)
         {
-            return GetRenderData(ren)?.customMesh ?? null;
+            var rdata = GetRenderData(ren);
+            return rdata != null ? rdata.customMesh : null;
         }
 
         /// <summary>

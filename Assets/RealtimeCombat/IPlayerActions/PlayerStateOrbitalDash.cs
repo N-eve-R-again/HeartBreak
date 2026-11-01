@@ -1,34 +1,51 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerStateOrbitalDash : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
-    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
-
     float dir;
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public Transition Execute(PlayerContext ctx)
     {
-        float ratio = _currentData.time / settings.orbitalDashDuration;
 
 
-        _currentData.velocity.angle  = settings.orbitalDashForceCurve.Evaluate(ratio) * settings.orbitalDashForce * dir;
-        _currentData.position += _currentData.velocity * Time.deltaTime;
+        float ratio = ctx.Data.time / ctx.Settings.orbitalDashDuration;
+        if (ratio < 0.15f)
+        {
+            if(dir == ctx.Inputs.Move)
+            {
+                dir = -dir;
+                Debug.Log("inverted dash ");
+            }
+        }
+
+        ctx.Data.velocity.angle  = ctx.Settings.orbitalDashForceCurve.Evaluate(ratio) * ctx.Settings.orbitalDashForce * dir;
+        ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
 
 
-        if (ratio > 1f) { return this.GoTo<PlayerStateMove>(); }
+        if (ratio > 1f) {
+            return this.GoTo<PlayerStateMove>(); }
         return this.Stay();
     }
 
-    public void Exit(ref PlayerEntityData _data)
+
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
+    {
+        ctx.Animations.PlayJump();
+        dir = Mathf.Sign(ctx.Data.velocity.angle);
+        if(ctx.Inputs.MoveMagnitude > 0.5f) dir = -ctx.Inputs.Move;
+
+        ctx.VFX.PlayOrbitalDashPS(Vector3.forward);
+        return;
+    }
+
+    public void ResetInternal()
     {
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Exit(PlayerContext ctx)
     {
-        dir = Mathf.Sign(_data.velocity.angle);
-        vfx.PlayOrbitalDashPS(Vector3.forward);
         return;
     }
 }

@@ -3,19 +3,22 @@ using UnityEngine;
 
 public class PlayerStateNone : IPlayerState
 {
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
-
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public Transition Execute(PlayerContext ctx)
     {
         return this.Stay();
     }
 
-    public void Exit(ref PlayerEntityData _data)
+    public void Exit(PlayerContext ctx)
     {
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
+    {
+        return;
+    }
+
+    public void ResetInternal()
     {
         return;
     }

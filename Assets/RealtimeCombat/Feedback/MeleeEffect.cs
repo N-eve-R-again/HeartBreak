@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class MeleeEffect : MonoBehaviour
 {
     public Animator animator;
@@ -10,7 +9,7 @@ public class MeleeEffect : MonoBehaviour
     public void Play(PolarCoordinate ring)
     {
 
-        scaler.localScale = new Vector3(1, 1, PlayerStateRegistry.GetSettings().ringToDistance.Evaluate(ring.distance) / 4f);
+        scaler.localScale = new Vector3(1, 1, ArenaManager.DistanceToWS(ring.distance) / 4f);
         transform.rotation = Quaternion.Euler(0, ring.angle, 0f);
         animator.Play("A_Explode");
     }

@@ -61,7 +61,7 @@ namespace MagicaCloth2
         //=========================================================================================
         public void Dispose()
         {
-            isValid = true;
+            isValid = false;
 
             GlobalTimeScale = 1.0f;
             FixedUpdateCount = 0;

@@ -459,7 +459,12 @@ namespace MagicaCloth2
                         ref frictionArray,
                         // buffer
                         ref stepBasicPositionBuffer,
-                        ref stepBasicRotationBuffer
+                        ref stepBasicRotationBuffer,
+                        // temp
+                        ref tempVectorBufferA,
+                        ref tempVectorBufferB,
+                        ref tempCountBuffer,
+                        ref tempFloatBufferA
                         );
 
                     // 制約解決のためのステップごとの基準姿勢を計算
@@ -753,8 +758,10 @@ namespace MagicaCloth2
                     ref attributes,
                     ref positions,
                     ref rotations,
-                    ref vertexRootIndices
-
+                    ref vertexRootIndices,
+                    // temp
+                    ref tempVectorBufferA,
+                    ref tempRotationBufferA
                 );
 
                 // ■クロスシミュレーション後の頂点姿勢計算
@@ -777,7 +784,10 @@ namespace MagicaCloth2
                     ref baseLineFlags,
                     ref baseLineStartDataIndices,
                     ref baseLineDataCounts,
-                    ref baseLineData
+                    ref baseLineData,
+                    // temp
+                    ref tempVectorBufferA,
+                    ref tempRotationBufferA
                     );
                 VirtualMeshManager.SimulationPostProxyMeshUpdateTriangle(
                     new DataChunk(0, tdata.proxyTriangleChunk.dataLength),
@@ -1065,7 +1075,12 @@ namespace MagicaCloth2
             ref NativeArray<float> frictionArray,
             // buffer
             ref NativeArray<float3> stepBasicPositionBuffer,
-            ref NativeArray<quaternion> stepBasicRotationBuffer
+            ref NativeArray<quaternion> stepBasicRotationBuffer,
+            // temp buffer
+            ref NativeArray<float3> tempVectorBufferA,
+            ref NativeArray<float3> tempVectorBufferB,
+            ref NativeArray<int> tempCountBuffer,
+            ref NativeArray<float> tempFloatBufferA
             )
         {
             // 速度更新、外力の影響、慣性シフト
@@ -1220,6 +1235,12 @@ namespace MagicaCloth2
 
                 // 予測位置格納
                 nextPosArray[pindex] = nextPos;
+
+                // 作業バッファクリア
+                tempVectorBufferA[pindex] = 0;
+                tempVectorBufferB[pindex] = 0;
+                tempCountBuffer[pindex] = 0;
+                tempFloatBufferA[pindex] = 0;
             }
         }
 
@@ -1282,7 +1303,7 @@ namespace MagicaCloth2
 
                     if (math.abs(ylen) > y)
                     {
-                        v -= dir * (math.abs(ylen) - y) * math.sign(ylen);
+                        v -= (math.abs(ylen) - y) * math.sign(ylen) * dir;
                     }
                 }
             }
@@ -1509,7 +1530,7 @@ namespace MagicaCloth2
                     // ■摩擦
                     float friction = frictionArray[pindex];
                     float3 cn = collisionNormalArray[pindex];
-                    bool isCollision = math.lengthsq(cn) > Define.System.Epsilon; // 接触の有無
+                    bool isCollision = math.lengthsq(cn) > Define.System.Epsilon && friction > Define.System.Epsilon; // 接触の有無
                     float staticFrictionParam = param.colliderCollisionConstraint.staticFriction * tdata.scaleRatio;
                     float dynamicFrictionParam = param.colliderCollisionConstraint.dynamicFriction;
 #endif
@@ -1517,7 +1538,7 @@ namespace MagicaCloth2
 #if true
                     // ■静止摩擦
                     float staticFriction = staticFrictionArray[pindex];
-                    if (isCollision && friction > 0.0f && staticFrictionParam > 0.0f)
+                    if (isCollision && staticFrictionParam > 0.0f)
                     {
                         // 接線方向の移動速度から計算する
                         var v = nextPos - oldPos;
@@ -1559,7 +1580,7 @@ namespace MagicaCloth2
 #if true
                     // ■動摩擦
                     // 衝突面との角度が大きいほど減衰が強くなる(MC1)
-                    if (friction > Define.System.Epsilon && isCollision && dynamicFrictionParam > 0.0f && sqVel >= Define.System.Epsilon)
+                    if (isCollision && dynamicFrictionParam > 0.0f && sqVel >= Define.System.Epsilon)
                     {
                         //float dot = math.dot(cn, math.normalize(velocity));
                         float dot = math.dot(cn, normalVelocity);
@@ -1659,7 +1680,10 @@ namespace MagicaCloth2
             ref NativeArray<VertexAttribute> attributes,
             ref NativeArray<float3> positions,
             ref NativeArray<quaternion> rotations,
-            ref NativeArray<int> vertexRootIndices
+            ref NativeArray<int> vertexRootIndices,
+            // temp
+            ref NativeArray<float3> tempVectorBufferA,
+            ref NativeArray<quaternion> tempRotationBufferA
         )
         {
             //int pindex = tdata.particleChunk.startIndex;
@@ -1739,6 +1763,10 @@ namespace MagicaCloth2
                     rot = MathUtility.ToRotation(lw.c1.xyz, lw.c2.xyz);
                     rotations[vindex] = rot;
                 }
+
+                // BoneClothのベースライン姿勢制御のために基本姿勢をtempに保存
+                tempVectorBufferA[pindex] = pos;
+                tempRotationBufferA[pindex] = rot;
             }
         }
 

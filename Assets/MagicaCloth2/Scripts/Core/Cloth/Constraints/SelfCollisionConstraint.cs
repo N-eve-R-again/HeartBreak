@@ -1129,6 +1129,7 @@ namespace MagicaCloth2
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static int3 GetGrid(float3 pos, float gridSize)
         {
+            //Debug.Assert(gridSize > 0.0f);
             return new int3(math.floor(pos / gridSize));
         }
 
@@ -1246,7 +1247,7 @@ namespace MagicaCloth2
                     // 相互コリジョン
                     ref var stdata = ref *(teamPt + tdata.syncTeamId);
                     int syncFlag = TeamManager.Flag_Sync_EdgeEdge + (contactKind * 3);
-                    if (tdata.flag.IsSet(syncFlag))
+                    if (tdata.flag.IsSet(syncFlag) && stdata.IsProcess && stdata.ParticleCount > 0)
                     {
                         //Debug.Log($"Sync detection contact. myTeam:{teamId}, myKind:{myKind}, tarTeam:{teamId}, tarKind:{tarKind}");
 
@@ -1971,47 +1972,50 @@ namespace MagicaCloth2
                 if (tdata.syncTeamId > 0)
                 {
                     ref var stdata = ref *(teamPt + tdata.syncTeamId);
-                    if (tdata.flag.IsSet(TeamManager.Flag_Sync_EdgeTriangleIntersect))
+                    if (stdata.IsProcess && stdata.ParticleCount > 0)
                     {
-                        DetectionIntersect(
-                            workerCount,
-                            workerIndex,
-                            frameIndex,
-                            // edge
-                            teamId,
-                            ref tdata,
-                            KindEdge,
-                            // triangle
-                            tdata.syncTeamId,
-                            ref stdata,
-                            KindTriangle,
-                            // self collision
-                            ref primitiveArrayB,
-                            ref uniformGridStartCountBuffer,
-                            // intersect
-                            ref intersectQueue
-                            );
-                    }
-                    if (tdata.flag.IsSet(TeamManager.Flag_Sync_TriangleEdgeIntersect))
-                    {
-                        DetectionIntersect(
-                            workerCount,
-                            workerIndex,
-                            frameIndex,
-                            // triangle
-                            teamId,
-                            ref tdata,
-                            KindTriangle,
-                            // edge
-                            tdata.syncTeamId,
-                            ref stdata,
-                            KindEdge,
-                            // self collision
-                            ref primitiveArrayB,
-                            ref uniformGridStartCountBuffer,
-                            // intersect
-                            ref intersectQueue
-                            );
+                        if (tdata.flag.IsSet(TeamManager.Flag_Sync_EdgeTriangleIntersect))
+                        {
+                            DetectionIntersect(
+                                workerCount,
+                                workerIndex,
+                                frameIndex,
+                                // edge
+                                teamId,
+                                ref tdata,
+                                KindEdge,
+                                // triangle
+                                tdata.syncTeamId,
+                                ref stdata,
+                                KindTriangle,
+                                // self collision
+                                ref primitiveArrayB,
+                                ref uniformGridStartCountBuffer,
+                                // intersect
+                                ref intersectQueue
+                                );
+                        }
+                        if (tdata.flag.IsSet(TeamManager.Flag_Sync_TriangleEdgeIntersect))
+                        {
+                            DetectionIntersect(
+                                workerCount,
+                                workerIndex,
+                                frameIndex,
+                                // triangle
+                                teamId,
+                                ref tdata,
+                                KindTriangle,
+                                // edge
+                                tdata.syncTeamId,
+                                ref stdata,
+                                KindEdge,
+                                // self collision
+                                ref primitiveArrayB,
+                                ref uniformGridStartCountBuffer,
+                                // intersect
+                                ref intersectQueue
+                                );
+                        }
                     }
                 }
                 //Debug.Log($"Detection intersect. team:{teamId}, Count:{writeCount}");
@@ -2067,6 +2071,10 @@ namespace MagicaCloth2
             }
             float maxPrimitiveSize = targetTeam.selfMaxPrimitiveSize;
             float gridSize = targetTeam.selfGridSize;
+
+            // 初回の交差判定はグリッドサイズ更新前に到達するので除外する
+            if (maxPrimitiveSize <= Define.System.Epsilon || gridSize <= Define.System.Epsilon)
+                return;
 
             //Debug.Log($"edgeTeamId:{edgeTeamId}, triangleTeamId:{triangleTeamId}, gridBufferStart:{gridBufferStart}, gridBufferIndex:{gridBufferIndex}, gridBufferCount:{gridBufferCount}");
             //Debug.Log($"edgeTeamId:{edgeTeamId}, maxPrimitiveSize:{maxPrimitiveSize}, gridSize:{gridSize}");

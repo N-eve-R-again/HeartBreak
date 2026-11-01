@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ public class PlayerVFXLibrary : MonoBehaviour
     private float chargeEffectCurrent;
     private float chargeEffectTarget;
     private float chargeEffectSpeed;
+
+    private PlayerSettings playerSettings;
 
     public float ChargeEffect => chargeEffectCurrent;
 
@@ -78,6 +81,11 @@ public class PlayerVFXLibrary : MonoBehaviour
     void Update()
     {
         UpdateChargeEffect();
+    }
+
+    public void SetSettings(PlayerSettings _playerSettings)
+    {
+        playerSettings = _playerSettings;
     }
 
     private void UpdateChargeEffect()

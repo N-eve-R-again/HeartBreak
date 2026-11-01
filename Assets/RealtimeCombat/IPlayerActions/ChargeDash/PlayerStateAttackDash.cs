@@ -3,21 +3,18 @@ using UnityEngine;
 public class PlayerStateAttackDash : IPlayerState
 {
     public float ringfrom;
-    private PlayerVFXLibrary vfx => PlayerStateRegistry.GetVfxLibrary();
-
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
     public bool temp = false;
 
-    public IPlayerState Execute(ref PlayerEntityData _currentData, PlayerInputData _inputs)
+    public Transition Execute(PlayerContext ctx)
     {
-        float ratio = _currentData.time / settings.attackDashDuration;
-        _currentData.position.distance = Mathf.Lerp(ringfrom, 0, settings.attackDashCurve.Evaluate(ratio));
+        float ratio = ctx.Data.time / ctx.Settings.attackDashDuration;
+        ctx.Data.position.distance = Mathf.Lerp(ringfrom, 0, ctx.Settings.attackDashCurve.Evaluate(ratio));
 
         if(ratio > 1 && !temp)
         {
             temp = true;
-            BossManager.instance.Damage(settings.meleeDamage, true, _currentData.position.angle);
+            BossManager.instance.Damage(ctx.Settings.meleeDamage, true, ctx.Data.position.angle);
         }
 
         if (ratio > 1.1f) {
@@ -31,18 +28,23 @@ public class PlayerStateAttackDash : IPlayerState
         return this.Stay();
     }
 
-    public void Exit(ref PlayerEntityData _data)
+    public void Exit(PlayerContext ctx)
     {
         return;
     }
 
-    public void Enter(ref PlayerEntityData _data, IPlayerState _fromState)
+    public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
         //vfx.ChargeEffectKill();
         temp = false;
-        ringfrom = _data.position.distance;
-        vfx.meleeEffect.Play(_data.position);
-        _data.velocity = PolarCoordinate.zero;
+        ringfrom = ctx.Data.position.distance;
+        ctx.VFX.meleeEffect.Play(ctx.Data.position);
+        ctx.Data.velocity = PolarCoordinate.zero;
+        return;
+    }
+
+    public void ResetInternal()
+    {
         return;
     }
 }

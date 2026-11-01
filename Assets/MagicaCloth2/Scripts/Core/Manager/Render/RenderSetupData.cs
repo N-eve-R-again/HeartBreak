@@ -59,7 +59,7 @@ namespace MagicaCloth2
         public NativeArray<Vector4> localTangents;
 
         // Bone ---------------------------------------------------------------
-        public List<int> rootTransformIdList;
+        public List<MagicaObjectId> rootTransformIdList;
         public enum BoneConnectionMode
         {
             // line only.
@@ -85,9 +85,9 @@ namespace MagicaCloth2
         // Transform情報
         // 通常メッシュはrenderTransorm100%のスキニングとして扱われる
         public List<Transform> transformList; // skin bonesは[0]～skinBoneCountまで
-        public List<int> transformIdList;
-        public List<int> transformParentIdList; // 親ID(0=なし)
-        public List<FixedList512Bytes<int>> transformChildIdList; // 子IDリスト
+        public List<MagicaObjectId> transformIdList;
+        public List<MagicaObjectId> transformParentIdList; // 親ID(0=なし)
+        public List<FixedList512Bytes<MagicaObjectId>> transformChildIdList; // 子IDリスト
         public NativeArray<float3> transformPositions;
         public NativeArray<quaternion> transformRotations;
         public NativeArray<float3> transformLocalPositions;
@@ -280,8 +280,7 @@ namespace MagicaCloth2
                 }
                 else
                 {
-                    var filter = ren.GetComponent<MeshFilter>();
-                    if (filter == null)
+                    if (!ren.TryGetComponent<MeshFilter>(out var filter))
                     {
                         result.SetError(Define.Result.RenderSetup_InvalidSource);
                         return;
@@ -444,10 +443,10 @@ namespace MagicaCloth2
                 }
 
                 // root transform id
-                rootTransformIdList = new List<int>(rootTransforms.Count);
+                rootTransformIdList = new List<MagicaObjectId>(rootTransforms.Count);
                 foreach (var t in rootTransforms)
                 {
-                    rootTransformIdList.Add(t.GetInstanceID());
+                    rootTransformIdList.Add(t.GetMagicaId());
                 }
 
                 // collision transform (use BoneSpring)
@@ -584,18 +583,20 @@ namespace MagicaCloth2
             }
 
             // id / parent id
-            transformIdList = new List<int>(tcnt);
-            transformParentIdList = new List<int>(tcnt);
+            transformIdList = new List<MagicaObjectId>(tcnt);
+            transformParentIdList = new List<MagicaObjectId>(tcnt);
             for (int i = 0; i < tcnt; i++)
             {
-                int id = 0, pid = 0;
+                //int id = 0, pid = 0;
+                MagicaObjectId id = MagicaObjectId.Invalid;
+                MagicaObjectId pid = MagicaObjectId.Invalid;
 
                 var t = transformList[i];
                 if (t)
                 {
-                    id = t.GetInstanceID();
+                    id = t.GetMagicaId();
                     if (includeChilds && t.parent)
-                        pid = t.parent.GetInstanceID();
+                        pid = t.parent.GetMagicaId();
                 }
                 transformIdList.Add(id);
                 transformParentIdList.Add(pid);
@@ -604,17 +605,17 @@ namespace MagicaCloth2
             // child id
             if (includeChilds)
             {
-                transformChildIdList = new List<FixedList512Bytes<int>>(tcnt);
+                transformChildIdList = new List<FixedList512Bytes<MagicaObjectId>>(tcnt);
                 for (int i = 0; i < tcnt; i++)
                 {
                     var t = transformList[i];
-                    var clist = new FixedList512Bytes<int>();
+                    var clist = new FixedList512Bytes<MagicaObjectId>();
                     if (t && t.childCount > 0)
                     {
                         for (int j = 0; j < t.childCount; j++)
                         {
                             var ct = t.GetChild(j);
-                            clist.Add(ct.GetInstanceID());
+                            clist.Add(ct.GetMagicaId());
                         }
                     }
                     transformChildIdList.Add(clist);
@@ -678,8 +679,7 @@ namespace MagicaCloth2
                 if (transform.isValid == false)
                     return;
 
-                var pos = transform.position;
-                var rot = transform.rotation;
+                transform.GetPositionAndRotation(out var pos, out var rot);
                 float4x4 LtoW = transform.localToWorldMatrix;
 
                 positions[index] = pos;
@@ -735,33 +735,33 @@ namespace MagicaCloth2
             }
         }
 
-        public void ReplaceTransform(Dictionary<int, Transform> replaceDict)
+        public void ReplaceTransform(Dictionary<MagicaObjectId, Transform> replaceDict)
         {
             if (rootTransformIdList != null)
             {
                 for (int i = 0; i < rootTransformIdList.Count; i++)
                 {
-                    int id = rootTransformIdList[i];
+                    MagicaObjectId id = rootTransformIdList[i];
                     if (replaceDict.ContainsKey(id))
                     {
-                        rootTransformIdList[i] = replaceDict[id].GetInstanceID();
+                        rootTransformIdList[i] = replaceDict[id].GetMagicaId();
                     }
                 }
             }
             for (int i = 0; i < TransformCount; i++)
             {
-                int id = transformIdList[i];
+                MagicaObjectId id = transformIdList[i];
                 if (replaceDict.ContainsKey(id))
                 {
                     var t = replaceDict[id];
-                    transformIdList[i] = t.GetInstanceID();
+                    transformIdList[i] = t.GetMagicaId();
                     transformList[i] = t;
                 }
-                int pid = transformParentIdList[i];
+                MagicaObjectId pid = transformParentIdList[i];
                 if (replaceDict.ContainsKey(pid))
                 {
                     var t = replaceDict[pid];
-                    transformParentIdList[i] = t.GetInstanceID();
+                    transformParentIdList[i] = t.GetMagicaId();
                 }
 
                 if (transformChildIdList != null)
@@ -769,11 +769,11 @@ namespace MagicaCloth2
                     var cidlist = transformChildIdList[i];
                     for (int j = 0; j < cidlist.Length; j++)
                     {
-                        int cid = cidlist[j];
+                        MagicaObjectId cid = cidlist[j];
                         if (replaceDict.ContainsKey(cid))
                         {
                             var t = replaceDict[cid];
-                            cidlist[j] = t.GetInstanceID();
+                            cidlist[j] = t.GetMagicaId();
                         }
                     }
                     transformChildIdList[i] = cidlist;
@@ -791,7 +791,7 @@ namespace MagicaCloth2
             return transformList[renderTransformIndex];
         }
 
-        public int GetRenderTransformId()
+        public MagicaObjectId GetRenderTransformId()
         {
             return transformIdList[renderTransformIndex];
         }
@@ -814,12 +814,12 @@ namespace MagicaCloth2
             return transformList[skinRootBoneIndex];
         }
 
-        public int GetSkinRootTransformId()
+        public MagicaObjectId GetSkinRootTransformId()
         {
             return transformIdList[skinRootBoneIndex];
         }
 
-        public int GetTransformIndexFromId(int id)
+        public int GetTransformIndexFromId(MagicaObjectId id)
         {
             return transformIdList.IndexOf(id);
         }
@@ -832,7 +832,7 @@ namespace MagicaCloth2
         /// <returns>なし(-1)</returns>
         public int GetParentTransformIndex(int index, bool centerExcluded)
         {
-            int pid = transformParentIdList[index];
+            MagicaObjectId pid = transformParentIdList[index];
             int i = transformIdList.IndexOf(pid);
             if (centerExcluded && i == renderTransformIndex)
                 i = -1;

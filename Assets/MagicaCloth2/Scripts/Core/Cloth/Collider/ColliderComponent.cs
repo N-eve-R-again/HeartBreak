@@ -378,12 +378,12 @@ namespace MagicaCloth2
                 transformSet.Add(symmetryTarget);
         }
 
-        public void ReplaceTransform(Dictionary<int, Transform> replaceDict)
+        public void ReplaceTransform(Dictionary<MagicaObjectId, Transform> replaceDict)
         {
             if (symmetryTarget)
             {
-                int id = symmetryTarget.GetInstanceID();
-                if (id != 0 && replaceDict.ContainsKey(id))
+                MagicaObjectId id = symmetryTarget.GetMagicaId();
+                if (id.IsValid() && replaceDict.ContainsKey(id))
                     symmetryTarget = replaceDict[id];
             }
         }
@@ -413,7 +413,7 @@ namespace MagicaCloth2
             // コライダーを無効にする
             foreach (int teamId in teamIdSet)
             {
-                MagicaManager.Collider.EnableCollider(this, teamId, false);
+                MagicaManager.Collider?.EnableCollider(this, teamId, false);
             }
         }
 
@@ -425,7 +425,7 @@ namespace MagicaCloth2
                 var teamList = teamIdSet.ToList();
                 foreach (int teamId in teamList)
                 {
-                    MagicaManager.Collider.RemoveCollider(this, teamId);
+                    MagicaManager.Collider?.RemoveCollider(this, teamId);
                 }
                 teamIdSet.Clear();
             }

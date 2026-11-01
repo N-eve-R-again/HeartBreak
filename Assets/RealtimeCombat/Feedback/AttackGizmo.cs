@@ -6,7 +6,6 @@ public class AttackGizmo : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private PlayerControllerSettings settings => PlayerStateRegistry.GetSettings();
 
     public enum State
     {
@@ -42,7 +41,7 @@ public class AttackGizmo : MonoBehaviour
 
     private void ApplyWorldPos()
     {
-        float realDist = settings.ringToDistance.Evaluate(position.distance);
+        float realDist = PlayerController.GetRing(position.distance);
         worldpos = Vector3.back * realDist;
         worldpos = Quaternion.Euler(new Vector3(0f, position.angle, 0f)) * worldpos;
         worldpos = worldpos + Vector3.up * position.y;

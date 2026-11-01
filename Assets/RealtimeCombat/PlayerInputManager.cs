@@ -29,7 +29,6 @@ public class PlayerInputManager : MonoBehaviour
         // Récupérer les InputActions depuis ton Input Action Asset
         // Exemple avec PlayerInput component:
         moveAction = playerInput.actions["Move"];
-
         jumpAction = playerInput.actions["Jump"];
         backAction = playerInput.actions["Backward"];
         forwardAction = playerInput.actions["Forward"];

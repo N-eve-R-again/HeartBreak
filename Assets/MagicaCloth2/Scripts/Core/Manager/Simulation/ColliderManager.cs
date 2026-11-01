@@ -64,6 +64,7 @@ namespace MagicaCloth2
         public const ushort Flag_Reverse = 0x0800;  // 方向逆転
         public const ushort Flag_Symmetry = 0x1000; // シンメトリー
         public const ushort Flag_SymmetryReverse = 0x2000;  // シンメトリーによる方向フリップ
+        public const ushort Flag_ScaleSuspend = 0x4000; // 極小スケールによる機能停止
         public ExNativeArray<ExBitFlag16> flagArray;
 
         /// <summary>
@@ -881,6 +882,20 @@ namespace MagicaCloth2
                 int l_index = index - tdata.colliderChunk.startIndex;
                 int t_index = tdata.colliderTransformChunk.startIndex + l_index;
 
+                // ほぼ０スケールは極小スケールに変換し無効化させる
+                bool isZeroScale = false;
+                float3 pscl = transformScaleArray[t_index];
+                for (int j = 0; j < 3; j++)
+                {
+                    float s = pscl[j];
+                    if (s < 1e-06f && s > -1e-06f)
+                    {
+                        pscl[j] = 1e-06f;
+                        isZeroScale = true;
+                    }
+                }
+                flag.SetFlag(Flag_ScaleSuspend, isZeroScale);
+
                 // コライダー姿勢（ワールド）
                 float3 wpos;
                 quaternion wrot;
@@ -924,7 +939,7 @@ namespace MagicaCloth2
                     // シンメトリー先の親
                     float3 ppos = transformPositionArray[t_index];
                     quaternion prot = transformRotationArray[t_index];
-                    float3 pscl = transformScaleArray[t_index];
+                    //float3 pscl = transformScaleArray[t_index];
 
                     // マイナススケール
                     float3 sclSign = math.sign(pscl);
@@ -945,7 +960,8 @@ namespace MagicaCloth2
                     // Main
                     wpos = transformPositionArray[t_index];
                     wrot = transformRotationArray[t_index];
-                    wscl = transformScaleArray[t_index];
+                    //wscl = transformScaleArray[t_index];
+                    wscl = pscl;
 
                     // マイナススケール
                     float3 sclSign = math.sign(wscl);
@@ -960,7 +976,7 @@ namespace MagicaCloth2
                 frameScales[index] = wscl;
 
                 // リセット処理
-                if (tdata.IsReset || flag.IsSet(Flag_Reset))
+                if (tdata.IsReset || flag.IsSet(Flag_Reset) || isZeroScale)
                 {
                     oldFramePositions[index] = wpos;
                     oldFrameRotations[index] = wrot;
@@ -970,7 +986,6 @@ namespace MagicaCloth2
                     oldRotations[index] = wrot;
 
                     flag.SetFlag(Flag_Reset, false);
-                    flagArray[index] = flag;
                 }
                 else if (tdata.IsInertiaShift || tdata.IsNegativeScaleTeleport)
                 {
@@ -1027,6 +1042,9 @@ namespace MagicaCloth2
                     oldPositions[index] = oldPosition;
                     oldRotations[index] = oldRotation;
                 }
+
+                // フラグ書き戻し
+                flagArray[index] = flag;
             }
         }
 
@@ -1054,7 +1072,7 @@ namespace MagicaCloth2
             for (int i = 0; i < tdata.colliderChunk.dataLength; i++, cindex++)
             {
                 var flag = flagArray[cindex];
-                if (flag.IsSet(Flag_Valid) == false || flag.IsSet(Flag_Enable) == false)
+                if (flag.IsSet(Flag_Valid) == false || flag.IsSet(Flag_Enable) == false || flag.IsSet(Flag_ScaleSuspend))
                     continue;
 
                 // 今回のシミュレーションステップでの姿勢を求める

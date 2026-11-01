@@ -10,6 +10,40 @@ namespace MagicaCloth2
     public static class MathUtility
     {
         /// <summary>
+        /// NaN判定
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNaN(float3 v)
+        {
+            return math.any(math.isnan(v));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNaN(float4 v)
+        {
+            return math.any(math.isnan(v));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNaN(quaternion q)
+        {
+            return math.any(math.isnan(q.value));
+        }
+
+        /// <summary>
+        /// ゼロ長さ判定
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsZeroDistance(float3 v)
+        {
+            return math.length(v) < 1e-8f;
+        }
+
+        /// <summary>
         /// 数値を(-1.0f～1.0f)にクランプする
         /// </summary>
         /// <param name="a"></param>
@@ -1250,6 +1284,13 @@ namespace MagicaCloth2
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float3 TransformNormal(in float3 dir, in float4x4 m, float3 errDir)
+        {
+            // 姿勢変換後に単位化する
+            return math.normalizesafe(TransformVector(dir, m), errDir);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static quaternion TransformRotation(in quaternion rot, in float4x4 m, in float3 normalTangentFlip)
         {
             ToNormalTangent(rot, out float3 nor, out float3 tan);
@@ -1619,24 +1660,6 @@ namespace MagicaCloth2
             // Cがab上に射影される場合を扱う
             Develop.Assert(f != 0.0f);
             return Vector3.Dot(ac, ac) - e * e / f;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNaN(float3 v)
-        {
-            return math.any(math.isnan(v));
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNaN(float4 v)
-        {
-            return math.any(math.isnan(v));
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNaN(quaternion q)
-        {
-            return math.any(math.isnan(q.value));
         }
 
         /// <summary>

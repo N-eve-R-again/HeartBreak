@@ -95,7 +95,7 @@ public class MirrorReflection : MonoBehaviour
         else
         {
             // Fallback (déprécié à terme mais fonctionne sur URP 12-16) :
-            UniversalRenderPipeline.RenderSingleCamera(context, reflectionCamera);
+            //UniversalRenderPipeline.RenderSingleCamera(context, reflectionCamera);
         }
 #else
         UniversalRenderPipeline.RenderSingleCamera(context, reflectionCamera);
