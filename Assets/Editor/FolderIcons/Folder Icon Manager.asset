@@ -24,3 +24,9 @@ MonoBehaviour:
   - folder: {fileID: 102900000, guid: e0a1e48c5aa3dfe4986229908ce4c864, type: 3}
     folderIcon: {fileID: 2800000, guid: d26d816f80371da4bae80a5ae15da00f, type: 3}
     overlayIcon: {fileID: 0}
+  - folder: {fileID: 102900000, guid: bcdeee2ef0a4eb447abd81cafca834b3, type: 3}
+    folderIcon: {fileID: 2800000, guid: 3ed3d37721d62d74fabe9c26f9e899b7, type: 3}
+    overlayIcon: {fileID: 0}
+  - folder: {fileID: 102900000, guid: 735972c0a9710834690b535062e6bc35, type: 3}
+    folderIcon: {fileID: 2800000, guid: b51c66d17912a0144bee4ddec18ab83c, type: 3}
+    overlayIcon: {fileID: 0}
