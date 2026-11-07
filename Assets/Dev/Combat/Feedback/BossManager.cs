@@ -30,11 +30,7 @@ public class BossManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Damage(1f, false, 0f);
-        }
-        //hitshaderforce = Mathf.Lerp(hitshaderforce, 0f, Time.deltaTime * 10f);
+
         if(Time.timeScale != 1f)
         {
             hitshaderforce = 1f;
