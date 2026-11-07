@@ -62,7 +62,7 @@ public class PlayerStateBackHop : IPlayerState
         }
 
 
-        if (ratio > 1f) return this.GoTo<PlayerStateMove>();
+        if (ratio > 1f) return this.Done();
 
 
         return this.Stay();

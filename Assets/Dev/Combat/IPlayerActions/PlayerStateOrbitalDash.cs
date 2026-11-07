@@ -23,8 +23,9 @@ public class PlayerStateOrbitalDash : IPlayerState
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
 
 
-        if (ratio > 1f) {
-            return this.GoTo<PlayerStateMove>(); }
+        if (ratio > 1f)
+            return this.Done();
+
         return this.Stay();
     }
 

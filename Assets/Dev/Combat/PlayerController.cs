@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform cameraPivot;
 
     public IPlayerState currentState;
-    private Stack<Type> returnStack = new();
+    private MainMovementResolver mainMovementResolver = new();
 
     public static float GetRing(float distance)
     {
@@ -103,10 +103,6 @@ public class PlayerController : MonoBehaviour
             case TransitionType.Goto: 
                 TransitionToState(currentState,transition.Target);
                 break;
-            case TransitionType.WaitFor:
-                returnStack.Push(currentState.GetType());
-                TransitionToState(currentState, transition.Target);
-                break;
             case TransitionType.Done: 
                 Resume();
                 break;
@@ -147,10 +143,9 @@ public class PlayerController : MonoBehaviour
         currentState.Enter(playerContext, currentState);
     }
 
-    private void Resume()
-    {
-        //recup le stack (si rempli) et transi to state vers.
-    }
+    private void Resume() =>
+        TransitionToState(currentState, mainMovementResolver.Dispatch(playerContext).Target);
+
 
     private void TransitionToState(IPlayerState from, IPlayerState to)
     {

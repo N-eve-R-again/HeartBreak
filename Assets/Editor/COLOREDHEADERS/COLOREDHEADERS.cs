@@ -208,6 +208,8 @@ public static class HierarchyColorMarkers
     {
         if (colorTitlesData == null)
             return;
+        if(item == null || item.RowContainer == null) 
+            return;
 
         float left = GetNameColumnLeft(item) + colorTitlesData.paddingLeft;
 
@@ -227,6 +229,7 @@ public static class HierarchyColorMarkers
 
     static float GetNameColumnLeft(HierarchyViewItem item)
     {
+        if(item == null || item.RowContainer == null) return 0;
         // L'élément de la ligne démarre dans la colonne Name, après Visibility et Picking.
         float left = item.ChangeCoordinatesTo(item.RowContainer, Vector2.zero).x;
         return float.IsNaN(left) ? 0f : Mathf.Max(0f, left);
