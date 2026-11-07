@@ -4,28 +4,55 @@ using UnityEngine;
 
 public class PlayerStateForwardDashCharge : IPlayerState
 {
+    public OrbitalDashComposer dashComposer;
 
     private float ringfrom;
     private int charge;
     private bool willattack;
+    bool dashing;
+
+    public void Init(PlayerContext ctx)
+    {
+        dashComposer = new OrbitalDashComposer(ctx.Settings.orbitalDashForceCurve, ctx.Settings.orbitalDashForce * 3f, 0f, 0.3f, 1f);
+    }
+
 
     public Transition Execute(PlayerContext ctx)
     {
         if (ctx.Inputs.Attack.Held)
         {
-            ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashFriction);
-
-            bool drifing = Mathf.Sign(ctx.Inputs.Move) == Mathf.Sign(ctx.Data.velocity.angle);
-            if(ctx.Inputs.MoveMagnitude == 0) drifing = false;
-            if (drifing)
+            if (ctx.Inputs.Dash.Down && dashComposer.Done)
             {
-                ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashInputInfluence);
+                float dir = ctx.Inputs.Move != 0 ? -ctx.Inputs.Move : ctx.Data.velocity.angle;
+                dashComposer.Init(dir);
+            }
+            if (!dashComposer.Done)
+            {
+                ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime);
+                ctx.Data.facing = dashComposer.GetFacing();
+            }
+            else
+            {
+                ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashFriction);
+
+                bool drifing = Mathf.Sign(ctx.Inputs.Move) == Mathf.Sign(ctx.Data.velocity.angle);
+                if (ctx.Inputs.MoveMagnitude == 0) drifing = false;
+                if (drifing)
+                {
+                    ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, PolarCoordinate.zero, Time.deltaTime * ctx.Settings.chargeDashInputInfluence);
+                }
+
+                if (charge == 0)
+                {
+                    ctx.Data.position.y = ctx.Settings.chargeDashJump.Evaluate(ctx.Data.time / ctx.Settings.chargeDashJumpDuration);
+                }
+
+                Vector2 tempFacing = Mathf.Sign(ctx.Data.velocity.angle) < 0 ? Vector2.left : Vector2.right;
+                float tempForce = drifing ? 0.50f : 0f;
+                ctx.Data.facing = Vector2.up + tempFacing * tempForce;
+
             }
 
-            if (charge == 0)
-            {
-                ctx.Data.position.y = ctx.Settings.chargeDashJump.Evaluate(ctx.Data.time / ctx.Settings.chargeDashJumpDuration);
-            }
 
             bool test = (ringfrom - charge <= 2);
             float preshot = test ? ctx.VFX.attackGizmo.attackpreshot : ctx.VFX.attackGizmo.gotopreshot;
@@ -70,9 +97,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
             ctx.VFX.attackGizmo.UpdatePlayerPose(ctx.Data.position + new PolarCoordinate(0f, -charge, 0f));
 
             ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
-            Vector2 tempFacing = Mathf.Sign(ctx.Data.velocity.angle) < 0 ? Vector2.left : Vector2.right;
-            float tempForce = drifing ?  0.50f : 0f;
-            ctx.Data.facing = Vector2.up + tempFacing * tempForce;
+
             return this.Stay();
         }
         else
@@ -92,6 +117,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     public void Exit(PlayerContext ctx)
     {
+        dashComposer.ForceDone();
         ctx.VFX.attackGizmo.Validate();
         ctx.VFX.chargePS.Stop();
         ctx.VFX.DeactivateChargeCam();
@@ -126,6 +152,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     public void ResetInternal()
     {
+
         return;
     }
 }

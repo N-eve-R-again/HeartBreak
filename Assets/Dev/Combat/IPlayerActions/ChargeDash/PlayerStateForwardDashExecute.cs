@@ -49,7 +49,7 @@ public class PlayerStateForwardDashExecute : IPlayerState
                 ctx.Data.velocity.angle = ctx.Settings.moveangleMaxSpeed * -ctx.Inputs.Move;
             }
 
-            return this.GoTo<PlayerStateMove>();
+            return this.Done();
 
         }
 

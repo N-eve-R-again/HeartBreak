@@ -4,6 +4,14 @@ using UnityEngine;
 public class PlayerStateMove : IPlayerState
 {
 
+    private OrbitalMoveComposer moveComposer;
+
+    public void Init(PlayerContext ctx)
+    {
+        moveComposer = new OrbitalMoveComposer(ctx.Settings.moveangleMaxSpeed, ctx.Settings.moveAccel, ctx.Settings.moveDecel, ctx.Settings.moveDecel, 1f);
+    }
+
+
     public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
         ctx.Animations.ReturnToBase();
@@ -22,24 +30,13 @@ public class PlayerStateMove : IPlayerState
 
         if (ctx.Inputs.Dash.Down) return this.GoTo<PlayerStateOrbitalDash>();
 
-        if (Mathf.Abs(ctx.Inputs.Move) > 0)
-        {
-            // Velocity directe basée sur inputd
-            targetVelocity.angle = -ctx.Inputs.Move * (ctx.Settings.moveangleMaxSpeed);// / settings.ringToDistance.Evaluate(_currentData.position.distance));
-            targetVelocity.distance = 0; // -_inputs.Move.y * settings.movedistMaxSpeed;
-
-            //_currentData.facing = new Vector2(MoveInputCameraSpace.x, MoveInputCameraSpace.z);
-        }
-
-        // Un seul lerp : velocity vers target
-        float lerpSpeed = ctx.Data.velocity.magnitude < targetVelocity.magnitude ? ctx.Settings.moveAccel : ctx.Settings.moveDecel;
-        ctx.Data.velocity = PolarCoordinate.Lerp(ctx.Data.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
+        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime);
 
         // Appliquer
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
         ctx.Animations.UpdateMove(Mathf.Abs(ctx.Inputs.MoveMagnitude));
         // Transition vers Idle
-        if (-ctx.Inputs.MoveMagnitude <= 0.1f && ctx.Data.velocity.magnitude < 0.1f)
+        if (ctx.Inputs.MoveMagnitude <= 0.1f && ctx.Data.velocity.magnitude < 0.1f)
         {
             ctx.Data.velocity = PolarCoordinate.zero;
             ctx.Data.facing = Vector2.up;
@@ -47,7 +44,7 @@ public class PlayerStateMove : IPlayerState
             return this.GoTo<PlayerStateIdle>();
         }
 
-        ctx.Data.facing = Mathf.Abs(ctx.Inputs.Move) >= 0.1f ? new Vector2(ctx.Inputs.Move, 0f) : Vector2.up;
+        ctx.Data.facing = moveComposer.GetFacing(ctx.Inputs.Move);
 
         return this.Stay();
         

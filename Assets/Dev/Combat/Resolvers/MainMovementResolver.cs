@@ -11,7 +11,7 @@ public class MainMovementResolver : IResolver
 
         //if(!ctx.grounded) => fall
 
-        if (ctx.Inputs.MoveMagnitude < 0.1f)
+        if (ctx.Inputs.MoveMagnitude <= 0.1f && ctx.Data.velocity.magnitude < 0.1f)
         {
             return Transition.GoTo<PlayerStateIdle>();
         }
