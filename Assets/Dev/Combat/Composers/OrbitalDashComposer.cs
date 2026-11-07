@@ -11,6 +11,7 @@ public class OrbitalDashComposer
     private float timer;
 
     public bool Done;
+    public bool Dashing => !Done;
 
     public OrbitalDashComposer(AnimationCurve _curve, float _force, float _dir, float _duration, float _blend)
     {

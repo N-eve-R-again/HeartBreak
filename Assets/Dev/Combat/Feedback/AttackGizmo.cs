@@ -83,6 +83,7 @@ public class AttackGizmo : MonoBehaviour
         Snap();
         ApplyWorldPos();
         animator.SetTrigger("Activate");
+        animator.ResetTrigger("Validate");
         //animation
     }
 
@@ -96,6 +97,20 @@ public class AttackGizmo : MonoBehaviour
         //animation
 
     }
+
+    public float GetPreshot(bool attack) => attack ? attackpreshot : gotopreshot;
+
+    public void Advance(bool attack)
+    {
+        if (attack)
+        {
+            Attack();
+            return;
+        }
+
+        MoveOneRing();
+    }
+
     public void UpdatePlayerPose(PolarCoordinate snappos)
     {
         targetPosition = snappos;
@@ -108,6 +123,7 @@ public class AttackGizmo : MonoBehaviour
 
     public void Validate()
     {
+        animator.ResetTrigger("Activate");
         animator.SetTrigger("Validate");
         state = State.Hidden;
     }

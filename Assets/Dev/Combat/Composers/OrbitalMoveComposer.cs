@@ -34,3 +34,55 @@ public class OrbitalMoveComposer
         return angVel = Mathf.Lerp(angVel, steered, blend);
     }
 }
+
+public class OrbitalDriftComposer
+{
+    private float friction;
+    private float inputInfluence;
+    private float driftLean;
+    private AnimationCurve jumpCurve;
+    private float jumpDuration;
+    private float blend;
+
+    public OrbitalDriftComposer(float _friction, float _inputInfluence, float _driftLean,
+                                AnimationCurve _jumpCurve, float _jumpDuration, float _blend)
+    {
+        friction = _friction;
+        inputInfluence = _inputInfluence;
+        driftLean = _driftLean;
+        jumpCurve = _jumpCurve;
+        jumpDuration = _jumpDuration;
+        blend = _blend;
+    }
+
+    public void UpdateBlend(float newBlend) => blend = newBlend;
+
+    public bool IsDrifting(float angVel, float moveInput)
+    {
+        if (Mathf.Abs(moveInput) <= 0.01f) return false;
+        return Mathf.Sign(moveInput) == Mathf.Sign(angVel);
+    }
+
+    public Vector2 GetFacing(float angVel, float moveInput, float blend = 1f)
+    {
+        Vector2 side = angVel < 0f ? Vector2.left : Vector2.right;
+        float lean = IsDrifting(angVel, moveInput) ? driftLean : 0f;
+        return Vector2.Lerp(Vector2.up, Vector2.up + side * lean, blend);
+    }
+
+    public float GetJumpHeight(float time)
+    {
+        if (jumpDuration <= 0f) return 0f;
+        return jumpCurve.Evaluate(time / jumpDuration);
+    }
+
+    public PolarCoordinate Step(PolarCoordinate velocity, float moveInput, float dt)
+    {
+        PolarCoordinate steered = PolarCoordinate.Lerp(velocity, PolarCoordinate.zero, friction * dt);
+        if (IsDrifting(steered.angle, moveInput))
+            steered = PolarCoordinate.Lerp(steered, PolarCoordinate.zero, inputInfluence * dt);
+
+        return PolarCoordinate.Lerp(velocity, steered, blend);
+    }
+
+}
