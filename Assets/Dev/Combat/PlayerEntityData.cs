@@ -14,6 +14,15 @@ public class PlayerEntityData
     public int currentCharges;
     public float recharge;
 
+    public bool TryConsumeEnergy()
+    {
+        if(currentCharges == 0) return false;
+        recharge = 0f; //on reset le rechargement.
+        currentCharges--;
+        return true;
+    }
+
+
 }
 
 [System.Serializable]

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerVFXLibrary vfxLibrary;
     [SerializeField] private PlayerVisual playerVisual;
     [SerializeField] private PlayerAnimationManager animationManager;
+    [SerializeField] private PlayerUI ui;
 
     // Entity data
     public string State;
@@ -111,6 +112,8 @@ public class PlayerController : MonoBehaviour
         playerContext.Data.time += Time.deltaTime;
 
         UpdateEnergy();
+        ui.UpdateDashSlots(playerEntityData.currentCharges);
+
     }
 
     private void UpdateEnergy()
@@ -119,10 +122,12 @@ public class PlayerController : MonoBehaviour
         if(playerEntityData.recharge < settings.timeToCharge)
         {
             playerEntityData.recharge += Time.deltaTime;
+            ui.UpdateFill(playerEntityData.recharge /  settings.timeToCharge);
             return;
         }
         playerEntityData.recharge = 0;
         playerEntityData.currentCharges ++;
+        vfxLibrary.energygained.Play();
         Debug.Log("recharge");
 
     }

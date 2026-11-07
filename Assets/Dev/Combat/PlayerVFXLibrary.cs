@@ -18,6 +18,7 @@ public class PlayerVFXLibrary : MonoBehaviour
 
     [Header("OrbitalDash")]
     public ParticleSystem psOrbitalDash;
+    public ParticleSystem energygained;
     
 
 

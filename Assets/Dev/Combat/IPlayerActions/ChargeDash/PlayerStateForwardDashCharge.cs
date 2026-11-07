@@ -32,7 +32,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
     {
         if (ctx.Inputs.Attack.Held)
         {
-            if (ctx.Inputs.Dash.Down && !dashComposer.Dashing)
+            if (ctx.Inputs.Dash.Down && !dashComposer.Dashing && ctx.Data.TryConsumeEnergy())
             {
                 float dir = ctx.Inputs.Move != 0 ? -ctx.Inputs.Move : Mathf.Sign(ctx.Data.velocity.angle);
 

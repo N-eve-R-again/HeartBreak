@@ -2,6 +2,7 @@ using UnityEngine;
 public class PlayerStateOrbitalDash : IPlayerState
 {
     public OrbitalDashComposer dashComposer;
+    public bool invalid;
 
     public void Init(PlayerContext ctx)
     {
@@ -10,7 +11,7 @@ public class PlayerStateOrbitalDash : IPlayerState
 
     public Transition Execute(PlayerContext ctx)
     {
-
+        if (invalid) return this.Done();
 
         float ratio = dashComposer.GetRatio();
         if (ratio < 0.15f)
@@ -39,6 +40,9 @@ public class PlayerStateOrbitalDash : IPlayerState
 
     public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
+        invalid = !ctx.Data.TryConsumeEnergy();
+        if (invalid) return;
+
         ctx.Animations.PlayJump();
         float startdir = Mathf.Sign(ctx.Data.velocity.angle);
         if (ctx.Inputs.MoveMagnitude > 0.5f) startdir = -ctx.Inputs.Move;
