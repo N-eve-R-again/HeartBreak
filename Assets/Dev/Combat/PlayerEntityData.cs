@@ -11,6 +11,9 @@ public class PlayerEntityData
     public Vector2 facing;
 
     public float time;
+    public int currentCharges;
+    public float recharge;
+
 }
 
 [System.Serializable]

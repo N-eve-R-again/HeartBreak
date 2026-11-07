@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0776b977bb1ad48bc20e97c527ec22, type: 3}
   m_Name: Amae
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerSettings
+  maxCharges: 3
+  timeToCharge: 2
   idleDecel: 8
   idleResetFacingDelay: 0
   moveangleMaxSpeed: 52

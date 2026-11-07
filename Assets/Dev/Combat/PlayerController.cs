@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform cameraPivot;
 
     public IPlayerState currentState;
-    public Stack<Type> returnStack;
+    private Stack<Type> returnStack = new();
 
     public static float GetRing(float distance)
     {
@@ -114,8 +114,23 @@ public class PlayerController : MonoBehaviour
 
         playerContext.Data.time += Time.deltaTime;
 
+        UpdateEnergy();
+    }
+
+    private void UpdateEnergy()
+    {
+        if (playerEntityData.currentCharges >= settings.maxCharges) return;
+        if(playerEntityData.recharge < settings.timeToCharge)
+        {
+            playerEntityData.recharge += Time.deltaTime;
+            return;
+        }
+        playerEntityData.recharge = 0;
+        playerEntityData.currentCharges ++;
+        Debug.Log("recharge");
 
     }
+
 
     public void LateUpdate()
     {

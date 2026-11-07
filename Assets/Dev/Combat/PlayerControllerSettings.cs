@@ -4,7 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerControllerSettings", menuName = "HeartBreak/PlayerControllerSettings")]
 public class PlayerControllerSettings : ScriptableObject
 {
-    
+    [Header("Energy")]
+    public float maxCharges;
+    public float timeToCharge;
+
 
     [Header("Idle")]
     public float idleDecel;
