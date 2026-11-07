@@ -56,6 +56,7 @@ public class PlayerStateOrbitalDash : IPlayerState
 
     public void Exit(PlayerContext ctx)
     {
+        dashComposer.ForceDone();
         return;
     }
 }

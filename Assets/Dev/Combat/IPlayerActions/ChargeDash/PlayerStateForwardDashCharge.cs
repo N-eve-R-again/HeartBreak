@@ -13,7 +13,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     public void Init(PlayerContext ctx)
     {
-        dashComposer = new OrbitalDashComposer(ctx.Settings.orbitalDashForceCurve, ctx.Settings.orbitalDashForce * 3f, 0f, 0.3f, 1f);
+        dashComposer = new OrbitalDashComposer(ctx.Settings.orbitalDashForceCurve, ctx.Settings.orbitalDashForce * 1.5f, 0f, 0.15f, 1f);
     }
 
 
@@ -25,6 +25,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
             {
                 float dir = ctx.Inputs.Move != 0 ? -ctx.Inputs.Move : ctx.Data.velocity.angle;
                 dashComposer.Init(dir);
+                ctx.VFX.PlayOrbitalDashPS(Vector3.forward);
             }
             if (!dashComposer.Done)
             {
