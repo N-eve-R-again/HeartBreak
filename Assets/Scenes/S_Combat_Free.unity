@@ -29245,11 +29245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219322700934983340, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: FollowAttachment
-      value: 0.98
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8219322700934983340, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: LookAtAttachment
-      value: 0.751
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 8951150083802848665, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: Damping.z
@@ -29542,7 +29542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5946be7b4bb6ab540835ab0e9eeac081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArenaManager
-  arenaParameters: {fileID: 11400000, guid: 8113f7d61159194448894157092bba4d, type: 2}
+  arenaParameters: {fileID: 11400000, guid: d5cf51f58fdcd394490bd660080329ee, type: 2}
 --- !u!1 &1130522593
 GameObject:
   m_ObjectHideFlags: 0
@@ -52780,7 +52780,7 @@ Transform:
   m_GameObject: {fileID: 1907316247}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22098437, y: -0.05025733, z: 0.0114035485, w: 0.97391486}
-  m_LocalPosition: {x: 3.867183, y: 17.207176, z: -38.609833}
+  m_LocalPosition: {x: 3.9396753, y: 18.311895, z: -38.07097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
