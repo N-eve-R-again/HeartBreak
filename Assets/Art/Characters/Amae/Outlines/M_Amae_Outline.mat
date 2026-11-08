@@ -20,7 +20,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Emission_Color_1
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _MinPx: 0.2
-    - _OutlineSize: 0.6
+    - _OutlineSize: 0.35
     - _QueueControl: 0
     - _QueueOffset: 0
     - _show: 1

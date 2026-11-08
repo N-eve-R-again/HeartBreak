@@ -45,8 +45,8 @@ public class PlayerControllerSettings : ScriptableObject
     public float chargeDashChargeTime;
     public float chargeDashFriction;
     public float chargeDashInputInfluence;
-    public float chargeDashVelocityBoost;
-    public float chargeDashVelocityBoostThreshold;
+    public float chargeDashBoostMin = 8f;   // boost si on part à l'arrêt
+    public float chargeDashBoostMax = 15f;  // boost si on part à vitesse max
 
     [Header("Orbital Dash")]
     public float orbitalDashDuration;

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Ground
-  m_Shader: {fileID: -6465566751694194690, guid: ff979e3a850ca3f45ae0745c5ab5f013, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: bb3440cba5c3cee448366a62181152be, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ParallaxMapping_e7df75913fd84139891c08664e3b0b89_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_0926e83887204d9db588cdcf4e52389a_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 5c7bc2d1dd03c0b40ba62905f54913ec, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,6 +65,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_71431c59187149878c2f051544049931_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -75,21 +83,33 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ColorReflets: 0.539
     - _Custmo: 0
     - _Float: -0.5
-    - _IredecentSpecular: 1.52
+    - _IredecentSpecular: 0.59
+    - _MosaicArcLength: 2.62
+    - _MosaicJitter: 0
+    - _MosaicRingWidth: 0.83
+    - _MosaicStrength: 0.705
+    - _MosaicVariation: 0.139
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _URP_smooth: 0.504
+    - _ReflectionDistortion: 0
+    - _ReflectionStrength: 2
+    - _ResinDepth: 0.5
+    - _SmoothReflexions: 0.934
+    - _SparkleIntensity: 0.35
+    - _SparkleSharpness: 9.5
+    - _URP_smooth: 0.583
     - _displace: 0
-    - _hueshift: 0.58
+    - _hueshift: -0.09
     - _metallic: 1
-    - _overlay: 0.39
+    - _overlay: 0.631
     - _saturation_post: 0.272
     - _smooth: 0.735
     m_Colors:
-    - _Color: {r: 0.76862746, g: 0.9411765, b: 0.89143807, a: 1}
-    - _Color_1: {r: 0.19066669, g: 0.8666667, b: 0.39560777, a: 1}
+    - _Color: {r: 0.9198113, g: 0.9853176, b: 1, a: 1}
+    - _Color_1: {r: 0.3572794, g: 0.42367646, b: 0.645, a: 1}
     - _Metalic: {r: 0.2, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
@@ -22,12 +23,28 @@ public class PlayerShooter : MonoBehaviour
         }
     }
 
-    public void ShootPeel(PolarCoordinate from)
+    public void ShootPeel(PolarCoordinate from, int number, float delay)
     {
+
+        StartCoroutine(ProjectileCR(from, number, delay));
+        /*
         var proj = GetFromPool();
         if (proj == null) return;
         proj.gameObject.SetActive(true);
-        proj.Launch(from, projectileSpeed, projectileDamage);
+        proj.Launch(from, projectileSpeed, projectileDamage);*/
+    }
+
+    IEnumerator ProjectileCR(PolarCoordinate from, int number, float delay)
+    {
+        for (int i = 0; i < number; i++) 
+        {
+            var proj = GetFromPool();
+            if (proj == null) yield return null;
+            proj.gameObject.SetActive(true);
+            proj.Launch(from, projectileSpeed, projectileDamage);
+            yield return new WaitForSeconds(delay);
+        }
+
     }
 
     private PeelAttackProjectile GetFromPool()

@@ -123,6 +123,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
+    - _ScreenSpaceReflectionsContributeTransparent: 1
     - _Shininess: 0
     - _Smoothness: 0
     - _SmoothnessSource: 0
@@ -136,9 +137,9 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.3962264, g: 0.35451835, b: 0, a: 1}
-    - _Color: {r: 0.39622638, g: 0.35451832, b: 0, a: 1}
-    - _EmissionColor: {r: 2, g: 1.0382979, b: 0, a: 1}
+    - _BaseColor: {r: 1, g: 0.62734854, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.62734854, b: 0, a: 1}
+    - _EmissionColor: {r: 15.999998, g: 4.7999997, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

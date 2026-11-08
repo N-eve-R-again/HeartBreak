@@ -177,8 +177,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.105263166
     - serializedVersion: 3
-      time: 0.16249898
-      value: 0.5075146
+      time: 0.21190694
+      value: 1.6880985
       inSlope: 0.049180165
       outSlope: 0.049180165
       tangentMode: 0
@@ -186,14 +186,14 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.30198017
     - serializedVersion: 3
-      time: 0.61647207
-      value: 0.05931724
+      time: 0.7539701
+      value: 0.09148395
       inSlope: -1.8764032
-      outSlope: 3.2249403
+      outSlope: -1.3712054
       tangentMode: 1
       weightedMode: 0
       inWeight: 0.07721454
-      outWeight: 0.11813153
+      outWeight: 0.39031813
     - serializedVersion: 3
       time: 1
       value: 0.290141
@@ -206,12 +206,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chargeDashJumpDuration: 0.45
+  chargeDashJumpDuration: 0.3
   chargeDashChargeTime: 0.48
-  chargeDashFriction: 1.25
-  chargeDashInputInfluence: 1.5
-  chargeDashVelocityBoost: 125
-  chargeDashVelocityBoostThreshold: 1
+  chargeDashFriction: 0.28
+  chargeDashInputInfluence: 1.9
+  chargeDashBoostMin: 8
+  chargeDashBoostMax: 65
   orbitalDashDuration: 0.25
   orbitalDashImmunityRatio: 0.95
   orbitalDashForceCurve:

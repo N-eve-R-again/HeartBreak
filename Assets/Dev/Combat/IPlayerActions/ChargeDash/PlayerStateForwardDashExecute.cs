@@ -12,18 +12,21 @@ public class PlayerStateForwardDashExecute : IPlayerState
 
     public void Enter(PlayerContext ctx, IPlayerState fromState)
     {
+        int number = Mathf.FloorToInt(Mathf.Abs(ctx.Data.velocity.distance));
         originalfacing = ctx.Data.facing;
         timeToExecute = Mathf.Abs(ctx.Settings.forwardDashSpeedByChargeIncr * ctx.Data.velocity.distance) + ctx.Settings.forwardDashSpeedByChargeBase;
         ringfrom = ctx.Data.position.distance;
-        ringto = ctx.Data.position.distance + ctx.Data.velocity.distance;
+        ringto = ctx.Data.position.distance - 1f;//+ ctx.Data.velocity.distance;
         ctx.Data.velocity.distance = 0f;
         originalangularVel = ctx.Data.velocity.angle;
 
-        ctx.VFX.shooter.ShootPeel(ctx.Data.position);
+
+        ctx.VFX.shooter.ShootPeel(ctx.Data.position, number, 0.1f);
     }
 
     public Transition Execute(PlayerContext ctx)
     {
+
 
         float ratio = ctx.Data.time / timeToExecute;
         ctx.Data.position.distance = Mathf.LerpUnclamped(ringfrom, ringto, ctx.Settings.forwardDashEase.Evaluate(ratio));
@@ -48,7 +51,7 @@ public class PlayerStateForwardDashExecute : IPlayerState
             {
                 ctx.Data.velocity.angle = ctx.Settings.moveangleMaxSpeed * -ctx.Inputs.Move;
             }
-
+            ctx.VFX.ChargeEffectFadeOut(20f);
             return this.Done();
 
         }

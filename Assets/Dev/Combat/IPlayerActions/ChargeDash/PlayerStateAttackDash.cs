@@ -13,6 +13,7 @@ public class PlayerStateAttackDash : IPlayerState
 
         if(ratio > 1 && !temp)
         {
+            ctx.VFX.ChargeEffectFadeOut(15f);
             temp = true;
             BossManager.instance.Damage(ctx.Settings.meleeDamage, true, ctx.Data.position.angle);
         }
@@ -36,6 +37,7 @@ public class PlayerStateAttackDash : IPlayerState
     public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
         //vfx.ChargeEffectKill();
+
         temp = false;
         ringfrom = ctx.Data.position.distance;
         ctx.VFX.meleeEffect.Play(ctx.Data.position);

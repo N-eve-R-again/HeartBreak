@@ -30,7 +30,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     public Transition Execute(PlayerContext ctx)
     {
-        if (ctx.Inputs.Attack.Held)
+        if (ctx.Inputs.Attack.Held || ctx.Data.time < ctx.Settings.chargeDashJumpDuration)
         {
             if (ctx.Inputs.Dash.Down && !dashComposer.Dashing && ctx.Data.TryConsumeEnergy())
             {
@@ -94,7 +94,8 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
         if (charge < 1)
         {
-            ctx.VFX.ChargeEffectKill();
+            ctx.VFX.ChargeEffectFadeOut(20f);
+            ctx.Data.velocity.angle = ctx.Data.velocity.angle * 0.25f;
             return this.Done();
         }
         else
@@ -114,22 +115,33 @@ public class PlayerStateForwardDashCharge : IPlayerState
         ctx.VFX.DeactivateChargeCam();
 
         // On dit juste "fade out" — la library le fait à son rythme
-        ctx.VFX.ChargeEffectFadeOut(20f);
+
         ctx.Data.position.y = 0f;
         ctx.Data.velocity.distance = -charge;
     }
 
     public void Enter(PlayerContext ctx, IPlayerState _fromState)
     {
-        if(ctx.Data.velocity.angleMagnitude < ctx.Settings.moveangleMaxSpeed)
+        float currentSpeed = ctx.Data.velocity.angleMagnitude;
+
+        // 0 = à l'arrêt, 1 = à la vitesse max de déplacement
+        float t = Mathf.Clamp01(currentSpeed / ctx.Settings.moveangleMaxSpeed);
+
+        // Boost cible proportionnel à la vitesse d'entrée
+        float targetSpeed = Mathf.Lerp(ctx.Settings.chargeDashBoostMin, ctx.Settings.chargeDashBoostMax, t*t);
+
+        // On ne touche à la vélocité que si le boost nous fait accélérer
+        if (currentSpeed < targetSpeed)
         {
-            ctx.Data.velocity.angle = Mathf.Sign(ctx.Data.velocity.angle) * ctx.Settings.chargeDashVelocityBoost;
-        }
-        else
-        {
-            ctx.Data.velocity.angle = Mathf.Sign(ctx.Data.velocity.angle) * (ctx.Settings.moveangleMaxSpeed + (ctx.Settings.chargeDashVelocityBoost- ctx.Settings.moveangleMaxSpeed));
+            ctx.Data.velocity.angle = Mathf.Sign(ctx.Data.velocity.angle) * targetSpeed;
         }
 
+        if(_fromState == PlayerStateRegistry.Get<PlayerStateOrbitalDash>())
+        {
+
+            dashComposer.Init(Mathf.Sign(ctx.Data.velocity.angle) * 0.75f);
+
+        }
 
         ctx.VFX.attackGizmo.Charge(ctx.Data.position);
         ctx.VFX.ActivateChargeCam();
@@ -138,7 +150,6 @@ public class PlayerStateForwardDashCharge : IPlayerState
         ctx.VFX.ChargeEffectSustain(0.25f, 2f);
 
         ringfrom = ctx.Data.position.distance;
-
     }
 
     public void ResetInternal()

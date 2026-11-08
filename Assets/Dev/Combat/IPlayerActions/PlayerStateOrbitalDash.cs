@@ -32,7 +32,14 @@ public class PlayerStateOrbitalDash : IPlayerState
 
 
         if (dashComposer.Done)
+        {
+            if (ctx.Inputs.Attack.Held)
+            {
+                return this.GoTo<PlayerStateForwardDashCharge>();
+            }
             return this.Done();
+        }
+
 
         return this.Stay();
     }
