@@ -57,7 +57,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
-    - _color_Force: 1.04
+    - _color_Force: 1.67
     - _noiseForce: 0
     m_Colors: []
   m_BuildTextureStacks: []

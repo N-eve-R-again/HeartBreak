@@ -126,7 +126,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Ambiant_Highlight_Multiplier: 0
-    - _Ambiant_Multiplier: 0.337
+    - _Ambiant_Multiplier: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -139,13 +139,13 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Diffuse_Highlight_Multiplier: 0.541
+    - _Diffuse_Highlight_Multiplier: 0.206
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _F0: 0.0851
     - _Fill_Light: 0
-    - _Fill_Light_Strength: 0
+    - _Fill_Light_Strength: 0.1
     - _Float: 0.797
     - _Float_1: 0.106
     - _Front_Facing_Highlight: 0.21
@@ -174,7 +174,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _Specular_Multiplier: 4.29
+    - _Specular_Multiplier: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0

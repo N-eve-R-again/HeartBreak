@@ -86,30 +86,32 @@ Material:
     - _ColorReflets: 0.654
     - _Custmo: 0
     - _Float: -0.5
-    - _IredecentSpecular: 0.39
+    - _HueShift: 229
+    - _IredecentSpecular: 1.18
     - _MosaicArcLength: 4.97
     - _MosaicJitter: 0.3
     - _MosaicRingWidth: 0.85
-    - _MosaicStrength: 1
+    - _MosaicStrength: 0.479
     - _MosaicVariation: 0.25
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionDistortion: 0
     - _ReflectionStrength: 2
-    - _ResinDepth: 0.335
+    - _ResinDepth: 1
     - _SmoothReflexions: 0.783
-    - _SparkleIntensity: 0.09
+    - _SparkleIntensity: 0.34
     - _SparkleSharpness: 1
-    - _URP_smooth: 0.66
+    - _URP_smooth: 0.339
     - _displace: 0
-    - _hueshift: -0.46
+    - _hueshift: -0.62
     - _metallic: 1
-    - _overlay: 0.436
+    - _overlay: 0.618
     - _saturation_post: 1
     - _smooth: 0.938
     m_Colors:
     - _Color: {r: 0.19607843, g: 0.2157599, b: 0.58431375, a: 1}
-    - _Color_1: {r: 0.2830189, g: 0, b: 0.061470162, a: 1}
+    - _Color_1: {r: 0.28235295, g: 0.017800594, b: 0, a: 1}
     - _Metalic: {r: 0.2, g: 1.2, b: 0, a: 0}
+    - _Tint: {r: 0.6415094, g: 0.48113206, b: 0.48113206, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

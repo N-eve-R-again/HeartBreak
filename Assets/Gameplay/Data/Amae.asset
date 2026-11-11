@@ -16,7 +16,7 @@ MonoBehaviour:
   timeToCharge: 3.5
   idleDecel: 8
   idleResetFacingDelay: 0
-  moveangleMaxSpeed: 52
+  moveangleMaxSpeed: 45
   movedistMaxSpeed: 7
   moveAccel: 10
   moveDecel: 4

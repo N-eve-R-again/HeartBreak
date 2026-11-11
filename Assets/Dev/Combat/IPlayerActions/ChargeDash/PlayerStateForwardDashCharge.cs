@@ -30,7 +30,8 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
     public Transition Execute(PlayerContext ctx)
     {
-        if (ctx.Inputs.Attack.Held || ctx.Data.time < ctx.Settings.chargeDashJumpDuration)
+        bool first = charge == 0;
+        if (ctx.Inputs.Attack.Held || (ctx.Data.time < ctx.Settings.chargeDashJumpDuration && first))
         {
             if (ctx.Inputs.Dash.Down && !dashComposer.Dashing && ctx.Data.TryConsumeEnergy())
             {

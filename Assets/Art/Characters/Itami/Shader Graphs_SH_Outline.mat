@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_SH_Outline
-  m_Shader: {fileID: -6465566751694194690, guid: 7263befdcf38ecf45b83902fbfeb0bf3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 379db6c7dddceef49bcb1e1263c6334b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,11 +38,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _MinPx: 0.6
     - _OutlineSize: 0.12
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _show: 0
     m_Colors:
     - _Emission_Color: {r: 0.19973837, g: 0, b: 5.992157, a: 1}
+    - _Emission_Color_1: {r: 0, g: 159.4461, b: 104.7516, a: 1}
     - _base: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
