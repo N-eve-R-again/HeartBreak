@@ -83,11 +83,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorReflets: 0.539
+    - _ColorReflets: 0.521
     - _Custmo: 0
     - _Float: -0.5
-    - _HueShift: 0
-    - _IredecentSpecular: 1.29
+    - _HueShift: 321
+    - _IredecentSpecular: 0.58
     - _MosaicArcLength: 2.62
     - _MosaicJitter: 0
     - _MosaicRingWidth: 0.83
@@ -101,7 +101,7 @@ Material:
     - _SmoothReflexions: 0.934
     - _SparkleIntensity: 0.58
     - _SparkleSharpness: 19.5
-    - _URP_smooth: 0.533
+    - _URP_smooth: 0.61
     - _displace: 0
     - _hueshift: -0.09
     - _metallic: 0

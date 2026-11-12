@@ -3218,7 +3218,7 @@
     "m_ObjectId": "01b061cf9fed49ec9c698321b2f8f049",
     "m_Title": "Normales",
     "m_Position": {
-        "x": 1665.0001220703125,
+        "x": 1665.0,
         "y": 1037.0
     }
 }
@@ -3774,7 +3774,7 @@
     "m_Title": "Sparkles (animés)",
     "m_Position": {
         "x": 609.0,
-        "y": 2412.999755859375
+        "y": 2413.0
     }
 }
 
@@ -4748,8 +4748,8 @@
     "m_ObjectId": "11c08002aeda41538bba7ed1322e52df",
     "m_Title": "Corps de la résine",
     "m_Position": {
-        "x": 6133.00048828125,
-        "y": 0.9998779296875
+        "x": 6133.0,
+        "y": 1.0
     }
 }
 
@@ -7239,7 +7239,7 @@
     "m_ObjectId": "33818d13b23f4d17a196eddd83cc6176",
     "m_Title": "Profondeur (parallax)",
     "m_Position": {
-        "x": -24.999969482421875,
+        "x": -25.0,
         "y": 1344.0
     }
 }
@@ -10947,7 +10947,7 @@
     "m_ObjectId": "5d4e1649b80348679da33565659bbf39",
     "m_Title": "Mosaïque des reflets (HLSL : ResinMosaic.hlsl)",
     "m_Position": {
-        "x": 6133.00048828125,
+        "x": 6133.0,
         "y": 4654.0
     }
 }
@@ -11123,7 +11123,7 @@
     "m_ShaderOutputName": "X",
     "m_StageCapability": 3,
     "m_CustomBinding": "",
-    "m_Value": 0.20000000298023224,
+    "m_Value": 0.5,
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
@@ -15047,8 +15047,8 @@
     "m_ObjectId": "85dd6d8c04644fddb9a5b89073a2e054",
     "m_Title": "Reflets (probe + RT perso)",
     "m_Position": {
-        "x": 6133.00048828125,
-        "y": 1873.0001220703125
+        "x": 6133.0,
+        "y": 1873.0
     }
 }
 
@@ -17383,7 +17383,7 @@
     "m_Title": "Coordonnées des dalles",
     "m_Position": {
         "x": -25.0,
-        "y": 0.9998779296875
+        "y": 1.0
     }
 }
 
@@ -17622,8 +17622,8 @@
     "m_ObjectId": "ab9282c3b77446a89e2ab12c8029790a",
     "m_Title": "Motif : dalles + Voronoi piégé",
     "m_Position": {
-        "x": 1665.0001220703125,
-        "y": 0.9998779296875
+        "x": 1665.0,
+        "y": 1.0
     }
 }
 
@@ -19911,7 +19911,7 @@
     "m_ObjectId": "c8f05fe21edc47dcabdac9d1071e673e",
     "m_Title": "Éclairage (HLSL : ResinLighting.hlsl)",
     "m_Position": {
-        "x": 4364.99951171875,
+        "x": 4365.0,
         "y": 1559.0
     }
 }
@@ -20372,8 +20372,8 @@
     "m_ObjectId": "ceb9e8be7a8b4818a72920fbbe067eb6",
     "m_Title": "Teinte de la résine",
     "m_Position": {
-        "x": 4364.99951171875,
-        "y": 0.9998779296875
+        "x": 4365.0,
+        "y": 1.0
     }
 }
 
@@ -21455,8 +21455,8 @@
     "m_ObjectId": "ddebecdfddaa410f9ce5e28ccd104d5f",
     "m_Title": "Assemblage",
     "m_Position": {
-        "x": 9001.0009765625,
-        "y": 0.9998779296875
+        "x": 9001.0,
+        "y": 1.0
     }
 }
 
@@ -22902,7 +22902,7 @@
     "m_ObjectId": "f44dc064ccaf4ed9ad08edfb2c57866f",
     "m_Title": "Fresnel résine",
     "m_Position": {
-        "x": 4364.99951171875,
+        "x": 4365.0,
         "y": 2973.0
     }
 }
