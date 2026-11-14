@@ -1037,6 +1037,11 @@
                     "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
+                },
+                {
+                    "devicePath": "<HID::Thrustmaster Thrustmaster dual analog 3.2>",
+                    "isOptional": false,
+                    "isOR": false
                 }
             ]
         },

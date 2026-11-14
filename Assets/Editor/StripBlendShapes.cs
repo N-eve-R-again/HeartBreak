@@ -9,7 +9,7 @@ public class StripBlendShapeCurves : AssetPostprocessor
 {
     // Ne s'applique qu'aux assets sous ce dossier, pour ne pas casser les clips
     // ou tu VEUX garder une anim de blendshapes. Mets "" pour tout le projet.
-    const string kFolderFilter = "Assets/Characters/";
+    const string kFolderFilter = "Assets/Art/Characters/";
 
     // Optionnel : noms de blendshapes a CONSERVER malgre tout (ex: clignement auto).
     // Laisse vide pour tout retirer. Comparaison sur "blendShape.<nom>".
