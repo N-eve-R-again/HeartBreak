@@ -83,7 +83,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorReflets: 0.836
+    - _ColorReflets: 0.25
     - _Custmo: 0
     - _Float: -0.5
     - _HueShift: 334
@@ -96,9 +96,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionDistortion: 0
-    - _ReflectionStrength: 2
+    - _ReflectionStrength: 1
     - _ResinDepth: 0.5
-    - _SmoothReflexions: 0.934
+    - _SmoothReflexions: 0.73
     - _SparkleIntensity: 0.43
     - _SparkleSharpness: 9.5
     - _URP_smooth: 0.552

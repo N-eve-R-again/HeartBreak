@@ -18378,7 +18378,7 @@
     "m_ShaderOutputName": "Saturation",
     "m_StageCapability": 3,
     "m_CustomBinding": "",
-    "m_Value": 0.8999999761581421,
+    "m_Value": 0.800000011920929,
     "m_DefaultValue": 1.0,
     "m_Labels": [],
     "m_LiteralMode": false
