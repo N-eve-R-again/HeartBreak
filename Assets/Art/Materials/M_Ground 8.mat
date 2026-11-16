@@ -127,7 +127,7 @@ Material:
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
-    - _distance: 20
+    - _distance: 0
     - _lenght: 1
     - _metalic: 0.082
     - _smooth: 0.295

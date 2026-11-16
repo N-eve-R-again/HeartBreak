@@ -21,26 +21,28 @@ public class ArenaParameters : ScriptableObject
     public AnimationCurve ringToDistance;
     public AnimationCurve ringToSpeed;
     public ArenaRingData[] rings;
+    public float maxDistance;
 
 #if UNITY_EDITOR
     void OnValidate()
     {
         if (ringRadii == null || rings.Length == 0) return;
 
-        Keyframe[] keys = new Keyframe[ringRadii.Length];
+        Keyframe[] keys = new Keyframe[rings.Length];
         for (int i = 0; i < rings.Length; i++)
         {
             keys[i] = new Keyframe(i, rings[i].radius);
         }
         ringToDistance = new AnimationCurve(keys);
 
-        Keyframe[] keys2 = new Keyframe[ringRadii.Length];
+        Keyframe[] keys2 = new Keyframe[rings.Length];
         for (int i = 0; i < rings.Length; i++)
         {
             keys2[i] = new Keyframe(i, rings[i].movementMultiplier);
         }
 
         ringToSpeed = new AnimationCurve(keys2);
+        maxDistance = rings.Length - 1;
         // Force des tangentes linéaires pour passer pile par chaque point
         for (int i = 0; i < keys.Length; i++)
         {

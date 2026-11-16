@@ -65,7 +65,7 @@ Material:
     m_Floats:
     - _EmissionStr: 1
     - _Float: 0.05
-    - _LightAtten: 0.8
+    - _LightAtten: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smooth: 0

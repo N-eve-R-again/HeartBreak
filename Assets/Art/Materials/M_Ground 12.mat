@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Ground 12
-  m_Shader: {fileID: -6465566751694194690, guid: 30bcc590a63eb1d4f811ea8d8a5ef3ab, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0ca6dca7396eb48e5849247ffd444914, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,7 +17,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -132,7 +133,7 @@ Material:
     - _metalic: 0.082
     - _smooth: 0.295
     m_Colors:
-    - _BaseColor: {r: 0.66775984, g: 0.5286579, b: 0.6792453, a: 1}
+    - _BaseColor: {r: 0.18039216, g: 0.26947853, b: 0.3254902, a: 1}
     - _Color: {r: 0.2735849, g: 0.1742168, b: 0.27311063, a: 1}
     - _EmissionColor: {r: 0.0021843778, g: 0, b: 0.029801145, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

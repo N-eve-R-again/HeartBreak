@@ -83,11 +83,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorReflets: 0.28
+    - _ColorReflets: 0
     - _Custmo: 0
     - _Float: -0.5
-    - _HueShift: 278
-    - _IredecentSpecular: 1.65
+    - _HueShift: 0
+    - _IredecentSpecular: 0.37
     - _MosaicArcLength: 2.62
     - _MosaicJitter: 0
     - _MosaicRingWidth: 0.83
@@ -96,20 +96,20 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionDistortion: 0
-    - _ReflectionStrength: 1.05
-    - _ResinDepth: 0.5
-    - _SmoothReflexions: 0.84
-    - _SparkleIntensity: 0.58
-    - _SparkleSharpness: 19.5
-    - _URP_smooth: 0.2
+    - _ReflectionStrength: 1.74
+    - _ResinDepth: 0.786
+    - _SmoothReflexions: 0.166
+    - _SparkleIntensity: 0.22
+    - _SparkleSharpness: 28.2
+    - _URP_smooth: 0.041
     - _displace: 0
     - _hueshift: -0.09
     - _metallic: 0
-    - _overlay: 0.631
+    - _overlay: 0.276
     - _saturation_post: 0.272
     - _smooth: 0.735
     m_Colors:
-    - _Color: {r: 0.809, g: 0.95356077, b: 1, a: 1}
+    - _Color: {r: 0.582, g: 0.5186139, b: 0.54742575, a: 1}
     - _Color_1: {r: 0.35686275, g: 0.4961082, b: 0.6431373, a: 1}
     - _Metalic: {r: 0.2, g: 1.5, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}

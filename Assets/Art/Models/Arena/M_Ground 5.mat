@@ -83,6 +83,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - PROBE_VOLUMES_L1: 1
     - _ColorReflets: 0.654
     - _Custmo: 0
     - _Float: -0.5

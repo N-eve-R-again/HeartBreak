@@ -19,7 +19,7 @@ MonoBehaviour:
   moveangleMaxSpeed: 46
   movedistMaxSpeed: 7
   moveAccel: 10
-  moveDecel: 6
+  moveDecel: 5.5
   BackwardHopSpeed: 0.45
   BackwardHopSmallJumpAmplitude: 0.95
   backwardInterruptRatio: 0.75
