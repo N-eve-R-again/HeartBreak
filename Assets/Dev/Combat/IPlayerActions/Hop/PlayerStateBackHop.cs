@@ -49,7 +49,7 @@ public class PlayerStateBackHop : IPlayerState
 
         ctx.Data.position.y = ctx.Settings.backwardHopJumpCurve.Evaluate(ratio) * ctx.Settings.BackwardHopSmallJumpAmplitude;
         moveComposer.UpdateBlend(ctx.Settings.hopToMoveEasingCurve.Evaluate(ratio));
-        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime);
+        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime, ctx.Data.position.distance);
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
         ctx.Data.facing = moveComposer.GetFacing(ctx.Inputs.Move, ctx.Settings.facingEasingCurve.Evaluate(ratio));
 

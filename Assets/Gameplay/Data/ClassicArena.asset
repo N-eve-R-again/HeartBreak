@@ -69,3 +69,65 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ringToSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.45
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1.45
+      inSlope: 1.45
+      outSlope: -0.20000005
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 2
+      value: 1.25
+      inSlope: -0.20000005
+      outSlope: -0.14999998
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 3
+      value: 1.1
+      inSlope: -0.14999998
+      outSlope: -0.100000024
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 4
+      value: 1
+      inSlope: -0.100000024
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rings:
+  - radius: 5.75
+    movementMultiplier: 0
+  - radius: 9.7
+    movementMultiplier: 1.45
+  - radius: 13.75
+    movementMultiplier: 1.25
+  - radius: 17.8
+    movementMultiplier: 1.1
+  - radius: 22
+    movementMultiplier: 1

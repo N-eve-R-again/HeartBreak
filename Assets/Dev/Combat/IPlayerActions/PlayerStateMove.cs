@@ -30,7 +30,7 @@ public class PlayerStateMove : IPlayerState
 
         if (ctx.Inputs.Dash.Down) return this.GoTo<PlayerStateOrbitalDash>();
 
-        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime);
+        ctx.Data.velocity.angle = moveComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime, ctx.Data.position.distance);
 
         // Appliquer
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;

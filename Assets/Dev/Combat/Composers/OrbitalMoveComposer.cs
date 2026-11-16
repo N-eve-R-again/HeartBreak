@@ -23,10 +23,11 @@ public class OrbitalMoveComposer
     }
     public void UpdateBlend(float newBlend) => blend = newBlend;
 
-    public float Step(float angVel, float moveInput, float dt)
+    public float Step(float angVel, float moveInput, float dt, float polardistance)
     {
+        float mult = ArenaManager.DistanceToMult(polardistance);
         bool pressing = Mathf.Abs(moveInput) > 0.01f;
-        float target = pressing ? -moveInput * maxSpeed : 0f;
+        float target = pressing ? -moveInput * maxSpeed * mult : 0f;
         float rate = pressing
             ? (Mathf.Abs(angVel) < Mathf.Abs(target) ? accel : decel)
             : neutralDecel;
