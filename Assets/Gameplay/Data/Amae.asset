@@ -208,8 +208,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   chargeDashJumpDuration: 0.3
   chargeDashChargeTime: 0.48
-  chargeDashFriction: 0.28
-  chargeDashInputInfluence: 1.9
+  chargeDashFriction: 0.35
+  chargeDashInputInfluence: 5
   chargeDashBoostMin: 8
   chargeDashBoostMax: 65
   orbitalDashDuration: 0.25

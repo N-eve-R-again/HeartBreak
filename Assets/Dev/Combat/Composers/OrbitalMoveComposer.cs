@@ -44,6 +44,7 @@ public class OrbitalDriftComposer
     private AnimationCurve jumpCurve;
     private float jumpDuration;
     private float blend;
+    private float minSpeed = 5f;
 
     public OrbitalDriftComposer(float _friction, float _inputInfluence, float _driftLean,
                                 AnimationCurve _jumpCurve, float _jumpDuration, float _blend)
@@ -77,13 +78,14 @@ public class OrbitalDriftComposer
         return jumpCurve.Evaluate(time / jumpDuration);
     }
 
-    public PolarCoordinate Step(PolarCoordinate velocity, float moveInput, float dt)
+    public float Step(float angleVelocity, float moveInput, float dt)
     {
-        PolarCoordinate steered = PolarCoordinate.Lerp(velocity, PolarCoordinate.zero, friction * dt);
-        if (IsDrifting(steered.angle, moveInput))
-            steered = PolarCoordinate.Lerp(steered, PolarCoordinate.zero, inputInfluence * dt);
+        float appliedFriction = Mathf.Abs(moveInput) > 0 ? friction * 5f : 1f;
+        float steered = Mathf.Lerp(angleVelocity, minSpeed * -moveInput, appliedFriction * dt);
+        if (IsDrifting(steered, moveInput))
+            steered = Mathf.Lerp(steered, 0f, inputInfluence * dt);
 
-        return PolarCoordinate.Lerp(velocity, steered, blend);
+        return Mathf.Lerp(angleVelocity, steered, blend);
     }
 
 }

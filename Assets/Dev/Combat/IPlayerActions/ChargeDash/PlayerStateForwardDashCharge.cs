@@ -49,7 +49,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
             }
             else
             {
-                ctx.Data.velocity = driftComposer.Step(ctx.Data.velocity, ctx.Inputs.Move, Time.deltaTime);
+                ctx.Data.velocity.angle = driftComposer.Step(ctx.Data.velocity.angle, ctx.Inputs.Move, Time.deltaTime);
                 ctx.Data.facing = driftComposer.GetFacing(ctx.Data.velocity.angle, ctx.Inputs.Move);
                 if (charge == 0) ctx.Data.position.y = driftComposer.GetJumpHeight(ctx.Data.time);
             }

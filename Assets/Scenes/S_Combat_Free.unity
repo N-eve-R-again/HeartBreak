@@ -3755,7 +3755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   projectilePrefab: {fileID: 1939683758076697589, guid: cdcec6451ee845844a48ed435ba7b6e1, type: 3}
-  rate: 0.48
+  rate: 0.96
   timer: 0
 --- !u!4 &127648921
 Transform:
@@ -33114,7 +33114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3696744835179114479, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: Lens.FieldOfView
-      value: 52
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3696744835179114479, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: Lens.NearClipPlane
@@ -33130,31 +33130,31 @@ PrefabInstance:
       objectReference: {fileID: 1957290866}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00015764221
+      value: 0.0000111490635
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.676088
+      value: 13.87292
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.313072
+      value: -39.254246
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98519135
+      value: 0.9847542
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.17145878
+      value: 0.17395186
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000039392066
+      value: -0.0000002793057
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000068556386
+      value: 0.00000004933794
       objectReference: {fileID: 0}
     - target: {fileID: 5038378709475515238, guid: ab0cd233b0518504687b47f45822ae9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59409,8 +59409,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907316247}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1714588, y: -0.0000039392066, z: 0.000000685564, w: 0.9851913}
-  m_LocalPosition: {x: 0.00031317683, y: 14.06153, z: -39.17472}
+  m_LocalRotation: {x: 0.17395188, y: -0.0000002793058, z: 0.00000004933796, w: 0.98475415}
+  m_LocalPosition: {x: 0.000022274062, y: 14.262936, z: -39.11202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59493,7 +59493,7 @@ Camera:
     height: 1
   near clip plane: 15
   far clip plane: 5000
-  field of view: 52
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -62887,7 +62887,7 @@ MonoBehaviour:
       y: 0
     facing: {x: 0, y: 0}
     time: 0
-    currentCharges: 0
+    currentCharges: 3
     recharge: 0
   settings: {fileID: 11400000, guid: 34525360d43a19847b4981e12dfceb4f, type: 2}
   cameraPivot: {fileID: 834600735}

@@ -66,10 +66,10 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e847bd487bdac234ba612af557d44d54, type: 2}
+  - {fileID: 2100000, guid: 60b364d3649df43488b8138882e9ca22, type: 2}
   - {fileID: 2100000, guid: ab3c6b125ea944f4399de91f90205ac5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
-  m_Material: {fileID: 2100000, guid: 551dd96b4e64a6547968f6c43b1bfd8d, type: 2}
+  m_Material: {fileID: 2100000, guid: da8e40f11a079614b9fba808c299a1c3, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 1
   m_StartAngleFade: 180
@@ -217,8 +217,8 @@ MonoBehaviour:
     m_Bits: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.395}
-  m_Size: {x: 2, y: 2, z: 0.79}
-  m_FadeFactor: 1
+  m_Size: {x: 2.5, y: 2.5, z: 0.79}
+  m_FadeFactor: 0.598
   m_VisibleInScene: 1
   version: 1
   m_DecalLayerMask: 1

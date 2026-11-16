@@ -39,13 +39,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _MinPx: 0.253
-    - _OutlineSize: 10
+    - _OutlineSize: 6.84
     - _QueueControl: 0
     - _QueueOffset: 0
     - _show: 1
     m_Colors:
-    - _Emission_Color: {r: 2.82353, g: 0, b: 0.060247097, a: 1}
-    - _Emission_Color_1: {r: 1.3357008, g: 0, b: 1.882353, a: 1}
+    - _Emission_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Emission_Color_1: {r: 0, g: 0, b: 0, a: 1}
     - _base: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
