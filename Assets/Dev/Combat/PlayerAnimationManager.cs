@@ -6,7 +6,7 @@ public class PlayerAnimationManager : MonoBehaviour
     
     public void UpdateMove(float Speed)
     {
-        animator.SetFloat("MoveSpeed",Speed);
+        animator.SetFloat("MoveSpeed",Speed * 0.93877f);
     }
 
     public void ReturnToBase()

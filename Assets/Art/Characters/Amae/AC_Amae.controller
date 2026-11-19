@@ -356,7 +356,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Baked_A_IdleTest
-  m_Speed: 1
+  m_Speed: 1.0204
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7727537424278135097}

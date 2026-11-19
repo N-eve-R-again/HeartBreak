@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Amae
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerSettings
   maxCharges: 3
-  timeToCharge: 3.5
+  timeToCharge: 3.84
   idleDecel: 8
   idleResetFacingDelay: 0
   moveangleMaxSpeed: 46
   movedistMaxSpeed: 7
   moveAccel: 10
   moveDecel: 5.5
-  BackwardHopSpeed: 0.45
+  BackwardHopSpeed: 0.48
   BackwardHopSmallJumpAmplitude: 0.95
   backwardInterruptRatio: 0.75
   backwardHopEase:
@@ -138,7 +138,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ForwardHopSpeed: 0.35
+  ForwardHopSpeed: 0.48
   forwardHopInteruptRatio: 0.75
   forwardHopEase:
     serializedVersion: 2
@@ -208,11 +208,11 @@ MonoBehaviour:
     m_RotationOrder: 4
   chargeDashJumpDuration: 0.3
   chargeDashChargeTime: 0.48
-  chargeDashFriction: 0.35
+  chargeDashFriction: 0.32
   chargeDashInputInfluence: 5
   chargeDashBoostMin: 8
   chargeDashBoostMax: 65
-  orbitalDashDuration: 0.25
+  orbitalDashDuration: 0.24
   orbitalDashImmunityRatio: 0.95
   orbitalDashForceCurve:
     serializedVersion: 2
