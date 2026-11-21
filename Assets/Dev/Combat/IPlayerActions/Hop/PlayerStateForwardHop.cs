@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerStateForwardHop : IPlayerState
 {
@@ -73,7 +72,7 @@ public class PlayerStateForwardHop : IPlayerState
         ctx.Data.time = 0f;
         ringfrom = ctx.Data.position.distance;
         ringto = ctx.Data.position.distance - 1f;
-        if (ringto <= 0) ringto = ringfrom;
+        if (!ArenaManager.InBounds(ringto)) ringto = ringfrom;
         return;
     }
 

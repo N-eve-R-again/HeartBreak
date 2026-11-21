@@ -216,7 +216,7 @@ MonoBehaviour:
   chargeDashBoostMin: 8
   chargeDashBoostMax: 65
   orbitalDashDuration: 0.24
-  orbitalDashImmunityRatio: 1.2
+  orbitalDashImmunityRatio: 1.6
   orbitalDashForceCurve:
     serializedVersion: 2
     m_Curve:

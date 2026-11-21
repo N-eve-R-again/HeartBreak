@@ -79,7 +79,7 @@ public class PlayerStateBackHop : IPlayerState
         ctx.Data.time = 0f;
         ringfrom = ctx.Data.position.distance;
         ringto = Mathf.RoundToInt(ctx.Data.position.distance + 1f);
-        if(ringto >= ArenaManager.arena.ringRadii.Length) ringto = ringfrom;
+        if(!ArenaManager.InBounds(ringto)) ringto = ringfrom;
         return;
     }
 

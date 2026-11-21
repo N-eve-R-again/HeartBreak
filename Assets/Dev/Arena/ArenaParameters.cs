@@ -16,17 +16,17 @@ public class ArenaParameters : ScriptableObject
 
 
     [Header("Arena")]
-    public int maxRing => ringRadii.Length - 1;
-    public float[] ringRadii;
+
     public AnimationCurve ringToDistance;
     public AnimationCurve ringToSpeed;
     public ArenaRingData[] rings;
-    public float maxDistance;
+    public float maxDistance => rings.Length -1;
+    public Vector2 bounds = new Vector2(1f, 4f);
 
 #if UNITY_EDITOR
     void OnValidate()
     {
-        if (ringRadii == null || rings.Length == 0) return;
+        if (rings == null || rings.Length == 0) return;
 
         Keyframe[] keys = new Keyframe[rings.Length];
         for (int i = 0; i < rings.Length; i++)
@@ -42,7 +42,6 @@ public class ArenaParameters : ScriptableObject
         }
 
         ringToSpeed = new AnimationCurve(keys2);
-        maxDistance = rings.Length - 1;
         // Force des tangentes linéaires pour passer pile par chaque point
         for (int i = 0; i < keys.Length; i++)
         {
