@@ -1,6 +1,8 @@
 using System;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 [Serializable]
@@ -14,6 +16,9 @@ public class PlayerEntityData
     public int currentCharges;
     public float recharge;
 
+    public float iFrameTimer;
+    public float hp;
+
     public bool TryConsumeEnergy()
     {
         if(currentCharges == 0) return false;
@@ -22,6 +27,19 @@ public class PlayerEntityData
         return true;
     }
 
+    public bool Hit(float Damage)
+    {
+        hp -= Damage;
+        if(hp < 0f)
+        {
+            hp = 0f;
+            Debug.Log("DEAD");
+            return true;
+        }
+        return false;
+    }
+
+    
 
 }
 
@@ -39,13 +57,13 @@ public struct PolarCoordinate
 
     public static PolarCoordinate operator *(PolarCoordinate polar, float multiplier)
     {
-        return new PolarCoordinate(polar.angle * multiplier, polar.distance * multiplier, polar.y * multiplier);
+        return new PolarCoordinate(polar.angle * multiplier, polar.distance * multiplier, polar.y * multiplier).Solve();
     }
 
     public static PolarCoordinate Lerp(PolarCoordinate a, PolarCoordinate b, float time)
     {
         return new PolarCoordinate(
-            Mathf.Lerp(a.angle, b.angle, time), 
+            Mathf.LerpAngle(a.angle, b.angle, time), 
             Mathf.Lerp(a.distance, b.distance, time),
             Mathf.Lerp(a.y, b.y, time) 
         );
@@ -69,19 +87,24 @@ public struct PolarCoordinate
         this.y = y;
     }
 
-
 }
 
 public static class PolarOperations
 {
     public static PolarCoordinate Solve(this PolarCoordinate coordinate)
     {
-        if (coordinate.angle < 0f) { coordinate.angle += 360f; }
-        if (coordinate.angle > 360f) { coordinate.angle -= 360f; }
-
-        if (coordinate.y < 0f) { coordinate.y = 0; }
-
+        coordinate.angle = Mathf.Repeat(coordinate.angle, 360f);
+        coordinate.y = Mathf.Max(coordinate.y, 0f);
         return coordinate;
+    }
+
+    public static Vector3 ToWorld(this PolarCoordinate coordinate)
+    {
+        float realDist = ArenaManager.DistanceToWS(coordinate.distance);
+
+        Vector3 pos = Vector3.back * realDist;
+        pos = Quaternion.Euler(new Vector3(0f, coordinate.angle, 0f)) * pos;
+        return pos + Vector3.up * coordinate.y;
     }
 
 }

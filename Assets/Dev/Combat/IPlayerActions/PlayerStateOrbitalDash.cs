@@ -4,6 +4,7 @@ public class PlayerStateOrbitalDash : IPlayerState
     public OrbitalDashComposer dashComposer;
     public bool invalid;
 
+    public bool IsInvulnerable(PlayerContext ctx) { return true; }
     public void Init(PlayerContext ctx)
     {
         dashComposer = new OrbitalDashComposer(ctx.Settings.orbitalDashForceCurve, ctx.Settings.orbitalDashForce, 0f, ctx.Settings.orbitalDashDuration, 1f);
@@ -27,7 +28,7 @@ public class PlayerStateOrbitalDash : IPlayerState
 
         //ctx.Data.velocity.angle  = ctx.Settings.orbitalDashForceCurve.Evaluate(ratio) * ctx.Settings.orbitalDashForce * dir;
         
-        ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime);
+        ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime, ctx.Data.position.distance);
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
 
 
@@ -57,6 +58,7 @@ public class PlayerStateOrbitalDash : IPlayerState
         dashComposer.Init(startdir);
 
         ctx.VFX.PlayOrbitalDashPS(Vector3.forward);
+        ctx.Data.iFrameTimer = ctx.Settings.orbitalDashDuration * ctx.Settings.orbitalDashImmunityRatio;
         return;
     }
 

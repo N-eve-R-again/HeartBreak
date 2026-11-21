@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,8 @@ public class PlayerUI : MonoBehaviour
 {
     public Image[] dashslots;
     public Image fill;
+    public Image fillhp;
+    public Image combofill;
 
     public void UpdateDashSlots(int number)
     {
@@ -22,6 +25,12 @@ public class PlayerUI : MonoBehaviour
         fill.fillAmount = ratio;
     }
 
+
+    public void UpdateHp(float ratio)
+    {
+        fillhp.fillAmount = ratio;
+        combofill.DOFillAmount(ratio, 0.5f).SetEase(Ease.InQuad);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +40,6 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }

@@ -34,7 +34,7 @@ public class OrbitalDashComposer
         return Vector2.Lerp(Vector2.up, Mathf.Abs(dir) >= 0.1f ? new Vector2(dir, 0f) : Vector2.up, blend);
     }
 
-    public float Step(float dt)
+    public float Step(float dt, float polardistance)
     {
         if (Done) return 0;
         if (dir == 0) return 0;
@@ -43,11 +43,15 @@ public class OrbitalDashComposer
         timer += dt;
         float ratio = Mathf.Clamp01(timer / duration);
 
+        float radius = ArenaManager.DistanceToWS(polardistance);
+        float radiusScale = radius / ArenaManager.DistanceToWS(3.5f);
+
+        radiusScale = 1f; //patch
 
         if (ratio >= 1f)
             Done = true;
 
-        return curve.Evaluate(ratio) * force * dir;
+        return curve.Evaluate(ratio) * force * dir / radiusScale;
     }
 
     public void Init(float _dir)

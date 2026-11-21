@@ -9,6 +9,11 @@ public class PlayerStateForwardDashCharge : IPlayerState
     private int charge;
     private bool willattack;
 
+    public bool IsInvulnerable(PlayerContext ctx)
+    {
+        return dashComposer.Dashing;
+    }
+
     public void Init(PlayerContext ctx)
     {
         dashComposer = new OrbitalDashComposer(
@@ -44,7 +49,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
 
             if (dashComposer.Dashing)
             {
-                ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime);
+                ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime, ctx.Data.position.distance);
                 ctx.Data.facing = dashComposer.GetFacing();
             }
             else
@@ -55,7 +60,7 @@ public class PlayerStateForwardDashCharge : IPlayerState
             }
 
 
-            bool nextStepIsAttack = (ringfrom - charge <= 2);
+            bool nextStepIsAttack = (ringfrom - charge <= 1);
             if (ctx.Data.time > ctx.Settings.chargeDashChargeTime - ctx.VFX.attackGizmo.GetPreshot(nextStepIsAttack))
                 ctx.VFX.attackGizmo.Advance(nextStepIsAttack);
 

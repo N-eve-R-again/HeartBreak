@@ -6,6 +6,7 @@ public class PlayerStateAttackDash : IPlayerState
 
     public bool temp = false;
 
+    public bool IsInvulnerable(PlayerContext ctx) { return true; }
     public Transition Execute(PlayerContext ctx)
     {
         float ratio = ctx.Data.time / ctx.Settings.attackDashDuration;

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlaceHolderBoss : MonoBehaviour
 {
+    public PlayerController playerController;
+
+
     public Bullet projectilePrefab;
     public float rate;
     public float timer;
@@ -44,6 +47,31 @@ public class PlaceHolderBoss : MonoBehaviour
 
         }
     }
+
+    private void LateUpdate()
+    {
+        PolarCoordinate pos = playerController.Position;
+        float radius = ArenaManager.DistanceToWS(pos.distance);
+
+
+        foreach (var bullet in pool)
+        {
+            if (!bullet.active) continue;
+            if (Mathf.Abs(bullet.pos.distance - pos.distance) > 0.2f) continue;
+
+            float arcGap = Mathf.Abs(Mathf.DeltaAngle(bullet.pos.angle, pos.angle))
+                           * Mathf.Deg2Rad * radius;
+
+            if (arcGap > 1f) continue;
+            if (playerController.TakeHit(1f))
+            {
+                bullet.Reset();
+            }
+
+            break;
+        }
+    }
+
     private void SingleBullet()
     {
         InstantiateBullet(Mathf.Round(Random.Range(0f, 359f)));

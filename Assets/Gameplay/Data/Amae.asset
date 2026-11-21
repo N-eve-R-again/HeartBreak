@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerSettings
   maxCharges: 3
   timeToCharge: 3.84
+  hitIFrames: 1
+  stunDuration: 0.3
+  maxHp: 20
   idleDecel: 8
   idleResetFacingDelay: 0
-  moveangleMaxSpeed: 46
+  moveangleMaxSpeed: 42
   movedistMaxSpeed: 7
-  moveAccel: 10
-  moveDecel: 5.5
+  moveAccel: 7.5
+  moveDecel: 5
   BackwardHopSpeed: 0.48
   BackwardHopSmallJumpAmplitude: 0.95
   backwardInterruptRatio: 0.75
@@ -213,7 +216,7 @@ MonoBehaviour:
   chargeDashBoostMin: 8
   chargeDashBoostMax: 65
   orbitalDashDuration: 0.24
-  orbitalDashImmunityRatio: 0.95
+  orbitalDashImmunityRatio: 1.2
   orbitalDashForceCurve:
     serializedVersion: 2
     m_Curve:

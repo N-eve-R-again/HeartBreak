@@ -8,6 +8,8 @@ public interface IPlayerState
     void Exit(PlayerContext ctx);
 
     void Init(PlayerContext ctx) { return; }
+
+    bool IsInvulnerable(PlayerContext ctx) => false;
 }
 
 public static class PlayerStateExtensions

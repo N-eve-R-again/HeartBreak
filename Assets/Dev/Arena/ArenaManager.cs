@@ -17,4 +17,5 @@ public class ArenaManager : MonoBehaviour
     public static float DistanceToWS(float distance) => arena.ringToDistance.Evaluate(distance);
     public static float DistanceToMult(float distance) => arena.ringToSpeed.Evaluate(distance);
 
+
 }

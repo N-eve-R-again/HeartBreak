@@ -58,7 +58,9 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     - _color_Force: 1.67
+    - _fps: 6
     - _noiseForce: 1
+    - _noisescale: 2.42
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

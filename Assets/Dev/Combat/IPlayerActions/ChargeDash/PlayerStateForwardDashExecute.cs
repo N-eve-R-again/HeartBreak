@@ -10,6 +10,8 @@ public class PlayerStateForwardDashExecute : IPlayerState
 
     private Vector2 originalfacing;
 
+    public bool IsInvulnerable(PlayerContext ctx) { return true; }
+
     public void Enter(PlayerContext ctx, IPlayerState fromState)
     {
         int number = Mathf.FloorToInt(Mathf.Abs(ctx.Data.velocity.distance));

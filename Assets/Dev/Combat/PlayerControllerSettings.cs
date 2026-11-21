@@ -8,6 +8,10 @@ public class PlayerControllerSettings : ScriptableObject
     public float maxCharges;
     public float timeToCharge;
 
+    [Header("Hp and Hurt")]
+    public float hitIFrames;
+    public float stunDuration;
+    public float maxHp;
 
     [Header("Idle")]
     public float idleDecel;

@@ -12,9 +12,7 @@ public class PlayerVisual : MonoBehaviour
     {
         float realDist = ArenaManager.DistanceToWS(position.distance);
 
-        transform.position = Vector3.back * realDist;
-        transform.position = Quaternion.Euler(new Vector3(0f, position.angle, 0f)) * transform.position;
-        transform.position = transform.position + Vector3.up * position.y;
+        transform.position = position.ToWorld();
     }
 
     public void UpdateFacing(Vector2 facing)

@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
-using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private PlayerContext playerContext;
 
     [SerializeField] private PlayerEntityData playerEntityData = new();
+    public PolarCoordinate Position => playerEntityData.position;
     [SerializeField] private PlayerControllerSettings settings;
     public Transform cameraPivot;
 
@@ -34,7 +33,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        Application.targetFrameRate = 60; 
+        Application.targetFrameRate = 60;
+        playerEntityData.hp = settings.maxHp;
         InitializeInputs();
         InitVFX();
         InitVisual();
@@ -112,8 +112,17 @@ public class PlayerController : MonoBehaviour
         playerContext.Data.time += Time.deltaTime;
 
         UpdateEnergy();
+        Iframe();
+
         ui.UpdateDashSlots(playerEntityData.currentCharges);
 
+    }
+
+    private void Iframe()
+    {
+        if (playerContext.Data.iFrameTimer == 0f) return;
+        playerContext.Data.iFrameTimer -= Time.deltaTime;
+        if (playerContext.Data.iFrameTimer < 0) playerContext.Data.iFrameTimer = 0;
     }
 
     private void UpdateEnergy()
@@ -162,6 +171,27 @@ public class PlayerController : MonoBehaviour
         currentState.Enter(playerContext, from);
     }
 
+    private bool IsInvulnerable() => playerEntityData.iFrameTimer > 0f || currentState.IsInvulnerable(playerContext);
+    public bool TakeHit(float Damage)
+    {
+        if(IsInvulnerable()) return false;
+
+        bool dead = playerEntityData.Hit(Damage);
+        ui.UpdateHp(playerEntityData.hp / settings.maxHp);
+        if (dead)
+        {
+            TransitionToState(currentState, currentState.GoTo<PlayerStateNone>().Target);
+            Debug.Log("Dead");
+            vfxLibrary.PlayDead();
+            return true;
+        }
+
+        //Feedback;
+
+        TransitionToState(currentState, currentState.GoTo<PlayerStateHurt>().Target);
+
+        return true;
+    }
 }
 
 public class PlayerContext

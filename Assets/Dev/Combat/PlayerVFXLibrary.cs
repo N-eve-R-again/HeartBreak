@@ -1,7 +1,9 @@
+using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerVFXLibrary : MonoBehaviour
 {
@@ -18,8 +20,11 @@ public class PlayerVFXLibrary : MonoBehaviour
     [Header("OrbitalDash")]
     public ParticleSystem psOrbitalDash;
     public ParticleSystem energygained;
-    
+    public ParticleSystem hurtps;
 
+    public Material hitMAt;
+    public CinemachineImpulseSource shake;
+    public Image hitimage;
 
     [Header("Attack")]
     public MeleeEffect meleeEffect;
@@ -50,6 +55,35 @@ public class PlayerVFXLibrary : MonoBehaviour
 
     }
 
+    public void PlayHit()
+    {
+        //shake cam
+        //ps
+        hitMAt.SetFloat("_alpha", 1f);
+        Time.timeScale = 0.5f;
+        shake.GenerateImpulse();
+        Color color = hitimage.color;
+        color.a = 0.5f;
+        hitimage.color = color;
+        hitimage.DOFade(0f,0.2f).SetEase(Ease.OutSine);
+        hurtps.Play();
+    }
+
+    public void ResetMat()
+    {
+        hitMAt.SetFloat("_alpha", 0f);
+
+    }
+    public void ResetTimescale()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void PlayDead()
+    {
+
+
+    }
 
     /// <summary> Pulse instantané (snap à une valeur haute, le sustain reprend après). </summary>
     public void ChargeEffectPulse(float value)

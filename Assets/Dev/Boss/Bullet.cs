@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
 
     public void Reset()
     {
+        StopAllCoroutines();
         active = false;
         transform.DOScale(Vector3.zero, stepTime).SetEase(Ease.InOutCubic);
         flag = true;
@@ -87,10 +88,6 @@ public class Bullet : MonoBehaviour
 
     private void UpdateWorldPos()
     {
-        float realDist = ArenaManager.DistanceToWS(pos.distance);
-
-        transform.position = Vector3.back * realDist;
-        transform.position = Quaternion.Euler(new Vector3(0f, pos.angle, 0f)) * transform.position;
-        transform.position = transform.position + Vector3.up * pos.y;
+        transform.position = pos.ToWorld();
     }
 }

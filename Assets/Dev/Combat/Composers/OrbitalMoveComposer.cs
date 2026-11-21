@@ -26,11 +26,18 @@ public class OrbitalMoveComposer
     public float Step(float angVel, float moveInput, float dt, float polardistance)
     {
         float mult = ArenaManager.DistanceToMult(polardistance);
+
+
+
         bool pressing = Mathf.Abs(moveInput) > 0.01f;
-        float target = pressing ? -moveInput * maxSpeed * mult : 0f;
+        float radius = ArenaManager.DistanceToWS(polardistance);
+        float radiusScale = radius / ArenaManager.DistanceToWS(1f);
+        radiusScale *= mult;
+
+        float target = pressing ? -moveInput * maxSpeed * mult: 0f;
         float rate = pressing
-            ? (Mathf.Abs(angVel) < Mathf.Abs(target) ? accel : decel)
-            : neutralDecel;
+            ? (Mathf.Abs(angVel) < Mathf.Abs(target) ? accel * radiusScale : decel * radiusScale)
+            : neutralDecel * radiusScale;
         float steered = Mathf.Lerp(angVel, target, rate * dt);
         return angVel = Mathf.Lerp(angVel, steered, blend);
     }
