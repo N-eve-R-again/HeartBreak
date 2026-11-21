@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907dbaf04dfbef74786fbab4fc0aefa6, type: 3}
   m_Name: ClassicArena
   m_EditorClassIdentifier: Assembly-CSharp::ArenaParameters
-  ringRadii:
-  - 5.75
-  - 9.7
-  - 13.75
-  - 17.8
-  - 23
   ringToDistance:
     serializedVersion: 2
     m_Curve:
@@ -85,25 +79,25 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 0
-      outSlope: 1
+      outSlope: 1.2
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
+      value: 1.2
+      inSlope: 1.2
+      outSlope: -0.100000024
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 2
-      value: 1
-      inSlope: -0
-      outSlope: 0
+      value: 1.1
+      inSlope: -0.100000024
+      outSlope: -0.100000024
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
@@ -111,7 +105,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 3
       value: 1
-      inSlope: -0
+      inSlope: -0.100000024
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -142,13 +136,13 @@ MonoBehaviour:
   - radius: 5.75
     movementMultiplier: 0
   - radius: 9.7
-    movementMultiplier: 1
+    movementMultiplier: 1.2
   - radius: 13.75
-    movementMultiplier: 1
+    movementMultiplier: 1.1
   - radius: 17.8
     movementMultiplier: 1
   - radius: 22
     movementMultiplier: 1
   - radius: 27
     movementMultiplier: 1
-  maxDistance: 5
+  bounds: {x: 1, y: 4}
