@@ -31,7 +31,7 @@ public class OrbitalDashComposer
 
     public Vector2 GetFacing(float blend = 1f)
     {
-        return Vector2.Lerp(Vector2.up, Mathf.Abs(dir) >= 0.1f ? new Vector2(dir, 0f) : Vector2.up, blend);
+        return Vector2.left * dir;
     }
 
     public float Step(float dt, float polardistance)

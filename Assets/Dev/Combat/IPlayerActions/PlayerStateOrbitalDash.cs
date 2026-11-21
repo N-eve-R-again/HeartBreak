@@ -30,7 +30,7 @@ public class PlayerStateOrbitalDash : IPlayerState
         
         ctx.Data.velocity.angle = dashComposer.Step(Time.deltaTime, ctx.Data.position.distance);
         ctx.Data.position += ctx.Data.velocity * Time.deltaTime;
-
+        ctx.Data.facing = dashComposer.GetFacing(1f);
 
         if (dashComposer.Done)
         {

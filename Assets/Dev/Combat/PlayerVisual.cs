@@ -23,7 +23,7 @@ public class PlayerVisual : MonoBehaviour
 
         Vector3 worldDir = tangent * facing.x + radial * facing.y;
 
-        visualPivot.transform.rotation = Quaternion.Lerp(visualPivot.transform.rotation, Quaternion.LookRotation(worldDir, Vector3.up), Time.deltaTime * 8f);
+        visualPivot.transform.rotation = Quaternion.Lerp(visualPivot.transform.rotation, Quaternion.LookRotation(worldDir, Vector3.up), Time.deltaTime * 16f);
 
     }
 }
